@@ -1,0 +1,127 @@
+﻿@font-face {
+    font-family: Signika;
+    src: url(fonts/Signika-Light.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Signika;
+    src: url(fonts/Signika-Semibold.ttf);
+    font-style: normal;
+    font-weight: bold;
+}
+
+body {
+    background-color: #F8F8F8;
+    background-image: url(images/noise.png);
+    margin: 0;
+}
+
+main {
+    border: 0px solid #000;
+    color: #444444;
+    font-family: Signika;
+    font-size: 14pt;
+    min-width: 1000px;
+    text-shadow: 0px 0px 3px #E8E8E8;
+    -webkit-text-stroke-width: .15px;
+}
+
+header {
+    background-color: #446699;
+    border-bottom: 10px solid #5577AA;
+    color: #DDDDDD;
+    height: 100px;
+    line-height: 100px;
+    text-shadow: 0px 0px 3px #555555;
+}
+
+    header div {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+header h1 {
+    font-size: 28pt;
+    margin: 0;
+}
+
+nav {
+    background-color: #E8E8E8;
+    border-bottom: 2px solid #C8C8C8;
+    box-shadow: #E8E8E8 0px 4px 10px;
+    padding: 10px 0;
+}
+
+    nav div {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    nav a {
+        border: 1px solid #D8D8D8;
+        border-top: none;
+        border-bottom: none;
+        color: #444;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+
+        nav a:hover {
+            background-color: #D8D8D8;
+            border-color: #C8C8C8;
+            border-collapse: collapse;
+            color: #222;
+        }
+
+        nav a:not(:first-child) {
+            margin-left: -4px;
+        }
+
+        nav a:first-child {
+            border-left-width: 2px;
+            margin-left: -2px;
+        }
+
+        nav a:last-child {
+            border-right-width: 2px;
+        }
+
+section {
+    background-color: #F8F8F8;
+    border: 2px solid #D8D8D8;
+    border-top: none;
+    border-bottom: none;
+    padding: 10px 0;
+    margin: 0 auto;
+    width: 90%;
+}
+
+section div {
+    margin: 0 auto;
+    width: 95%;
+}
+
+footer {
+    border-top: 2px dotted #C8C8C8;
+    height: 50px;
+    line-height: 50px;
+}
+
+    footer div {
+        margin: 0 auto;
+        text-align: right;
+        width: 90%;
+    }
+
+    footer div p {
+        color: #666666;
+        font-size: 10pt;
+        margin: 0 20px;
+        text-shadow: 0px 0px 4px #EEEEEE;
+    }
+
+h2 {
+    font-size: 20pt;
+}
