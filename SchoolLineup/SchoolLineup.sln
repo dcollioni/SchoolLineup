@@ -27,13 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolLineup.Util", "School
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolLineup.Web.Mvc", "SchoolLineup.Web.Mvc\SchoolLineup.Web.Mvc.csproj", "{C606A9BD-0BC2-43C7-A733-6ABE3C8348CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{044A78E7-367E-4A04-A70B-F7D006839603}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,10 +62,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DEC1D21A-DA47-4148-84B3-BC0FFD0DE0E9} = {1FE7C151-D259-44B5-8236-4235143F9E9A}
 		{C606A9BD-0BC2-43C7-A733-6ABE3C8348CE} = {790CC433-1B64-4138-8C72-B91516B77BA0}
 		{7C116415-0233-4718-9448-397E95499F79} = {A2636ADC-E4F7-4CF3-9CA4-04A82CC26AAE}
 		{22E93B0B-0AB8-4CF4-BC2E-799EC9A94802} = {06BA15C7-A1FA-4424-BAC1-DFC8373012DB}
-		{DEC1D21A-DA47-4148-84B3-BC0FFD0DE0E9} = {1FE7C151-D259-44B5-8236-4235143F9E9A}
 		{5FE2485C-208E-470D-A806-7CEDD33C0F0D} = {535CBA98-57C5-4CD0-8DAA-669B0AA47B17}
 		{A263D788-251F-4592-BB8F-9D6FCE3709EE} = {49442FF3-8945-468E-9785-85C2C84FEE0F}
 	EndGlobalSection
