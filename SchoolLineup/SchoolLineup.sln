@@ -34,27 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0D7E0F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "packages", "http://localhost:40178", "{366CA044-1092-4678-8221-3BEB13D8F0F1}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_40178"
-		Debug.AspNetCompiler.PhysicalPath = "packages\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_40178\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_40178"
-		Release.AspNetCompiler.PhysicalPath = "packages\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_40178\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "packages\"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,10 +64,6 @@ Global
 		{C606A9BD-0BC2-43C7-A733-6ABE3C8348CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C606A9BD-0BC2-43C7-A733-6ABE3C8348CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C606A9BD-0BC2-43C7-A733-6ABE3C8348CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{366CA044-1092-4678-8221-3BEB13D8F0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{366CA044-1092-4678-8221-3BEB13D8F0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{366CA044-1092-4678-8221-3BEB13D8F0F1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{366CA044-1092-4678-8221-3BEB13D8F0F1}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
