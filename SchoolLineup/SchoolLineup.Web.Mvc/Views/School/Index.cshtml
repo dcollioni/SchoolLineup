@@ -2,5 +2,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <h2>Escolas</h2>
+
+<fieldset>
+    <legend>Informações principais</legend>
+    <form>
+        <div class="row">
+            <div class="cell w35">
+                <label>
+                    Nome
+                    <input type="text" name="name" maxlength="50" />
+                </label>
+            </div>
+            <div class="cell w25">
+                <label>
+                    E-mail
+                    <input type="text" name="email" maxlength="50" />
+                </label>
+            </div>
+            <div class="cell w25">
+                <label>
+                    Gestor
+                    <input type="text" name="managerName" maxlength="50" />
+                </label>
+            </div>
+            <div class="cell w15">
+                <label>
+                    Telefone
+                    <input type="text" name="phone" maxlength="12" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell buttons">
+                <input type="button" name="create" class="create" value="Criar" />
+                <input type="button" name="update" class="update" value="Editar" />
+                <input type="button" name="delete" class="delete" value="Excluir" />
+                <input type="button" name="reset" class="reset" value="Limpar" />
+            </div>
+        </div>
+    </form>
+</fieldset>
+
+<table>
+    <thead>
+        <tr>
+            <th class="w35">Nome</th>
+            <th class="w25">E-mail</th>
+            <th class="w25">Gestor</th>
+            <th class="w15">Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Escola QI - FL18 - Canoas</td>
+            <td>fl18@qi.edu.br</td>
+            <td>Alessandra Souza</td>
+            <td>51 3023.6363</td>
+        </tr>
+        <tr>
+            <td>Escola QI - FL11 - Novo Hamburgo</td>
+            <td>fl11@qi.edu.br</td>
+            <td>Juliani Oliveira</td>
+            <td>51 3023.6363</td>
+        </tr>
+        <tr>
+            <td>Escola QI - FL06 - São Leopoldo</td>
+            <td>fl06@qi.edu.br</td>
+            <td>Nathan Batista</td>
+            <td>51 3023.6363</td>
+        </tr>
+    </tbody>
+</table>

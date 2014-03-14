@@ -100,11 +100,12 @@ section {
 
 section div {
     margin: 0 auto;
+    margin-bottom: 20px;
     width: 95%;
 }
 
 footer {
-    border-top: 2px dotted #C8C8C8;
+    border-top: 2px dotted #B8B8B8;
     height: 50px;
     line-height: 50px;
 }
@@ -124,4 +125,185 @@ footer {
 
 h2 {
     font-size: 20pt;
+}
+
+fieldset {
+    border: 1px solid #CCCCCC;
+    font-size: 12pt;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+fieldset legend {
+    color: #888888;
+}
+
+form {
+    box-sizing: border-box;
+    margin: 0 5px;
+}
+
+    form div {
+        border: 0px solid blue;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        margin: 0;
+    }
+    
+    form .row {
+        width: 100%;
+    }
+        form .row:not(:first-child) {
+            margin-top: 10px;
+        }
+
+    form .cell {
+        display: inline-block;
+        width: 100%;
+    }
+
+        form .cell:not(:first-child) {
+            margin-left: -4px;
+        }
+
+        form .cell:not(:first-child) {
+            padding-left: 10px;
+        }
+
+        form .cell.w80 {
+            width: 80%;
+        }
+        form .cell.w70 {
+            width: 70%;
+        }
+        form .cell.w50 {
+            width: 50%;
+        }
+        form .cell.w40 {
+            width: 40%;
+        }
+        form .cell.w35 {
+            width: 35%;
+        }
+        form .cell.w30 {
+            width: 30%;
+        }
+        form .cell.w25 {
+            width: 25%;
+        }
+        form .cell.w20 {
+            width: 20%;
+        }
+        form .cell.w15 {
+            width: 15%;
+        }
+
+    form .cell.buttons {
+        text-align: right;
+    }
+
+    form .cell.buttons input {
+        background-color: #DDDDDD;
+        padding: 5px 8px;
+        text-align: right;
+        width: 80px;
+    }
+
+        form .cell.buttons input:active {
+            background-color: #CCCCCC;
+        }
+
+    form .cell.buttons input:not(:last-child) {
+        margin-right: 5px;
+    }
+
+    form input {
+        background-color: #FFFFFF;
+        border: 1px solid #AAAAAA;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        font-family: Signika;
+        font-size: 11pt;
+        outline: none;
+        padding: 3px;
+    }
+
+    form input:focus {
+        border-color: #6688BB;
+    }
+
+    form input[type=text] {
+        display: block;
+        width: 100%;
+    }
+
+    form input.create {
+        background: url(images/plus.png) no-repeat 4px 2px;
+        padding-right: 12px !important;
+    }
+
+    form input.update {
+        background: url(images/edit.png) no-repeat 4px 3px;
+    }
+
+    form input.delete {
+        background: url(images/delete.png) no-repeat 3px 3px;
+    }
+
+    form input.reset {
+        background: url(images/file.png) no-repeat 3px 3px;
+    }
+
+table {
+    border: 1px solid #666666;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    font-size: 12pt;
+    margin: 10px 0;
+    width: 100%;
+}
+
+thead {
+    background-color: #888888;
+    color: #EEEEEE;
+    text-shadow: 0px 0px 4px #666666;
+}
+
+th {
+    border: 1px solid #666666;
+    border-left: none;
+    border-right: none;
+    font-weight: normal;
+    padding: 5px;
+}
+th.w35 {
+    width: 35%;
+}
+th.w25 {
+    width: 25%;
+}
+th.w15 {
+    width: 15%;
+}
+
+th:not(:last-child) {
+    border-right: 1px solid #BBBBBB;
+}
+
+tr:not(:last-child) {
+    border: 1px solid #BBBBBB;
+    border-left: none;
+    border-right: none;
+}
+
+td {
+    padding: 5px;
+}
+
+tbody tr {
+    background-color: #FFFFFF;
+}
+
+tbody tr:hover {
+    background-color: #EEEEEE;
 }
