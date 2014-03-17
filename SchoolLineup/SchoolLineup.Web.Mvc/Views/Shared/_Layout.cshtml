@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="author" content="Douglas Collioni" />
 
-    @*<link rel="icon" type="image/vnd.microsoft.icon" href="~/Content/themes/app/images/businessman-16.png" />
-    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="~/Content/themes/app/images/businessman-16.png" />*@
-
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>School Lineup</title>
 
-    @RenderSection("styles", required: false)
-    @RenderSection("scripts", required: false)
-    @System.Web.Optimization.Styles.Render("~/Content/css")
-    
-    @*@Styles.Render("~/Content/themes/base/css")
+    @using System.Web.Optimization
+    @Styles.Render("~/bundles/css")
+
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jquery-ui")
-    @Scripts.Render("~/bundles/jquery-validate")
-    @Scripts.Render("~/bundles/jquery-mask")
-    @Scripts.Render("~/bundles/jquery-dateFormat")
     @Scripts.Render("~/bundles/underscore")
     @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/app/default")*@
 
     <script type="text/javascript">
         var SL = {};
@@ -57,5 +47,6 @@
             </div>
         </footer>
     </main>
+    @RenderSection("ko")
 </body>
 </html>

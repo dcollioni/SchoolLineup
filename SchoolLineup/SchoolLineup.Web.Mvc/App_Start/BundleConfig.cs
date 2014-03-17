@@ -19,12 +19,6 @@ namespace SchoolLineup.Web.Mvc
 
             //bundles.Add(new ScriptBundle("~/bundles/app").Include(
             //            "~/Scripts/jquery-{version}.js",
-            //            "~/Scripts/jquery-ui-{version}.js",
-            //            "~/Scripts/jquery.unobtrusive*",
-            //            "~/Scripts/jquery.validate*",
-            //            "~/Scripts/App/Extensions/Validation*",
-            //            "~/Scripts/jquery.maskedinput*",
-            //            "~/Scripts/App/Extensions/Mask*",
             //            "~/Scripts/underscore*",
             //            "~/Scripts/knockout-{version}.js"));
 
@@ -32,8 +26,8 @@ namespace SchoolLineup.Web.Mvc
 
             #region JQuery
 
-            //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-            //            "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                "~/Scripts/jquery-2.1.0.min.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
             //            "~/Scripts/jquery-ui-{version}.js"));
@@ -54,16 +48,13 @@ namespace SchoolLineup.Web.Mvc
 
             #region Knockout And App Scripts
 
-            //bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-            //            "~/Scripts/knockout-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                "~/Scripts/knockout-{version}.js",
+                "~/Scripts/knockout.mapping-latest.js"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/knockout-mapping").Include(
-            //            "~/Scripts/knockout.mapping.js"));
-
-            //bundles.Add(new ScriptBundle("~/bundles/app/role").IncludeDirectory(
-            //    "~/Scripts/App/ViewModels/",
-            //    "Role*",
-            //    true));
+            bundles.Add(new ScriptBundle("~/bundles/ko/school").IncludeDirectory(
+                "~/Scripts/ViewModels/",
+                "School*"));
 
             //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity").IncludeDirectory(
             //    "~/Scripts/App/ViewModels/",
@@ -97,7 +88,8 @@ namespace SchoolLineup.Web.Mvc
 
             #region Underscore
 
-            //bundles.Add(new ScriptBundle("~/bundles/underscore").Include("~/Scripts/underscore*"));
+            bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+                "~/Scripts/underscore*"));
 
             #endregion Underscore
 
@@ -111,7 +103,8 @@ namespace SchoolLineup.Web.Mvc
 
             //bundles.Add(new StyleBundle("~/Content/themes/base/css").Include("~/Content/themes/base/jquery.ui.all.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/default.css"));
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                "~/Content/default.css"));
 
             //bundles.Add(new StyleBundle("~/Content/css/job-opportunity").Include("~/Content/JobOpportunity.css"));
 

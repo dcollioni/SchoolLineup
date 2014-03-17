@@ -2,6 +2,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section ko{
+    @System.Web.Optimization.Scripts.Render("~/bundles/ko/school")
+}
+
 <h2>Escolas</h2>
 
 <fieldset>
@@ -36,8 +40,8 @@
         <div class="row">
             <div class="cell buttons">
                 <input type="button" name="create" class="create" value="Criar" />
-                <input type="button" name="update" class="update" value="Editar" />
-                <input type="button" name="delete" class="delete" value="Excluir" />
+                <input type="button" name="update" class="update" value="Editar" disabled="disabled" />
+                <input type="button" name="delete" class="delete" value="Excluir" disabled="disabled" />
                 <input type="button" name="reset" class="reset" value="Limpar" />
             </div>
         </div>
@@ -53,24 +57,12 @@
             <th class="w15">Telefone</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody data-bind="foreach: schools">
         <tr>
-            <td>Escola QI - FL18 - Canoas</td>
-            <td>fl18@qi.edu.br</td>
-            <td>Alessandra Souza</td>
-            <td>51 3023.6363</td>
-        </tr>
-        <tr>
-            <td>Escola QI - FL11 - Novo Hamburgo</td>
-            <td>fl11@qi.edu.br</td>
-            <td>Juliani Oliveira</td>
-            <td>51 3023.6363</td>
-        </tr>
-        <tr>
-            <td>Escola QI - FL06 - São Leopoldo</td>
-            <td>fl06@qi.edu.br</td>
-            <td>Nathan Batista</td>
-            <td>51 3023.6363</td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: email"></td>
+            <td data-bind="text: managerName"></td>
+            <td data-bind="text: phone"></td>
         </tr>
     </tbody>
 </table>

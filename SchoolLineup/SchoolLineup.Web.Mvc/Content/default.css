@@ -208,13 +208,18 @@ form {
 
     form .cell.buttons input {
         background-color: #DDDDDD;
+        cursor: pointer;
         padding: 5px 8px;
         text-align: right;
         width: 80px;
     }
 
-        form .cell.buttons input:active {
+        form .cell.buttons input:not(:disabled):active {
             background-color: #CCCCCC;
+        }
+        form .cell.buttons input:disabled {
+            cursor: default;
+            opacity: .6;
         }
 
     form .cell.buttons input:not(:last-child) {
