@@ -313,6 +313,12 @@ tbody tr {
     background-color: #FFFFFF;
 }
 
-tbody tr:hover {
+tbody tr:not(.selected):hover {
     background-color: #EEEEEE;
+}
+
+tbody tr.selected {
+    background-color: #6688BB;
+    color: #EEEEEE;
+    text-shadow: #666666 0px 0px 3px;
 }

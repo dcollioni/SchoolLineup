@@ -10,8 +10,8 @@
     <title>School Lineup</title>
 
     @using System.Web.Optimization
+    
     @Styles.Render("~/bundles/css")
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/underscore")
     @Scripts.Render("~/bundles/knockout")
@@ -47,6 +47,6 @@
             </div>
         </footer>
     </main>
-    @RenderSection("ko")
+    @RenderSection("ko", false)
 </body>
 </html>

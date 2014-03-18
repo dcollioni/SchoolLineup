@@ -2,74 +2,76 @@
     data = data || {};
 
     var self = this;
-    self.id = ko.observable();
-    self.name = ko.observable();
-    self.managerName = ko.observable();
-    self.email = ko.observable();
-    self.phone = ko.observable();
-    self.selected = ko.observable();
+    self.id = ko.observable(data.Id);
+    self.name = ko.observable(data.name);
+    self.managerName = ko.observable(data.managerName);
+    self.email = ko.observable(data.email);
+    self.phone = ko.observable(data.phone);
+    self.isSelected = ko.observable(false);
 
-    this.initialize(data);
+    console.log('initialized: ' + data.name);
 }
 
 School.prototype.clone = function () {
     return new School(ko.toJS(this));
 };
 
-ko.utils.extend(School.prototype, {
-    initialize: function (data) {
-        var self = this;
+//ko.utils.extend(School.prototype, {
+//    initialize: function (data) {
+//        var self = this;
 
-        self.id(data.Id);
-        self.name(data.name);
-        self.managerName(data.managerName);
-        self.email(data.email);
-        self.phone(data.phone);
-        self.selected(false);
-    }
+//        self.id(data.Id);
+//        self.name(data.name);
+//        self.managerName(data.managerName);
+//        self.email(data.email);
+//        self.phone(data.phone);
+//        self.isSelected(false);
 
-    //addOption: function () {
-    //    this.FormOptions.push({
-    //        val: ko.observable("new option")
-    //    });
-    //},
+//        console.log('initialized: ' + data.name);
+//    }
 
-    //removeOption: function (value) {
-    //    this.FormOptions.remove(value);
-    //}
+//    //addOption: function () {
+//    //    this.FormOptions.push({
+//    //        val: ko.observable("new option")
+//    //    });
+//    //},
 
-});
+//    //removeOption: function (value) {
+//    //    this.FormOptions.remove(value);
+//    //}
+
+//});
 
 function SchoolViewModel() {
     var self = this;
     self.schools = ko.observableArray([]);
-    self.selected = ko.observable(new School({}));
+    self.current = ko.observable(new School({}));
     self.isLoading = ko.observable(false);
 
     self.select = function (school) {
-        self.selected(school.clone());
+        self.current(school.clone());
         self.deselectAll();
-        school.selected(true);
+        school.isSelected(true);
     };
 
     self.clearSelection = function () {
-        self.selected(new School({}));
+        self.current(new School({}));
         self.deselectAll();
     };
 
-    self.clearErrors = function () {
-        self.selected().errors({});
-    };
+    //self.clearErrors = function () {
+    //    self.current().errors({});
+    //};
 
     self.deselectAll = function () {
         $.each(self.schools(), function (i, item) {
-            item.selected(false);
+            item.isSelected(false);
         });
     };
 
     self.getSelected = function () {
         return _.find(self.schools(), function (school) {
-            return school.selected();
+            return school.isSelected();
         });
     };
 
@@ -189,7 +191,10 @@ function SchoolViewModel() {
         { id: 3, name: 'Escola QI - FL18 - Canoas', managerName: 'Alessandra Santos', email: 'fl18@qi.edu.br', phone: '5130231020' }
     ];
 
-    self.schools(data);
+    _.each(data, function (item) {
+        self.schools.push(new School(item));
+    });
+
     //var viewModel = ko.mapping.fromJS(data);
 }
 
