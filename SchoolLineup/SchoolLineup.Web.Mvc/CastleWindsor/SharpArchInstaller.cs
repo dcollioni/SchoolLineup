@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using SharpArch.Domain.Commands;
-
-namespace SchoolLineup.Web.Mvc.CastleWindsor
+﻿namespace SchoolLineup.Web.Mvc.CastleWindsor
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+    using SharpArch.Domain.Commands;
+
     public class SharpArchInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

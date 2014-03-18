@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace SchoolLineup.Web.Mvc.App_Start
+﻿namespace SchoolLineup.Web.Mvc.App_Start
 {
+    using System.Web.Mvc;
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

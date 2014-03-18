@@ -1,12 +1,12 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using SharpArch.Domain.PersistenceSupport;
-using SharpArch.RavenDb;
-using SharpArch.RavenDb.Contracts.Repositories;
-
-namespace SchoolLineup.Web.Mvc.CastleWindsor
+﻿namespace SchoolLineup.Web.Mvc.CastleWindsor
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+    using SharpArch.Domain.PersistenceSupport;
+    using SharpArch.RavenDb;
+    using SharpArch.RavenDb.Contracts.Repositories;
+
     public class RepositoryInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

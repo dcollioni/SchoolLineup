@@ -1,13 +1,12 @@
-﻿using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-using Raven.Client;
-using Raven.Client.Document;
-using System.Configuration;
-
-namespace SchoolLineup.Web.Mvc.CastleWindsor
+﻿namespace SchoolLineup.Web.Mvc.CastleWindsor
 {
+    using Castle.MicroKernel;
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+    using Raven.Client;
+    using Raven.Client.Document;
+
     public class RavenDbInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
@@ -27,6 +26,15 @@ namespace SchoolLineup.Web.Mvc.CastleWindsor
         static IDocumentSession GetDocumentSesssion(IKernel kernel)
         {
             var store = kernel.Resolve<IDocumentStore>();
+
+            store.Conventions.FindIdentityProperty = prop => prop.Name == "DocumentId";
+
+            store.Conventions.FindTypeTagName = type =>
+            {
+                var s = DocumentConvention.DefaultTypeTagName(type);
+                return s.Substring(0, 1).ToLower() + s.Substring(1);
+            };
+
             return store.OpenSession();
         }
 

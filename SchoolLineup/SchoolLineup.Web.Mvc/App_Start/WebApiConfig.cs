@@ -1,7 +1,7 @@
-﻿using System.Web.Http;
-
-namespace SchoolLineup.Web.Mvc.App_Start
+﻿namespace SchoolLineup.Web.Mvc.App_Start
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

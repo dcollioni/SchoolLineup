@@ -1,9 +1,9 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
-
-namespace SchoolLineup.Web.Mvc.CastleWindsor
+﻿namespace SchoolLineup.Web.Mvc.CastleWindsor
 {
+    using Castle.MicroKernel.Registration;
+    using Castle.MicroKernel.SubSystems.Configuration;
+    using Castle.Windsor;
+
     public class TasksInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

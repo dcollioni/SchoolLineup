@@ -1,17 +1,17 @@
-﻿using Castle.Windsor;
-using Castle.Windsor.Installer;
-using CommonServiceLocator.WindsorAdapter;
-using Microsoft.Practices.ServiceLocation;
-using SchoolLineup.Web.Mvc.App_Start;
-using SharpArch.Domain.Events;
-using SharpArch.Web.Mvc.Castle;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
-namespace SchoolLineup.Web.Mvc
+﻿namespace SchoolLineup.Web.Mvc
 {
+    using Castle.Windsor;
+    using Castle.Windsor.Installer;
+    using CommonServiceLocator.WindsorAdapter;
+    using Microsoft.Practices.ServiceLocation;
+    using SchoolLineup.Web.Mvc.App_Start;
+    using SharpArch.Domain.Events;
+    using SharpArch.Web.Mvc.Castle;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
