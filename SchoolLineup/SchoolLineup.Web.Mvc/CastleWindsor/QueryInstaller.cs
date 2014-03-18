@@ -9,7 +9,7 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Types.FromAssemblyNamed("SchoolLineup.Web.Mvc")
+                Classes.FromAssemblyNamed("SchoolLineup.Web.Mvc")
                     .InNamespace("SchoolLineup.Web.Mvc.Controllers.Queries", true)
                     .LifestylePerWebRequest()
                     .WithService.DefaultInterfaces());

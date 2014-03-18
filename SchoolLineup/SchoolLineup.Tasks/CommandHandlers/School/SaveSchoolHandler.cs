@@ -4,16 +4,16 @@
     using SchoolLineup.Tasks.Commands.School;
     using SharpArch.Domain.Commands;
 
-    public class CreateSchoolHandler : ICommandHandler<CreateSchoolCommand>
+    public class SaveSchoolHandler : ICommandHandler<SaveSchoolCommand>
     {
         private readonly ISchoolRepository schoolRepository;
 
-        public CreateSchoolHandler(ISchoolRepository schoolRepository)
+        public SaveSchoolHandler(ISchoolRepository schoolRepository)
         {
             this.schoolRepository = schoolRepository;
         }
 
-        public void Handle(CreateSchoolCommand command)
+        public void Handle(SaveSchoolCommand command)
         {
             if (command.IsValid())
             {

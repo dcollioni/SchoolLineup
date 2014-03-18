@@ -179,7 +179,10 @@
     <Compile Include="CastleWindsor\SharpArchInstaller.cs" />
     <Compile Include="CastleWindsor\TasksInstaller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Queries\School\SchoolListQuery.cs" />
+    <Compile Include="Controllers\Queries\School\ISchoolListQuery.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
+    <Compile Include="Controllers\ViewModels\SchoolViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

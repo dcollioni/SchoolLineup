@@ -185,14 +185,38 @@ function SchoolViewModel() {
     //    }
     //});
 
-    var data = [
-        { id: 1, name: 'Escola QI - FL06 - São Leopoldo', managerName: 'Nathan Batista', email: 'fl06@qi.edu.br', phone: '5130235669' },
-        { id: 2, name: 'Escola QI - FL11 - Novo Hamburgo', managerName: 'Juliani Neves', email: 'fl11@qi.edu.br', phone: '5130236235' },
-        { id: 3, name: 'Escola QI - FL18 - Canoas', managerName: 'Alessandra Santos', email: 'fl18@qi.edu.br', phone: '5130231020' }
-    ];
+    //var data = [
+    //    { id: 1, name: 'Escola QI - FL06 - São Leopoldo', managerName: 'Nathan Batista', email: 'fl06@qi.edu.br', phone: '5130235669' },
+    //    { id: 2, name: 'Escola QI - FL11 - Novo Hamburgo', managerName: 'Juliani Neves', email: 'fl11@qi.edu.br', phone: '5130236235' },
+    //    { id: 3, name: 'Escola QI - FL18 - Canoas', managerName: 'Alessandra Santos', email: 'fl18@qi.edu.br', phone: '5130231020' }
+    //];
 
-    _.each(data, function (item) {
-        self.schools.push(new School(item));
+    //_.each(data, function (item) {
+    //    self.schools.push(new School(item));
+    //});
+
+    $.ajax({
+        url: SL.root + 'School/GetAll',
+        dataType: 'json',
+        complete: function () {
+            self.isLoading(false);
+        },
+        success: function (response) {
+
+            $.each(response, function (i, e) {
+                var school = new School({
+                    id: e.Id,
+                    name: e.Name,
+                    email: e.Email,
+                    phone: e.Phone,
+                    managerName: e.ManagerName
+                });
+
+                self.schools.push(school);
+            });
+        },
+        error: function () {
+        }
     });
 
     //var viewModel = ko.mapping.fromJS(data);

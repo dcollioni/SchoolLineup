@@ -85,7 +85,7 @@
             #region Underscore
 
             bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
-                "~/Scripts/underscore*"));
+                "~/Scripts/underscore-min.js"));
 
             #endregion Underscore
 
