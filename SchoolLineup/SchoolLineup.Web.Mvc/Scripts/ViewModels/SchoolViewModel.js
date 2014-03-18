@@ -2,7 +2,7 @@
     data = data || {};
 
     var self = this;
-    self.id = ko.observable(data.Id);
+    self.id = ko.observable(data.id);
     self.name = ko.observable(data.name);
     self.managerName = ko.observable(data.managerName);
     self.email = ko.observable(data.email);
