@@ -129,6 +129,8 @@ function SchoolViewModel() {
     };
 
     self.delete = function () {
+        SL.mask();
+
         $.post(SL.root + 'School/Delete', { id: self.current().id() }, function (response) {
             if (response.Success) {
                 var selectedSchool = self.getSelected();
@@ -139,7 +141,7 @@ function SchoolViewModel() {
                 //self.bindErrors(response);
             }
 
-            //self.isLoading(false);
+            SL.unmask();
         });
     };
 
