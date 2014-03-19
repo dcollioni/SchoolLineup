@@ -89,6 +89,8 @@ function SchoolViewModel() {
     self.save = function (jsonData) {
         var isNew = JSON.parse(jsonData).id === 0;
 
+        SL.mask();
+
         $.ajax({
             url: SL.root + 'School/Save',
             type: "POST",
@@ -120,11 +122,26 @@ function SchoolViewModel() {
                 else {
                     //self.bindErrors(response);
                 }
+
+                SL.unmask();
             }
         });
     };
 
-   
+    self.delete = function () {
+        $.post(SL.root + 'School/Delete', { id: self.current().id() }, function (response) {
+            if (response.Success) {
+                var selectedSchool = self.getSelected();
+                self.schools.remove(selectedSchool);
+                self.clearSelection();
+            }
+            else {
+                //self.bindErrors(response);
+            }
+
+            //self.isLoading(false);
+        });
+    };
 
     //self.destroy = function () {
     //    self.isConfirmationPending(true);
@@ -199,29 +216,38 @@ function SchoolViewModel() {
     //    self.schools.push(new School(item));
     //});
 
-    $.ajax({
-        url: SL.root + 'School/GetAll',
-        dataType: 'json',
-        complete: function () {
-            self.isLoading(false);
-        },
-        success: function (response) {
+    self.load = function () {
 
-            $.each(response, function (i, e) {
-                var school = new School({
-                    id: e.Id,
-                    name: e.Name,
-                    email: e.Email,
-                    phone: e.Phone,
-                    managerName: e.ManagerName
+        SL.mask();
+
+        $.ajax({
+            url: SL.root + 'School/GetAll',
+            dataType: 'json',
+            complete: function () {
+                SL.unmask();
+            },
+            success: function (response) {
+
+                $.each(response, function (i, e) {
+                    var school = new School({
+                        id: e.Id,
+                        name: e.Name,
+                        email: e.Email,
+                        phone: e.Phone,
+                        managerName: e.ManagerName
+                    });
+
+                    self.schools.push(school);
                 });
+            },
+            error: function () {
+            }
+        });
+    }
 
-                self.schools.push(school);
-            });
-        },
-        error: function () {
-        }
-    });
+    self.load();
+
+    //setTimeout(self.load(), 10000);
 
     //var viewModel = ko.mapping.fromJS(data);
 }

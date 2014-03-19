@@ -44,6 +44,11 @@
 
             #region Knockout And App Scripts
 
+            bundles.Add(new ScriptBundle("~/bundles/app/default").IncludeDirectory(
+                "~/Scripts",
+                "Default*",
+                true));
+
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/Scripts/knockout-{version}.js",
                 "~/Scripts/knockout.mapping-latest.js"));
@@ -65,11 +70,6 @@
             //bundles.Add(new ScriptBundle("~/bundles/app/state").IncludeDirectory(
             //    "~/Scripts/App/ViewModels/",
             //    "State*",
-            //    true));
-
-            //bundles.Add(new ScriptBundle("~/bundles/app/default").IncludeDirectory(
-            //    "~/Scripts/App",
-            //    "Default*",
             //    true));
 
             //bundles.Add(new ScriptBundle("~/bundles/app/menu").IncludeDirectory(

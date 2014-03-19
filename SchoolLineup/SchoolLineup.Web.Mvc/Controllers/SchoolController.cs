@@ -54,6 +54,21 @@
             return Json(new { Success = true, Data = viewModel });
         }
 
+        [Transaction]
+        public JsonResult Delete(int id)
+        {
+            var command = new DeleteSchoolCommand(id, schoolTasks);
+
+            this.commandProcessor.Process(command);
+
+            if (!command.Success)
+            {
+                return Json(new { Success = false, Messages = command.ValidationResults() });
+            }
+
+            return Json(new { Success = true });
+        }
+
         private School GetEntity(SchoolViewModel viewModel)
         {
             var entity = new School();

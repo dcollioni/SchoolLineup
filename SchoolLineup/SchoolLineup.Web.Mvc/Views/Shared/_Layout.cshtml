@@ -20,6 +20,8 @@
         var SL = {};
         SL.root = '@Url.Content("~")';
     </script>
+
+    @Scripts.Render("~/bundles/app/default")
 </head>
 <body>
     <main>
@@ -46,6 +48,7 @@
                 <p>Desenvolvido por Douglas Collioni - @@dcollioni</p>
             </div>
         </footer>
+        <div id="mask"></div>
     </main>
     @RenderSection("ko", false)
 </body>

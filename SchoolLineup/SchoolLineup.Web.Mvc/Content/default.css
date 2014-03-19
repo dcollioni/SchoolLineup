@@ -323,3 +323,14 @@ tbody tr.selected {
     color: #222222;
     text-shadow: #AABBCC 0px 0px 3px;
 }
+
+#mask {
+    background-color: #444444;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: .5;
+}

@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\School\DeleteSchoolHandler.cs" />
     <Compile Include="CommandHandlers\School\SaveSchoolHandler.cs" />
+    <Compile Include="Commands\School\DeleteSchoolCommand.cs" />
     <Compile Include="Commands\School\SaveSchoolCommand.cs" />
     <Compile Include="Commands\UnitOfWorkBaseCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

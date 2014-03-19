@@ -14,5 +14,10 @@
         {
             Session.Advanced.Evict(entity);
         }
+
+        public void Delete(int entityId)
+        {
+            Session.Delete<T>(Session.Load<T>(entityId));
+        }
     }
 }

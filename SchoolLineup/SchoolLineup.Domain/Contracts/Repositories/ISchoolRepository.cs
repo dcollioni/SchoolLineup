@@ -6,5 +6,6 @@
     public interface ISchoolRepository : IRepository<School>
     {
         void Evict(School entity);
+        void Delete(int entityId);
     }
 }
