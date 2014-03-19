@@ -29,5 +29,10 @@
                           .OrderBy(school => school.Name)
                           .ToList<SchoolViewModel>();
         }
+
+        public School Get(int id)
+        {
+            return session.Load<School>(id);
+        }
     }
 }

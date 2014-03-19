@@ -178,6 +178,7 @@
     <Compile Include="CastleWindsor\RepositoryInstaller.cs" />
     <Compile Include="CastleWindsor\SharpArchInstaller.cs" />
     <Compile Include="CastleWindsor\TasksInstaller.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Queries\School\SchoolListQuery.cs" />
     <Compile Include="Controllers\Queries\School\ISchoolListQuery.cs" />
@@ -210,6 +211,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

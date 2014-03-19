@@ -8,8 +8,6 @@
     self.email = ko.observable(data.email);
     self.phone = ko.observable(data.phone);
     self.isSelected = ko.observable(false);
-
-    console.log('initialized: ' + data.name);
 }
 
 School.prototype.clone = function () {
@@ -75,52 +73,58 @@ function SchoolViewModel() {
         });
     };
 
-    //self.create = function () {
-    //    var newState = new State({
-    //        id: 0,
-    //        code: self.selected().code(),
-    //        name: self.selected().name()
-    //    });
+    self.create = function () {
+        var newSchool = self.current().clone();
+        newSchool.id(0);
 
-    //    self.isLoading(true);
+        var jsonData = ko.toJSON(newSchool);
+        self.save(jsonData);
+    };
 
-    //    $.post(Sat.root + 'State/Save', newState, function (response) {
-    //        if (response.Success) {
-    //            newState.id(response.Data.Id);
-    //            newState.code(response.Data.Code);
-    //            newState.name(response.Data.Name);
+    self.update = function () {
+        var jsonData = ko.toJSON(self.current);
+        self.save(jsonData);
+    };
 
-    //            self.states.unshift(newState);
-    //            self.select(newState);
-    //        }
-    //        else {
-    //            self.bindErrors(response);
-    //        }
+    self.save = function (jsonData) {
+        var isNew = JSON.parse(jsonData).id === 0;
 
-    //        self.isLoading(false);
-    //    });
-    //};
+        $.ajax({
+            url: SL.root + 'School/Save',
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8;",
+            data: jsonData,
+            success: function (response) {
+                if (response.Success) {
+                    var school;
 
-    //self.update = function () {
-    //    self.isLoading(true);
+                    if (isNew) {
+                        school = self.current().clone();
+                    }
+                    else {
+                        school = self.getSelected();
+                    }
 
-    //    $.post(Sat.root + 'State/Save', self.selected(), function (response) {
+                    school.id(response.Data.Id);
+                    school.name(response.Data.Name);
+                    school.managerName(response.Data.ManagerName);
+                    school.email(response.Data.Email);
+                    school.phone(response.Data.Phone);
 
-    //        if (response.Success) {
-    //            var selectedState = self.getSelected();
+                    if (isNew) {
+                        self.schools.unshift(school);
+                        self.select(school);
+                    }
+                }
+                else {
+                    //self.bindErrors(response);
+                }
+            }
+        });
+    };
 
-    //            selectedState.code(response.Data.Code);
-    //            selectedState.name(response.Data.Name);
-    //            selectedState.id(response.Data.Id);
-    //            self.selected().errors({});
-    //        }
-    //        else {
-    //            self.bindErrors(response);
-    //        }
-
-    //        self.isLoading(false);
-    //    });
-    //};
+   
 
     //self.destroy = function () {
     //    self.isConfirmationPending(true);

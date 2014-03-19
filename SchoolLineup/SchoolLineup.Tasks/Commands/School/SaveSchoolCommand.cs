@@ -26,23 +26,25 @@
             {
                 validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(50), new[] { "Name" }));
             }
-            //else if (!stateTasks.IsUniqueName(Entity.Name, Entity.Id))
-            //{
-            //    validationResults.Add(new ValidationResult(ResourceHelper.AlreadyExists("Nome"), new[] { "Name" }));
-            //}
 
-            //if (string.IsNullOrEmpty(Entity.Code))
-            //{
-            //    validationResults.Add(new ValidationResult(ResourceHelper.RequiredFieldF("sigla"), new[] { "Code" }));
-            //}
-            //else if (Entity.Code.Length > 2)
-            //{
-            //    validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthFieldF("sigla", 2), new[] { "Code" }));
-            //}
-            //else if (!stateTasks.IsUniqueCode(Entity.Code, Entity.Id))
-            //{
-            //    validationResults.Add(new ValidationResult(ResourceHelper.AlreadyExistsF("Sigla"), new[] { "Code" }));
-            //}
+            if (string.IsNullOrEmpty(Entity.Email))
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.RequiredField(), new[] { "Email" }));
+            }
+            else if (Entity.Email.Length > 50)
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(50), new[] { "Email" }));
+            }
+
+            if (!string.IsNullOrEmpty(Entity.ManagerName) && Entity.ManagerName.Length > 50)
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(50), new[] { "ManagerName" }));
+            }
+
+            if (!string.IsNullOrEmpty(Entity.Phone) && Entity.Phone.Length > 12)
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(12), new[] { "Phone" }));
+            }
 
             return (validationResults.Count == 0);
         }

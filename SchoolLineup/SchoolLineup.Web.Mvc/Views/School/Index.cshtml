@@ -10,7 +10,7 @@
 
 <fieldset>
     <legend>Informações principais</legend>
-    <form>
+    <form action="School/Save" method="post">
         <div class="row">
             <div class="cell w35">
                 <label>
@@ -39,8 +39,8 @@
         </div>
         <div class="row">
             <div class="cell buttons">
-                <input type="button" name="create" class="create" value="Criar" />
-                <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0" />
+                <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
+                <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: update" />
                 <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0" />
                 <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
             </div>

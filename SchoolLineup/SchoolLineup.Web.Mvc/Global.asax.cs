@@ -7,6 +7,7 @@
     using SchoolLineup.Web.Mvc.App_Start;
     using SharpArch.Domain.Events;
     using SharpArch.Web.Mvc.Castle;
+    using SharpArch.Web.Mvc.ModelBinder;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -16,6 +17,9 @@
     {
         protected void Application_Start()
         {
+            //ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
+            //ModelValidatorProviders.Providers.Add(new ClientDataTypeModelValidatorProvider());
+
             this.InitializeServiceLocator();
 
             AreaRegistration.RegisterAllAreas();
