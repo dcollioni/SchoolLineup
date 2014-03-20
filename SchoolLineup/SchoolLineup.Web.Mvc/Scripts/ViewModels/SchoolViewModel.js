@@ -89,7 +89,7 @@ function SchoolViewModel() {
     self.save = function (jsonData) {
         var isNew = JSON.parse(jsonData).id === 0;
 
-        SL.mask();
+        SL.mask(true);
 
         $.ajax({
             url: SL.root + 'School/Save',
@@ -129,7 +129,7 @@ function SchoolViewModel() {
     };
 
     self.delete = function () {
-        SL.mask();
+        SL.mask(true);
 
         $.post(SL.root + 'School/Delete', { id: self.current().id() }, function (response) {
             if (response.Success) {
@@ -220,7 +220,7 @@ function SchoolViewModel() {
 
     self.load = function () {
 
-        SL.mask();
+        SL.mask(true);
 
         $.ajax({
             url: SL.root + 'School/GetAll',

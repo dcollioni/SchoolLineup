@@ -1,6 +1,11 @@
-﻿SL.mask = function () {
-    $('#mask').show();
+﻿SL.mask = function (loading) {
+    $('#mask').fadeIn('fast');
+
+    if (!!loading) {
+        $('#loading').fadeIn('fast');
+    }
 };
 SL.unmask = function () {
-    $('#mask').hide();
+    $('#mask').fadeOut('fast');
+    $('#loading').fadeOut('fast');
 };

@@ -319,7 +319,6 @@ tbody tr:not(.selected):hover {
 
 tbody tr.selected {
     background-color: #BBCCDD;
-    /*background-color: #6688BB;*/
     color: #222222;
     text-shadow: #AABBCC 0px 0px 3px;
 }
@@ -332,5 +331,18 @@ tbody tr.selected {
     position: fixed;
     top: 0;
     width: 100%;
-    opacity: .5;
+    opacity: .6;
+}
+
+#loading {
+    background: #EEEEEE url(images/ajax-loader.gif) no-repeat;
+    box-shadow: 0px 0px 15px #444444;
+    display: none; 
+    height: 22px;
+    left: 50%;
+    margin-left: -63px;
+    margin-top: -11px;
+    position: absolute;
+    top: 50%;
+    width: 126px;
 }
