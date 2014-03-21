@@ -149,8 +149,10 @@
   <ItemGroup>
     <Content Include="Content\default.css" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\close.png" />
     <Content Include="Content\images\delete.png" />
     <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\error.png" />
     <Content Include="Content\images\escheresque.png" />
     <Content Include="Content\images\file.png" />
     <Content Include="Content\images\noise.png" />

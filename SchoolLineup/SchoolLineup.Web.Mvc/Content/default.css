@@ -335,7 +335,7 @@ tbody tr.selected {
 }
 
 #loading {
-    background: #EEEEEE url(images/ajax-loader.gif) no-repeat;
+    background: #666666 url(images/ajax-loader.gif) no-repeat;
     box-shadow: 0px 0px 15px #444444;
     display: none;
     height: 22px;
@@ -345,4 +345,57 @@ tbody tr.selected {
     position: absolute;
     top: 50%;
     width: 126px;
+}
+
+#errors {
+    background: #E6E6E6;
+    border: 1px solid #444444;
+    box-shadow: 0px 0px 15px #666666;
+    display: none;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    text-shadow: 0 0 4px #CCCCCC;
+    top: 50%;
+    width: auto;
+    z-index: 3;
+}
+
+#errors.active {
+    display: inline;
+}
+
+#errors h3 {
+    background-color: #DD4444;
+    border-bottom: 1px solid #AA1111;
+    color: #DDDDDD;
+    text-shadow: 0px 0px 4px #660000;
+    font-size: 14pt;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+#errors ul {
+    font-size: 12pt;
+    list-style-image: url(images/error.png);
+    margin: 20px 20px 20px 0px;
+}
+
+.closable .close {
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    transition: opacity .3s;
+}
+
+.closable:hover .close {
+    opacity: .8;
+}
+
+.closable .close:hover {
+    opacity: 1;
 }

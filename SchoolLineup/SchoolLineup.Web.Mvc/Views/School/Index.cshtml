@@ -66,3 +66,13 @@
         </tr>
     </tbody>
 </table>
+
+<div id="errors" data-bind="css: { active: errors().length > 0 }" class="modal closable">
+    <h3>A operação não foi concluída</h3>
+    <ul data-bind="foreach: errors">
+        <li data-bind="text: $data"></li>
+    </ul>
+    <a href="#" data-bind="click: clearErrors" class="close">
+        <img src="@Url.Content("~")Content/images/close.png" alt="Fechar">
+    </a>
+</div>

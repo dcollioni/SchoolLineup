@@ -45,6 +45,7 @@ function SchoolViewModel() {
     self.schools = ko.observableArray([]);
     self.current = ko.observable(new School({}));
     self.isLoading = ko.observable(false);
+    self.errors = ko.observableArray([]);
 
     self.select = function (school) {
         self.current(school.clone());
@@ -57,9 +58,10 @@ function SchoolViewModel() {
         self.deselectAll();
     };
 
-    //self.clearErrors = function () {
-    //    self.current().errors({});
-    //};
+    self.clearErrors = function () {
+        self.errors([]);
+        SL.unmask();
+    };
 
     self.deselectAll = function () {
         $.each(self.schools(), function (i, item) {
@@ -118,12 +120,16 @@ function SchoolViewModel() {
                         self.schools.unshift(school);
                         self.select(school);
                     }
+
+                    SL.unmask();
                 }
                 else {
-                    //self.bindErrors(response);
-                }
+                    SL.hideModals();
 
-                SL.unmask();
+                    $.each(response.Messages, function (i, message) {
+                        self.errors.push(message.MemberNames[0] + ': ' + message.ErrorMessage);
+                    });
+                }
             }
         });
     };
@@ -245,13 +251,15 @@ function SchoolViewModel() {
             error: function () {
             }
         });
-    }
+    };
 
     self.load();
 
     //setTimeout(self.load(), 10000);
 
     //var viewModel = ko.mapping.fromJS(data);
+
+    
 }
 
 ko.applyBindings(new SchoolViewModel(), $('section')[0]);
