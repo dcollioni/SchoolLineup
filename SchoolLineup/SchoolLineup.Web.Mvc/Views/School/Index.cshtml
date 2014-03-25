@@ -15,25 +15,25 @@
             <div class="cell w35">
                 <label>
                     Nome
-                    <input type="text" name="name" maxlength="50" data-bind="value: current().name" />
+                    <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
                 </label>
             </div>
             <div class="cell w25">
                 <label>
                     E-mail
-                    <input type="text" name="email" maxlength="50" data-bind="value: current().email" />
+                    <input type="text" name="email" maxlength="50" data-bind="value: current().email, attr: { title: errors().email }, css: { invalid: !!errors().email }" />
                 </label>
             </div>
             <div class="cell w25">
                 <label>
                     Gestor
-                    <input type="text" name="managerName" maxlength="50" data-bind="value: current().managerName" />
+                    <input type="text" name="managerName" maxlength="50" data-bind="value: current().managerName, attr: { title: errors().managerName }, css: { invalid: !!errors().managerName }" />
                 </label>
             </div>
             <div class="cell w15">
                 <label>
                     Telefone
-                    <input type="text" name="phone" maxlength="12" data-bind="value: current().phone" />
+                    <input type="text" name="phone" maxlength="12" data-bind="value: current().phone, attr: { title: errors().phone }, css: { invalid: !!errors().phone }" />
                 </label>
             </div>
         </div>
@@ -67,12 +67,12 @@
     </tbody>
 </table>
 
-<div id="errors" data-bind="css: { active: errors().length > 0 }" class="modal closable">
+<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
     <h3>A operação não foi concluída</h3>
-    <ul data-bind="foreach: errors">
+    <ul data-bind="foreach: serverErrors">
         <li data-bind="text: $data"></li>
     </ul>
-    <a href="#" data-bind="click: clearErrors" class="close">
+    <a href="#" data-bind="click: clearServerErrors" class="close">
         <img src="@Url.Content("~")Content/images/close.png" alt="Fechar">
     </a>
 </div>

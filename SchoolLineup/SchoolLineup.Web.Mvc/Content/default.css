@@ -246,6 +246,10 @@ form {
         width: 100%;
     }
 
+    form input.invalid {
+        border-color: #DD0000;
+    }
+
     form input.create {
         background: url(images/plus.png) no-repeat 4px 2px;
         padding-right: 12px !important;
@@ -386,9 +390,8 @@ tbody tr.selected {
 .closable .close {
     opacity: 0;
     position: absolute;
-    top: 8px;
+    top: 12px;
     right: 8px;
-
     transition: opacity .3s;
 }
 

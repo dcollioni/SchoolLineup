@@ -16,6 +16,16 @@ SL.closeModals = function () {
     $('.closable .close').click();
 };
 
+SL.setModalPosition = function () {
+    var $modal = $('.modal.active');
+
+    var width = $modal.width();
+    var height = $modal.height();
+
+    $modal.css('margin-left', -(width/2));
+    $modal.css('margin-top', -(height/2));
+};
+
 $(function () {
     $(document).keyup(function (e) {
         if (e.keyCode == 27) {

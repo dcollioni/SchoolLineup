@@ -45,7 +45,8 @@ function SchoolViewModel() {
     self.schools = ko.observableArray([]);
     self.current = ko.observable(new School({}));
     self.isLoading = ko.observable(false);
-    self.errors = ko.observableArray([]);
+    self.serverErrors = ko.observableArray([]);
+    self.errors = ko.observable({});
 
     self.select = function (school) {
         self.current(school.clone());
@@ -55,11 +56,12 @@ function SchoolViewModel() {
 
     self.clearSelection = function () {
         self.current(new School({}));
+        self.errors({});
         self.deselectAll();
     };
 
-    self.clearErrors = function () {
-        self.errors([]);
+    self.clearServerErrors = function () {
+        self.serverErrors([]);
         SL.unmask();
     };
 
@@ -76,16 +78,36 @@ function SchoolViewModel() {
     };
 
     self.create = function () {
-        var newSchool = self.current().clone();
-        newSchool.id(0);
+        if (self.isValid()) {
+            var newSchool = self.current().clone();
+            newSchool.id(0);
 
-        var jsonData = ko.toJSON(newSchool);
-        self.save(jsonData);
+            var jsonData = ko.toJSON(newSchool);
+            self.save(jsonData);
+        }
     };
 
     self.update = function () {
-        var jsonData = ko.toJSON(self.current);
-        self.save(jsonData);
+        if (self.isValid()) {
+            var jsonData = ko.toJSON(self.current);
+            self.save(jsonData);
+        }
+    };
+
+    self.isValid = function () {
+        var brokenRules = [];
+
+        if (!self.current().name()) {
+            brokenRules['name'] = 'Esse campo deve ser preenchido.';
+        }
+
+        if (!self.current().email()) {
+            brokenRules['email'] = 'Esse campo deve ser preenchido.';
+        }
+
+        self.errors(brokenRules);
+
+        return !self.errors().name && !self.errors().email;
     };
 
     self.save = function (jsonData) {
@@ -127,8 +149,10 @@ function SchoolViewModel() {
                     SL.hideModals();
 
                     $.each(response.Messages, function (i, message) {
-                        self.errors.push(message.MemberNames[0] + ': ' + message.ErrorMessage);
+                        self.serverErrors.push(message.MemberNames[0] + ': ' + message.ErrorMessage);
                     });
+
+                    SL.setModalPosition();
                 }
             }
         });
@@ -144,7 +168,7 @@ function SchoolViewModel() {
                 self.clearSelection();
             }
             else {
-                //self.bindErrors(response);
+                //self.bindserverErrors(response);
             }
 
             SL.unmask();
@@ -171,21 +195,21 @@ function SchoolViewModel() {
     //            self.clearSelection();
     //        }
     //        else {
-    //            self.bindErrors(response);
+    //            self.bindserverErrors(response);
     //        }
 
     //        self.isLoading(false);
     //    });
     //};
 
-    //self.bindErrors = function (response) {
-    //    var errors = {};
+    //self.bindserverErrors = function (response) {
+    //    var serverErrors = {};
 
     //    $.each(response.Messages, function (i, message) {
-    //        errors[message.MemberNames[0]] = message.ErrorMessage;
+    //        serverErrors[message.MemberNames[0]] = message.ErrorMessage;
     //    });
 
-    //    self.selected().errors(errors);
+    //    self.selected().serverErrors(serverErrors);
     //};
 
     //self.isLoading(true);
