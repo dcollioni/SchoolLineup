@@ -81,7 +81,7 @@
             entity.Name = GetTrimOrNull(viewModel.Name);
             entity.Email = GetTrimOrNull(viewModel.Email);
             entity.ManagerName = GetTrimOrNull(viewModel.ManagerName);
-            entity.Phone = GetTrimOrNull(viewModel.Phone);
+            entity.Phone = GetPhoneNumber(viewModel.Phone);
 
             return entity;
         }

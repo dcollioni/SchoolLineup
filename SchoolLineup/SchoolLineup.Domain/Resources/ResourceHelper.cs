@@ -17,5 +17,13 @@
         {
             return string.Format(Messages.MaxLengthField, maxLength);
         }
+
+        /// <summary>
+        /// Esse campo deve ter um valor único entre os demais registros.
+        /// </summary>
+        public static string UniqueField()
+        {
+            return Messages.UniqueField;
+        }
     }
 }

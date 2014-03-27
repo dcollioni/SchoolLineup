@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
+    using SchoolLineup.Domain.Entities;
 
     public class SchoolTasks : ISchoolTasks
     {
@@ -10,6 +11,11 @@
         public SchoolTasks(ISchoolRepository schoolRepository)
         {
             this.schoolRepository = schoolRepository;
+        }
+
+        public bool IsNameUnique(School entity)
+        {
+            return schoolRepository.CountByName(entity) == 0;
         }
     }
 }

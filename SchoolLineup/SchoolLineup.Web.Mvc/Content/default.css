@@ -247,7 +247,7 @@ form {
     }
 
     form input.invalid {
-        border-color: #DD0000;
+        border-color: #DD4444;
     }
 
     form input.create {

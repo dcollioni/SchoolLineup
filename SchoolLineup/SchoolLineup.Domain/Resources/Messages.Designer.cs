@@ -77,5 +77,14 @@ namespace SchoolLineup.Domain.Resources {
                 return ResourceManager.GetString("RequiredField", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esse campo deve ter um valor único entre os demais registros..
+        /// </summary>
+        public static string UniqueField {
+            get {
+                return ResourceManager.GetString("UniqueField", resourceCulture);
+            }
+        }
     }
 }

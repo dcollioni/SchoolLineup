@@ -33,7 +33,7 @@
             <div class="cell w15">
                 <label>
                     Telefone
-                    <input type="text" name="phone" maxlength="12" data-bind="value: current().phone, attr: { title: errors().phone }, css: { invalid: !!errors().phone }" />
+                    <input type="text" name="phone" data-bind="value: current().phoneNumber, attr: { title: errors().phone }, css: { invalid: !!errors().phone }" class="mask-phone" />
                 </label>
             </div>
         </div>

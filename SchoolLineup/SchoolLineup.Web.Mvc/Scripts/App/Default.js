@@ -26,6 +26,16 @@ SL.setModalPosition = function () {
     $modal.css('margin-top', -(height/2));
 };
 
+SL.formatters = {
+    phone: function (value) {
+        if (!!value) {
+            value = String.format('({0}) {1}-{2}', value.substr(0, 2), value.substr(2, 4), value.substr(6));
+        }
+
+        return value;
+    }
+};
+
 $(function () {
     $(document).keyup(function (e) {
         if (e.keyCode == 27) {

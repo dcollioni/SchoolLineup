@@ -123,4 +123,7 @@
   <data name="RequiredField" xml:space="preserve">
     <value>Esse campo deve ser preenchido.</value>
   </data>
+  <data name="UniqueField" xml:space="preserve">
+    <value>Esse campo deve ter um valor único entre os demais registros.</value>
+  </data>
 </root>

@@ -33,9 +33,12 @@
             //            "~/Scripts/jquery.validate*",
             //            "~/Scripts/App/Extensions/Validation*"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/jquery-mask").Include(
-            //            "~/Scripts/jquery.maskedinput*",
-            //            "~/Scripts/App/Extensions/Mask*"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-mask").Include(
+                        "~/Scripts/jquery.maskedinput*",
+                        "~/Scripts/App/Masks*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/string").Include(
+                        "~/Scripts/string*"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jquery-dateFormat").Include(
             //            "~/Scripts/jquery.dateFormat-{version}.js"));
@@ -45,7 +48,7 @@
             #region Knockout And App Scripts
 
             bundles.Add(new ScriptBundle("~/bundles/app/default").IncludeDirectory(
-                "~/Scripts",
+                "~/Scripts/App",
                 "Default*",
                 true));
 

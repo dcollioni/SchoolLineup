@@ -8,12 +8,12 @@
     public class SaveSchoolCommand : UnitOfWorkBaseCommand
     {
         public School Entity { get; set; }
-        private readonly ISchoolTasks tasks;
+        private readonly ISchoolTasks schoolTasks;
 
-        public SaveSchoolCommand(School entity, ISchoolTasks tasks)
+        public SaveSchoolCommand(School entity, ISchoolTasks schoolTasks)
         {
             this.Entity = entity;
-            this.tasks = tasks;
+            this.schoolTasks = schoolTasks;
         }
 
         public override bool IsValid()
@@ -25,6 +25,10 @@
             else if (Entity.Name.Length > 50)
             {
                 validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(50), new[] { "Name" }));
+            }
+            else if (!schoolTasks.IsNameUnique(Entity))
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.UniqueField(), new[] { "Name" }));
             }
 
             if (string.IsNullOrEmpty(Entity.Email))

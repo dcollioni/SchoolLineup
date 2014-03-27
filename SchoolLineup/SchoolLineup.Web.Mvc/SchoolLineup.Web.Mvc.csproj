@@ -160,10 +160,13 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
-    <Content Include="Scripts\Default.js" />
+    <Content Include="Scripts\App\Default.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\App\Masks.js" />
+    <Content Include="Scripts\string.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
     <Content Include="Web.config">

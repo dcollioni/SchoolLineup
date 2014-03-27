@@ -6,8 +6,19 @@
     self.name = ko.observable(data.name);
     self.managerName = ko.observable(data.managerName);
     self.email = ko.observable(data.email);
-    self.phone = ko.observable(data.phone);
+    self.phoneNumber = ko.observable(data.phone);
+    
     self.isSelected = ko.observable(false);
+
+    self.phone = ko.computed({
+        read: function () {
+            return SL.formatters.phone(self.phoneNumber());
+        },
+        write: function (phone) {
+            self.phoneNumber(phone);
+        },
+        owner: self
+    });
 }
 
 School.prototype.clone = function () {
@@ -140,8 +151,9 @@ function SchoolViewModel() {
 
                     if (isNew) {
                         self.schools.unshift(school);
-                        self.select(school);
                     }
+
+                    self.select(school);
 
                     SL.unmask();
                 }
