@@ -64,6 +64,10 @@
       <Project>{7c116415-0233-4718-9448-397e95499f79}</Project>
       <Name>SchoolLineup.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SchoolLineup.Util\SchoolLineup.Util.csproj">
+      <Project>{a263d788-251f-4592-bb8f-9d6fce3709ee}</Project>
+      <Name>SchoolLineup.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

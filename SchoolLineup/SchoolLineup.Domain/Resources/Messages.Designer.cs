@@ -61,6 +61,15 @@ namespace SchoolLineup.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail inválido..
+        /// </summary>
+        public static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esse campo deve conter, no máximo, {0} caracteres..
         /// </summary>
         public static string MaxLengthField {

@@ -136,6 +136,32 @@
         }
 
         [TestMethod]
+        public void Save_School_Email_Is_Not_Valid_Returns_Error()
+        {
+            // Arrange
+            var mockRepository = new MockRepository(MockBehavior.Strict);
+
+            var schoolRepository = mockRepository.Create<ISchoolRepository>();
+            schoolRepository.Setup(x => x.Evict(It.IsAny<School>()));
+            schoolRepository.Setup(x => x.CountByName(It.IsAny<School>())).Returns(0);
+
+            var schoolTasks = new SchoolTasks(schoolRepository.Object);
+
+            var entity = new School() { Name = "Escola 1", Email = "emailwithoutatsymbol" };
+            var command = new SaveSchoolCommand(entity, schoolTasks);
+
+            var expectedError = ResourceHelper.InvalidEmail();
+
+            // Act
+            var handler = new SaveSchoolHandler(schoolRepository.Object);
+            handler.Handle(command);
+
+            // Assert
+            Assert.IsFalse(command.Success);
+            Assert.IsTrue(command.ValidationResults().Any(r => r.ErrorMessage == expectedError));
+        }
+
+        [TestMethod]
         public void Save_School_ManagerName_Length_Is_Greater_Than_50_Returns_Error()
         {
             // Arrange

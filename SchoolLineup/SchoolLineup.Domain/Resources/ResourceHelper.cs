@@ -25,5 +25,13 @@
         {
             return Messages.UniqueField;
         }
+
+        /// <summary>
+        /// E-mail inválido.
+        /// </summary>
+        public static string InvalidEmail()
+        {
+            return Messages.InvalidEmail;
+        }
     }
 }

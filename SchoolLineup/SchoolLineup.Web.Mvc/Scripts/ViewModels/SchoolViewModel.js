@@ -121,6 +121,9 @@ function SchoolViewModel() {
         if (!self.current().email()) {
             brokenRules['email'] = 'Esse campo deve ser preenchido.';
         }
+        else if (!SL.validation.isEmailValid(self.current().email())) {
+            brokenRules['email'] = 'E-mail inválido.';
+        }
 
         self.errors(brokenRules);
 

@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Domain.Resources;
+    using SchoolLineup.Util;
     using System.ComponentModel.DataAnnotations;
 
     public class SaveSchoolCommand : UnitOfWorkBaseCommand
@@ -38,6 +39,10 @@
             else if (Entity.Email.Length > 50)
             {
                 validationResults.Add(new ValidationResult(ResourceHelper.MaxLengthField(50), new[] { "Email" }));
+            }
+            else if (!Validation.IsEmailValid(Entity.Email))
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.InvalidEmail(), new[] { "Email" }));
             }
 
             if (!string.IsNullOrEmpty(Entity.ManagerName) && Entity.ManagerName.Length > 50)
