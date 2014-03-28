@@ -23,7 +23,9 @@ SL.setModalPosition = function () {
     var height = $modal.height();
 
     $modal.css('margin-left', -(width/2));
-    $modal.css('margin-top', -(height/2));
+    $modal.css('margin-top', -(height / 2));
+
+    $modal.find('.close').focus();
 };
 
 SL.formatters = {

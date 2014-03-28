@@ -94,14 +94,20 @@ function SchoolViewModel() {
             newSchool.id(0);
 
             var jsonData = ko.toJSON(newSchool);
-            self.save(jsonData);
+
+            if (self.isUnique(jsonData)) {
+                self.save(jsonData);
+            }
         }
     };
 
     self.update = function () {
         if (self.isValid()) {
             var jsonData = ko.toJSON(self.current);
-            self.save(jsonData);
+
+            if (self.isUnique(jsonData)) {
+                self.save(jsonData);
+            }
         }
     };
 
@@ -119,6 +125,31 @@ function SchoolViewModel() {
         self.errors(brokenRules);
 
         return !self.errors().name && !self.errors().email;
+    };
+
+    self.isUnique = function (jsonData) {
+        var isUnique = true;
+
+        $.ajax({
+            url: SL.root + 'School/IsNameUnique',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8;",
+            data: jsonData,
+            async: false,
+            success: function (response) {
+                isUnique = response;
+
+                if (!isUnique) {
+                    var brokenRules = [];
+                    brokenRules['name'] = 'Esse campo deve ter um valor único entre os demais registros.';
+
+                    self.errors(brokenRules);
+                }
+            }
+        });
+
+        return isUnique;
     };
 
     self.save = function (jsonData) {
@@ -290,12 +321,6 @@ function SchoolViewModel() {
     };
 
     self.load();
-
-    //setTimeout(self.load(), 10000);
-
-    //var viewModel = ko.mapping.fromJS(data);
-
-    
 }
 
 ko.applyBindings(new SchoolViewModel(), $('section')[0]);

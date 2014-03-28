@@ -69,6 +69,14 @@
             return Json(new { Success = true });
         }
 
+        public JsonResult IsNameUnique(SchoolViewModel viewModel)
+        {
+            var entity = GetEntity(viewModel);
+            var isNameUnique = schoolTasks.IsNameUnique(entity);
+
+            return Json(isNameUnique, JsonRequestBehavior.AllowGet);
+        }
+
         private School GetEntity(SchoolViewModel viewModel)
         {
             var entity = new School();

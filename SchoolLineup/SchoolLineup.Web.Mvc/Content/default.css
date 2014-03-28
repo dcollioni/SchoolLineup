@@ -389,6 +389,7 @@ tbody tr.selected {
 
 .closable .close {
     opacity: 0;
+    outline: none;
     position: absolute;
     top: 12px;
     right: 8px;
