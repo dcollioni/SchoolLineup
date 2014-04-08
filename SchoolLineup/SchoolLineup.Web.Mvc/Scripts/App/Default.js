@@ -13,7 +13,7 @@ SL.hideModals = function () {
     $('.modal').fadeOut('fast');
 };
 SL.closeModals = function () {
-    $('.closable .close').click();
+    $('.active.closable .close').click();
 };
 
 SL.setModalPosition = function () {
@@ -26,6 +26,7 @@ SL.setModalPosition = function () {
     $modal.css('margin-top', -(height / 2));
 
     $modal.find('.close').focus();
+    $modal.find('input[type=button][name=confirm]').focus();
 };
 
 SL.formatters = {

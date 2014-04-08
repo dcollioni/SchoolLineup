@@ -40,7 +40,7 @@
         <div class="row">
             <div class="cell buttons">
                 <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
-                <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: update" />
+                <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: $root.update" />
                 <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: $root.delete" />
                 <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
             </div>
@@ -72,7 +72,14 @@
     <ul data-bind="foreach: serverErrors">
         <li data-bind="text: $data"></li>
     </ul>
-    <a href="#" data-bind="click: clearServerErrors" class="close">
-        <img src="@Url.Content("~")Content/images/close.png" alt="Fechar">
-    </a>
+    <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+</div>
+
+<div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
+    <h3>Confirmar exclusão</h3>
+    <div>
+        <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
+        <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
+    </div>
+    <a href="#" data-bind="click: cancelDelete" class="close"></a>
 </div>

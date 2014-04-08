@@ -56,6 +56,7 @@ function SchoolViewModel() {
     self.schools = ko.observableArray([]);
     self.current = ko.observable(new School({}));
     self.isLoading = ko.observable(false);
+    self.isDeleting = ko.observable(false);
     self.serverErrors = ko.observableArray([]);
     self.errors = ko.observable({});
 
@@ -205,6 +206,13 @@ function SchoolViewModel() {
     };
 
     self.delete = function () {
+        self.isDeleting(true);
+        SL.mask();
+        SL.setModalPosition();
+    };
+
+    self.confirmDelete = function () {
+        self.isDeleting(false);
         SL.mask(true);
 
         $.post(SL.root + 'School/Delete', { id: self.current().id() }, function (response) {
@@ -219,6 +227,11 @@ function SchoolViewModel() {
 
             SL.unmask();
         });
+    };
+
+    self.cancelDelete = function () {
+        self.isDeleting(false);
+        SL.unmask();
     };
 
     //self.destroy = function () {

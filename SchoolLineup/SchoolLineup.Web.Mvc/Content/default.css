@@ -202,31 +202,11 @@ form {
             width: 15%;
         }
 
-    form .cell.buttons {
+    .cell.buttons {
         text-align: right;
     }
 
-    form .cell.buttons input {
-        background-color: #DDDDDD;
-        cursor: pointer;
-        padding: 5px 8px;
-        text-align: right;
-        width: 80px;
-    }
-
-        form .cell.buttons input:not(:disabled):active {
-            background-color: #CCCCCC;
-        }
-        form .cell.buttons input:disabled {
-            cursor: default;
-            opacity: .6;
-        }
-
-    form .cell.buttons input:not(:last-child) {
-        margin-right: 5px;
-    }
-
-    form input {
+    input {
         background-color: #FFFFFF;
         border: 1px solid #AAAAAA;
         box-sizing: border-box;
@@ -237,34 +217,75 @@ form {
         padding: 3px;
     }
 
-    form input:focus {
+    input[type=submit],
+    input[type=reset],
+    input[type=button] {
+        background-color: #DDDDDD;
+        cursor: pointer;
+        padding: 5px 8px;
+        text-align: right;
+        width: 80px;
+    }
+
+        input[type=submit]:not(:disabled):active,
+        input[type=reset]:not(:disabled):active,
+        input[type=button]:not(:disabled):active {
+            background-color: #CCCCCC;
+        }
+
+        input[type=submit]:disabled,
+        input[type=reset]:disabled,
+        input[type=button]:disabled {
+            cursor: default;
+            opacity: .6;
+        }
+
+        input[type=submit]:not(:last-child),
+        input[type=reset]:not(:last-child),
+        input[type=button]:not(:last-child) {
+            margin-right: 5px;
+        }
+
+    input:focus {
         border-color: #6688BB;
     }
 
-    form input[type=text] {
+    input[type=text] {
         display: block;
         width: 100%;
     }
 
-    form input.invalid {
+    input.invalid {
         border-color: #DD4444;
     }
 
-    form input.create {
-        background: url(images/plus.png) no-repeat 4px 2px;
+    input.create {
+        background: #DDDDDD url(images/plus.png) no-repeat 4px 2px;
         padding-right: 12px !important;
     }
 
-    form input.update {
-        background: url(images/edit.png) no-repeat 4px 3px;
+    input.update {
+        background: #DDDDDD url(images/edit.png) no-repeat 4px 3px;
     }
 
-    form input.delete {
-        background: url(images/delete.png) no-repeat 3px 3px;
+    input.delete {
+        background: #DDDDDD url(images/delete.png) no-repeat 3px 3px;
     }
 
-    form input.reset {
-        background: url(images/file.png) no-repeat 3px 3px;
+    input.reset {
+        background: #DDDDDD url(images/file.png) no-repeat 3px 3px;
+    }
+
+    input.confirm {
+        background: #DDDDDD url(images/ok.png) no-repeat 4px 4px;
+        padding: 6px 8px 6px 6px;
+        width: 105px;
+    }
+
+    input.cancel {
+        background: #DDDDDD url(images/cancel.png) no-repeat 3px 3px;
+        padding: 6px 8px 6px 6px;
+        width: 100px;
     }
 
 table {
@@ -387,13 +408,53 @@ tbody tr.selected {
     margin: 20px 20px 20px 0px;
 }
 
+#deleteConfirmation {
+    background: #E6E6E6;
+    border: 1px solid #444444;
+    box-shadow: 0px 0px 15px #666666;
+    display: none;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    text-shadow: 0 0 4px #CCCCCC;
+    top: 50%;
+    width: auto;
+    max-width: 500px;
+    z-index: 3;
+}
+
+#deleteConfirmation h3 {
+    background-color: #888888;
+    border-bottom: 1px solid #111111;
+    color: #DDDDDD;
+    text-shadow: 0px 0px 4px #000000;
+    font-size: 14pt;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 10px 40px;
+    text-align: center;
+}
+
+#deleteConfirmation div {
+    margin-bottom: 15px;
+    text-align: center;
+    width: 250px;
+}
+
+#deleteConfirmation.active {
+    display: inline;
+}
+
 .closable .close {
+    background: url(images/close.png) no-repeat;
+    height: 20px;
     opacity: 0;
     outline: none;
     position: absolute;
     top: 12px;
     right: 8px;
     transition: opacity .3s;
+    width: 20px;
 }
 
 .closable:hover .close {
