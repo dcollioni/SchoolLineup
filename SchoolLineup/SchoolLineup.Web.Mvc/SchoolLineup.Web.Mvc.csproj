@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\default.css" />
+    <Content Include="Content\images\cancel.png" />
     <Content Include="Content\images\close.png" />
     <Content Include="Content\images\delete.png" />
     <Content Include="Content\images\edit.png" />
@@ -156,6 +157,7 @@
     <Content Include="Content\images\file.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\noise.png" />
+    <Content Include="Content\images\ok.png" />
     <Content Include="Content\images\plus.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
