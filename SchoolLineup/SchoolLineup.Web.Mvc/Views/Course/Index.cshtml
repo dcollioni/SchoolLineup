@@ -3,12 +3,13 @@
 }
 
 @section ko{
-    @System.Web.Optimization.Scripts.Render("~/bundles/ko/school")
+    @*@System.Web.Optimization.Scripts.Render("~/bundles/ko/course")*@
 }
 
-<h2>Escolas</h2>
+<h2>Disciplinas</h2>
+<h3>@ViewBag.SchoolName</h3>
 
-<fieldset>
+@*<fieldset>
     <legend>Informações principais</legend>
     <form action="School/Save" method="post">
         <div class="row">
@@ -82,4 +83,4 @@
         <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
     </div>
     <a href="#" data-bind="click: cancelDelete" class="close"></a>
-</div>
+</div>*@

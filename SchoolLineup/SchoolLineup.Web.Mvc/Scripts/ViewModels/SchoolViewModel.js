@@ -238,6 +238,10 @@ function SchoolViewModel() {
     };
 
     self.load();
+
+    self.open = function (school) {
+        location.href = SL.root + 'Course/' + school.id();
+    }
 }
 
 ko.applyBindings(new SchoolViewModel(), $('section')[0]);

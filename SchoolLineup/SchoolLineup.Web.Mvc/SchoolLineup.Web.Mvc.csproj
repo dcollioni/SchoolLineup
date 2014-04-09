@@ -191,6 +191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Queries\School\SchoolListQuery.cs" />
     <Compile Include="Controllers\Queries\School\ISchoolListQuery.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\ViewModels\SchoolViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\School\Index.cshtml" />
     <None Include="BundleTransformer.Configuration.xsd" />
+    <Content Include="Views\Course\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
