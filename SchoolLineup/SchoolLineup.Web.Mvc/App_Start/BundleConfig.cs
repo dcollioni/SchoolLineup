@@ -9,7 +9,7 @@
 
             // Set this to true, enables minification doesn't matter what is configured in Web.config file in compilation section
             // In the Web.config file, section compilation, while debug='true' then minification is disabled
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = true;
 
             #region AllFiles
 

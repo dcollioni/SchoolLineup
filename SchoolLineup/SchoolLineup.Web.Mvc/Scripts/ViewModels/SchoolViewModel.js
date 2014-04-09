@@ -25,32 +25,6 @@ School.prototype.clone = function () {
     return new School(ko.toJS(this));
 };
 
-//ko.utils.extend(School.prototype, {
-//    initialize: function (data) {
-//        var self = this;
-
-//        self.id(data.Id);
-//        self.name(data.name);
-//        self.managerName(data.managerName);
-//        self.email(data.email);
-//        self.phone(data.phone);
-//        self.isSelected(false);
-
-//        console.log('initialized: ' + data.name);
-//    }
-
-//    //addOption: function () {
-//    //    this.FormOptions.push({
-//    //        val: ko.observable("new option")
-//    //    });
-//    //},
-
-//    //removeOption: function (value) {
-//    //    this.FormOptions.remove(value);
-//    //}
-
-//});
-
 function SchoolViewModel() {
     var self = this;
     self.schools = ko.observableArray([]);
@@ -233,79 +207,6 @@ function SchoolViewModel() {
         self.isDeleting(false);
         SL.unmask();
     };
-
-    //self.destroy = function () {
-    //    self.isConfirmationPending(true);
-    //};
-
-    //self.cancelDestroy = function () {
-    //    self.isConfirmationPending(false);
-    //};
-
-    //self.confirmDestroy = function () {
-    //    self.isConfirmationPending(false);
-    //    self.isLoading(true);
-
-    //    $.post(Sat.root + 'State/Destroy', { id: self.selected().id() }, function (response) {
-
-    //        if (response.Success) {
-    //            var selectedState = self.getSelected();
-    //            self.states.remove(selectedState);
-    //            self.clearSelection();
-    //        }
-    //        else {
-    //            self.bindserverErrors(response);
-    //        }
-
-    //        self.isLoading(false);
-    //    });
-    //};
-
-    //self.bindserverErrors = function (response) {
-    //    var serverErrors = {};
-
-    //    $.each(response.Messages, function (i, message) {
-    //        serverErrors[message.MemberNames[0]] = message.ErrorMessage;
-    //    });
-
-    //    self.selected().serverErrors(serverErrors);
-    //};
-
-    //self.isLoading(true);
-
-    //$.ajax({
-    //    url: Sat.root + 'State/GetAll',
-    //    dataType: 'json',
-    //    complete: function () {
-    //        self.isLoading(false);
-    //    },
-    //    success: function (response) {
-
-    //        $.each(response, function (i, e) {
-    //            var state = new State({
-    //                id: e.Id,
-    //                code: e.Code,
-    //                name: e.Name
-    //            });
-
-    //            self.states.push(state);
-    //        });
-
-    //        $.fn.resizeTableHead();
-    //    },
-    //    error: function () {
-    //    }
-    //});
-
-    //var data = [
-    //    { id: 1, name: 'Escola QI - FL06 - São Leopoldo', managerName: 'Nathan Batista', email: 'fl06@qi.edu.br', phone: '5130235669' },
-    //    { id: 2, name: 'Escola QI - FL11 - Novo Hamburgo', managerName: 'Juliani Neves', email: 'fl11@qi.edu.br', phone: '5130236235' },
-    //    { id: 3, name: 'Escola QI - FL18 - Canoas', managerName: 'Alessandra Santos', email: 'fl18@qi.edu.br', phone: '5130231020' }
-    //];
-
-    //_.each(data, function (item) {
-    //    self.schools.push(new School(item));
-    //});
 
     self.load = function () {
 
