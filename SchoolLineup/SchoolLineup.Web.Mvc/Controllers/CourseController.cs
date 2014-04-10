@@ -31,12 +31,38 @@
                 if (school != null)
                 {
                     ViewBag.SchoolName = school.Name;
+                    ViewBag.SchoolId = school.Id;
 
                     return View();
                 }
             }
 
             return RedirectToAction("Index", "School");
+        }
+
+        public JsonResult GetAll(int id)
+        {
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+        [Transaction]
+        public JsonResult Save(SchoolViewModel viewModel)
+        {
+            //var entity = GetEntity(viewModel);
+
+            //var command = new SaveSchoolCommand(entity, schoolTasks);
+
+            //this.commandProcessor.Process(command);
+
+            //if (!command.Success)
+            //{
+            //    return Json(new { Success = false, Messages = command.ValidationResults() });
+            //}
+
+            //viewModel = GetViewModel(command.Entity);
+            //return Json(new { Success = true, Data = viewModel });
+
+            return Json(null);
         }
     }
 }

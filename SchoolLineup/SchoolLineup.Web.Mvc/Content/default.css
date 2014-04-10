@@ -250,9 +250,14 @@ form {
         border-color: #6688BB;
     }
 
-    input[type=text] {
+    input[type=text],
+    input[type=date] {
         display: block;
         width: 100%;
+    }
+
+    input[type=date] {
+        padding: 1px 3px;
     }
 
     input.invalid {
@@ -332,6 +337,10 @@ tr:not(:last-child) {
 
 td {
     padding: 5px;
+}
+
+td.center {
+    text-align: center;
 }
 
 tbody tr {

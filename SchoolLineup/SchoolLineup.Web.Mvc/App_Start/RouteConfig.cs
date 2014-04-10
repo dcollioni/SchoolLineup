@@ -22,6 +22,13 @@
         private static void RegisterCourseRoutes(RouteCollection routes)
         {
             routes.MapRoute(
+                name: "SaveCourse",
+                url: "Course/Save",
+                defaults: new { controller = "Course", action = "Save" },
+                namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "CoursesBySchool",
                 url: "Course/{id}",
                 defaults: new { controller = "Course", action = "Index", id = UrlParameter.Optional },

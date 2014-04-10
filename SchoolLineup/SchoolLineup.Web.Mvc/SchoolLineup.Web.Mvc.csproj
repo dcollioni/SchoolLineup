@@ -170,6 +170,7 @@
     <Content Include="Scripts\App\Masks.js" />
     <Content Include="Scripts\string.js" />
     <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\ViewModels\CourseViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
