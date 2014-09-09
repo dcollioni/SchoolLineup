@@ -34,5 +34,11 @@
         {
             return session.Load<School>(id);
         }
+
+        public IList<School> GetAllEntities()
+        {
+            return session.Query<School>()
+                          .ToList();
+        }
     }
 }

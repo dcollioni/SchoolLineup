@@ -1,5 +1,6 @@
 ﻿namespace SchoolLineup.Web.Mvc.Controllers
 {
+    using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.School;
@@ -7,6 +8,7 @@
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
+    using System.Globalization;
     using System.Web.Mvc;
 
     public class SchoolController : BaseController
@@ -14,14 +16,17 @@
         private readonly ISchoolListQuery schoolListQuery;
         private readonly ISchoolTasks schoolTasks;
         private readonly ICommandProcessor commandProcessor;
+        private readonly ISchoolRepository schoolRepository;
 
         public SchoolController(ISchoolListQuery schoolListQuery,
                                 ISchoolTasks schoolTasks,
-                                ICommandProcessor commandProcessor)
+                                ICommandProcessor commandProcessor,
+                                ISchoolRepository schoolRepository)
         {
             this.schoolListQuery = schoolListQuery;
             this.schoolTasks = schoolTasks;
             this.commandProcessor = commandProcessor;
+            this.schoolRepository = schoolRepository;
         }
 
         public ActionResult Index()
@@ -105,6 +110,31 @@
             viewModel.Phone = entity.Phone;
 
             return viewModel;
+        }
+
+        [Transaction]
+        public void ImportData()
+        {
+            using (var reader = System.IO.File.OpenText(Server.MapPath("~/App_Data/escolas.txt")))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var schoolData = reader.ReadLine().Split(':');
+
+                    schoolRepository.SaveOrUpdate
+                    (
+                        new School()
+                        {
+                            Address = schoolData[3].Trim(),
+                            Code = schoolData[0].Trim(),
+                            Lat = double.Parse(schoolData[2].Split(',')[0].Trim(), new CultureInfo("en-US")),
+                            Lng = double.Parse(schoolData[2].Split(',')[1].Trim(), new CultureInfo("en-US")),
+                            Name = schoolData[1].Trim(),
+                            Phone = schoolData[4].Trim()
+                        }
+                    );
+                }
+            }
         }
     }
 }

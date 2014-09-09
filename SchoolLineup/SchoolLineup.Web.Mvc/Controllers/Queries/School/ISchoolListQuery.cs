@@ -7,6 +7,7 @@
     public interface ISchoolListQuery
     {
         IList<SchoolViewModel> GetAll();
+        IList<School> GetAllEntities();
         School Get(int id);
     }
 }

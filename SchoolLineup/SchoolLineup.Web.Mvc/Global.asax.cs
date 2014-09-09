@@ -5,10 +5,11 @@
     using CommonServiceLocator.WindsorAdapter;
     using Microsoft.Practices.ServiceLocation;
     using SchoolLineup.Web.Mvc.App_Start;
+    using SchoolLineup.Web.Mvc.CastleWindsor;
     using SharpArch.Domain.Events;
     using SharpArch.Web.Mvc.Castle;
-    using SharpArch.Web.Mvc.ModelBinder;
     using System.Web.Http;
+    using System.Web.Http.Dispatcher;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -40,6 +41,10 @@
             container.Install(FromAssembly.This());
 
             ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
+
+            GlobalConfiguration.Configuration.Services.Replace(
+                typeof(IHttpControllerActivator),
+                new WindsorCompositionRoot(container));
 
             var windsorServiceLocator = new WindsorServiceLocator(container);
 
