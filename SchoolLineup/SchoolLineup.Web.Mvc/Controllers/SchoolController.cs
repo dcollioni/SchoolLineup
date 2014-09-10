@@ -130,7 +130,8 @@
                             Lat = double.Parse(schoolData[2].Split(',')[0].Trim(), new CultureInfo("en-US")),
                             Lng = double.Parse(schoolData[2].Split(',')[1].Trim(), new CultureInfo("en-US")),
                             Name = schoolData[1].Trim(),
-                            Phone = schoolData[4].Trim()
+                            Phone = schoolData[4].Trim(),
+                            SiteCode = schoolData[5].Trim()
                         }
                     );
                 }

@@ -1,36 +1,36 @@
-﻿4: POA Alberto Bins : -30.0281426,-51.2235003: Av. Alberto Bins 320 - Centro Porto Alegre: (51) 3073.5800
-2: POA Assis Brasil: -30.0103198,-51.1539229: Av. Assis Brasil 3312 - Cristo Redentor Porto Alegre: (51) 3019.0000
-5: Gravataí P74: -29.936681,-51.0194: Av. Dorival de Oliveira 2595 - Parada 74 - Gravataí: (51) 3042.0000
-1: Gravataí Centro: -29.9395156,-50.9936113: Av. Dorival de Oliveira 343 - Centro Gravataí: (51) 3043.0000
-6: São Leopoldo: -29.7662073,-51.1457113: Av. Independência 736 - Centro São Leopoldo: (51) 3037.0000
-10: Alvorada: -29.9968907,-51.07239: Av. Getúlio Vargas 2700 - Centro Alvorada: (51) 3044.7900
-11: Novo Hamburgo: -29.6850595,-51.1289336: Av. David Canabarro 75 - Centro Novo Hamburgo: (51) 3066.0405
-9: POA Júlio de Castilhos: -30.0250136,-51.2227912: Av. Júlio de Castilhos 435 - Centro Porto Alegre: (51) 3214.0000
-12: Viamão: -30.0804686,-51.029545: Rua Bento Gonçalves 628 - Centro Viamão: (51) 3054.0144
-13: Guaíba: -30.1086325,-51.3146137: Rua São José 181 - Centro Guaíba: (51) 3480.3100
-14: Bento Gonçalves: -29.1683649,-51.5171105: Rua General Osório 32 - Centro Bento Gonçalves: (54) 3451.7000
-3: Caxias do Sul: -29.1695283,-51.1840005: Rua Marechal Floriano 970 - Centro Caxias: (54) 3028.6378
-19: Restinga Seca: -29.8296654,-53.373901: Av. Julio de Castilhos 2101 - Vila Felin Restinga Seca: (55) 3220.0365
-17: Rio Grande: -32.032225,-52.106378: Rua Aquidaban 714 - Loja 90 - Centro Rio Grande: (53) 3035.3909
-46: Santa Maria: -29.6832079,-53.8078745: Av. Rio Branco 688 - Centro Santa Maria: (55) 9921.3607
-47: Taquara: -29.6447537,-50.779109: Rua General Emilio Esteves 1131 - Centro Taquara: (51) 3541.5930
-18: Canoas: -29.9039649,-51.1784458: Av. Victor Barreto 780 - Mathias Velho Canoas: (51) 3500.0018
-20: Capão da Canoa: -29.765076,-50.034229: Rua 18 (RS 407) 1190 - Via central - Santa Luzia Capão da Canoa : (51) 3665.3005
-21: Bom Jesus: -28.6828403,-50.4319808: Av. Manoel Silveira de Azevedo 4430 - Centro Bom Jesus: (54) 3237.1000
-22: São Francisco de Assis: -29.559371,-55.12499: Rua Treze de Janeiro 1415 - Centro São Francisco de Assis: (55) 3252.1292
-23: Canela : -29.368386,-50.793927: Rua Francisco Bertolucci 65 - Araci Corrêa Canela: (54) 3282.1016
-24: Tupanciretã: -29.084543,-53.82621: Rua Chiquinha de Azevedo 24 - Centro Tupanciretã: (55) 3272.3658
-25: Charqueadas: -29.959654,-51.633542: Rua Pará 187 - Centro Charqueadas : (51) 3658.6227
-26: Rosário do Sul: -30.256409,-54.936006: Av. Prefeito Rafael Gonçalves 435 - Centenário Rosário do Sul: (55) 3231.8604
-27: Dom Pedrito: -30.970242,-54.676009: Rua Osvaldo Aranha 2048 - Centro Dom Pedrito: (53) 3243.1763
-28: Palmeira das Missões: -27.914217,-53.31995: Av. Júlio de Castilhos 805 - Centro Palmeira das Missões: (55) 3742.5499
-30: Santiago: -29.187208,-54.874542: Rua Coronel Tuca 369 - Itu Santiago: (55) 3251.8293
-38: Marau: -28.447467,-52.196752: Rua Bento Gonçalves 392 - Centro Marau: (54) 3342.2473
-40: Gramado: -29.36885,-50.888408: Rua Prefeito Waldemar Frederico Weber 808 - Floresta Gramado: (54) 3286.5614
-29: São Gabriel: -30.338957,-54.323907: Av. Barão do Cambay 1294 - Centro São Gabriel: (55) 3232.2119
-39: São Sepé: -30.163831,-53.570875: Rua Tuiuti 970 - Centro São Sepé: (55) 3233.2816
-35: Piratini: -31.443337,-53.103868: Rua Trinta e Um de Março 186 - Centro Piratini: (53) 3257.2636
-32: Quaraí : -30.389489,-56.450306: Rua General Canabarro 487 - Centro Quaraí: (55) 3423.3523
-41: Taquari: -29.779389,-51.849718: Rua Osvaldo Michel 138 - Leo Alvin Faler Taquari: (51) 3653.4135
-31: Panambi: -28.282464,-53.490988: Rua Edmundo Rahmeier 183 - Kuhn Panambi: (55) 3375.2771
-42: Alegrete: -29.782443,-55.793303: Rua Barão do Cerro Largo 1280 - Centro Alegrete: (55) 3422.0319
+﻿4: POA Alberto Bins : -30.0281426,-51.2235003: Av. Alberto Bins 320 - Centro Porto Alegre: (51) 3073.5800: 2
+2: POA Assis Brasil: -30.0103198,-51.1539229: Av. Assis Brasil 3312 - Cristo Redentor Porto Alegre: (51) 3019.0000: 3
+5: Gravataí P74: -29.936681,-51.0194: Av. Dorival de Oliveira 2595 - Parada 74 - Gravataí: (51) 3042.0000: 4
+1: Gravataí Centro: -29.9395156,-50.9936113: Av. Dorival de Oliveira 343 - Centro Gravataí: (51) 3043.0000: 5
+6: São Leopoldo: -29.7662073,-51.1457113: Av. Independência 736 - Centro São Leopoldo: (51) 3037.0000: 6
+10: Alvorada: -29.9968907,-51.07239: Av. Getúlio Vargas 2700 - Centro Alvorada: (51) 3044.7900: 9
+11: Novo Hamburgo: -29.6850595,-51.1289336: Av. David Canabarro 75 - Centro Novo Hamburgo: (51) 3066.0405: 10
+9: POA Júlio de Castilhos: -30.0250136,-51.2227912: Av. Júlio de Castilhos 435 - Centro Porto Alegre: (51) 3214.0000: 11
+12: Viamão: -30.0804686,-51.029545: Rua Bento Gonçalves 628 - Centro Viamão: (51) 3054.0144: 12
+13: Guaíba: -30.1086325,-51.3146137: Rua São José 181 - Centro Guaíba: (51) 3480.3100: 13
+14: Bento Gonçalves: -29.1683649,-51.5171105: Rua General Osório 32 - Centro Bento Gonçalves: (54) 3451.7000: 14
+3: Caxias do Sul: -29.1695283,-51.1840005: Rua Marechal Floriano 970 - Centro Caxias: (54) 3028.6378: 15
+19: Restinga Seca: -29.8296654,-53.373901: Av. Julio de Castilhos 2101 - Vila Felin Restinga Seca: (55) 3220.0365: 19
+17: Rio Grande: -32.032225,-52.106378: Rua Aquidaban 714 - Loja 90 - Centro Rio Grande: (53) 3035.3909: 16
+46: Santa Maria: -29.6832079,-53.8078745: Av. Rio Branco 688 - Centro Santa Maria: (55) 9921.3607: 39
+47: Taquara: -29.6447537,-50.779109: Rua General Emilio Esteves 1131 - Centro Taquara: (51) 3541.5930: 40
+18: Canoas: -29.9039649,-51.1784458: Av. Victor Barreto 780 - Mathias Velho Canoas: (51) 3500.0018: 18
+20: Capão da Canoa: -29.765076,-50.034229: Rua 18 (RS 407) 1190 - Via central - Santa Luzia Capão da Canoa : (51) 3665.3005: 20
+21: Bom Jesus: -28.6828403,-50.4319808: Av. Manoel Silveira de Azevedo 4430 - Centro Bom Jesus: (54) 3237.1000: 21
+22: São Francisco de Assis: -29.559371,-55.12499: Rua Treze de Janeiro 1415 - Centro São Francisco de Assis: (55) 3252.1292: 22
+23: Canela : -29.368386,-50.793927: Rua Francisco Bertolucci 65 - Araci Corrêa Canela: (54) 3282.1016: 23
+24: Tupanciretã: -29.084543,-53.82621: Rua Chiquinha de Azevedo 24 - Centro Tupanciretã: (55) 3272.3658: 24
+25: Charqueadas: -29.959654,-51.633542: Rua Pará 187 - Centro Charqueadas : (51) 3658.6227: 25
+26: Rosário do Sul: -30.256409,-54.936006: Av. Prefeito Rafael Gonçalves 435 - Centenário Rosário do Sul: (55) 3231.8604: 26
+27: Dom Pedrito: -30.970242,-54.676009: Rua Osvaldo Aranha 2048 - Centro Dom Pedrito: (53) 3243.1763: 27
+28: Palmeira das Missões: -27.914217,-53.31995: Av. Júlio de Castilhos 805 - Centro Palmeira das Missões: (55) 3742.5499: 28
+30: Santiago: -29.187208,-54.874542: Rua Coronel Tuca 369 - Itu Santiago: (55) 3251.8293: 29
+38: Marau: -28.447467,-52.196752: Rua Bento Gonçalves 392 - Centro Marau: (54) 3342.2473: 30
+40: Gramado: -29.36885,-50.888408: Rua Prefeito Waldemar Frederico Weber 808 - Floresta Gramado: (54) 3286.5614: 31
+29: São Gabriel: -30.338957,-54.323907: Av. Barão do Cambay 1294 - Centro São Gabriel: (55) 3232.2119: 32
+39: São Sepé: -30.163831,-53.570875: Rua Tuiuti 970 - Centro São Sepé: (55) 3233.2816: 33
+35: Piratini: -31.443337,-53.103868: Rua Trinta e Um de Março 186 - Centro Piratini: (53) 3257.2636: 34
+32: Quaraí : -30.389489,-56.450306: Rua General Canabarro 487 - Centro Quaraí: (55) 3423.3523: 35
+41: Taquari: -29.779389,-51.849718: Rua Osvaldo Michel 138 - Leo Alvin Faler Taquari: (51) 3653.4135: 36
+31: Panambi: -28.282464,-53.490988: Rua Edmundo Rahmeier 183 - Kuhn Panambi: (55) 3375.2771: 37
+42: Alegrete: -29.782443,-55.793303: Rua Barão do Cerro Largo 1280 - Centro Alegrete: (55) 3422.0319: 38
