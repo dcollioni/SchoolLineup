@@ -44,6 +44,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,8 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Repositories\IExamResultRepository.cs" />
+    <Compile Include="Contracts\Repositories\IStudentRepository.cs" />
+    <Compile Include="Contracts\Repositories\ITeacherRepository.cs" />
+    <Compile Include="Contracts\Repositories\IPartialGradeRepository.cs" />
+    <Compile Include="Contracts\Repositories\IExamRepository.cs" />
+    <Compile Include="Contracts\Repositories\ICourseRepository.cs" />
+    <Compile Include="Contracts\Repositories\ICollegeRepository.cs" />
     <Compile Include="Contracts\Repositories\ISchoolRepository.cs" />
     <Compile Include="Contracts\Tasks\ISchoolTasks.cs" />
+    <Compile Include="Entities\ExamResult.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\Stakeholder.cs" />
+    <Compile Include="Entities\Exam.cs" />
+    <Compile Include="Entities\PartialGrade.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\College.cs" />
     <Compile Include="Entities\EntityWithId.cs" />
     <Compile Include="Entities\School.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

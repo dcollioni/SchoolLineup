@@ -157,7 +157,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\alunos.txt" />
     <Content Include="App_Data\escolas.txt" />
+    <Content Include="App_Data\notas.txt" />
     <Content Include="Content\default.css" />
     <Content Include="Content\images\cancel.png" />
     <Content Include="Content\images\close.png" />
