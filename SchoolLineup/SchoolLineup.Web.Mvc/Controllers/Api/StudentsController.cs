@@ -16,7 +16,7 @@
 
         // GET api/<controller>
         public IEnumerable<School> Get()
-        {
+        { 
             return null;
         }
 
