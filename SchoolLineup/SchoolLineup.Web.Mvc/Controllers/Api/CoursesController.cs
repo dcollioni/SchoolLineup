@@ -1,29 +1,30 @@
 ﻿namespace SchoolLineup.Web.Mvc.Controllers.Api
 {
     using SchoolLineup.Domain.Entities;
-    using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.Course;
+    using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using System.Collections.Generic;
     using System.Web.Http;
 
-    public class StudentsController : ApiController
+    public class CoursesController : ApiController
     {
-        private readonly IStudentListQuery studentListQuery;
+        private readonly ICourseListQuery courseListQuery;
 
-        public StudentsController(IStudentListQuery studentListQuery)
+        public CoursesController(ICourseListQuery courseListQuery)
         {
-            this.studentListQuery = studentListQuery;
+            this.courseListQuery = courseListQuery;
         }
 
         // GET api/<controller>
-        public IEnumerable<School> Get()
+        public IEnumerable<Course> Get()
         {
             return null;
         }
 
         // GET api/<controller>/5
-        public Student Get(string email, string password)
+        public IEnumerable<CourseViewModel> Get(int studentId)
         {
-            return studentListQuery.Get(email, password);
+            return courseListQuery.GetAll(studentId);
         }
 
         // POST api/<controller>

@@ -191,16 +191,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastleWindsor\WindsorCompositionRoot.cs" />
+    <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\StudentsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Queries\School\IStudentListQuery.cs" />
+    <Compile Include="Controllers\Queries\Course\ICourseListQuery.cs" />
+    <Compile Include="Controllers\Queries\Course\CourseListQuery.cs" />
+    <Compile Include="Controllers\Queries\Student\IStudentListQuery.cs" />
     <Compile Include="Controllers\Queries\School\ISchoolListQuery.cs" />
-    <Compile Include="Controllers\Queries\School\StudentListQuery.cs" />
+    <Compile Include="Controllers\Queries\Student\StudentListQuery.cs" />
     <Compile Include="Controllers\Queries\School\SchoolListQuery.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\ViewModels\CourseViewModel.cs" />
     <Compile Include="Controllers\ViewModels\SchoolViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

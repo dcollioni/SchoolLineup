@@ -1,4 +1,4 @@
-﻿namespace SchoolLineup.Web.Mvc.Controllers.Queries.School
+﻿namespace SchoolLineup.Web.Mvc.Controllers.Queries.Student
 {
     using Raven.Client;
     using SchoolLineup.Domain.Entities;
