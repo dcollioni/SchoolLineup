@@ -81,6 +81,7 @@
 
                 viewModel.ExamValue = exams.Sum(e => e.Value);
                 viewModel.Value = examsResults.Sum(e => e.Value);
+                viewModel.ExamDateStr = string.Empty;
 
                 viewModels.Add(viewModel);
             }
