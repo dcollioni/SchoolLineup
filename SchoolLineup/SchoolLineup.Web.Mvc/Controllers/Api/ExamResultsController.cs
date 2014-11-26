@@ -22,9 +22,16 @@
         }
 
         // GET api/<controller>/5
-        public IEnumerable<ExamResultViewModel> Get(int studentId, int partialGradeId)
+        public IEnumerable<ExamResultViewModel> Get(int studentId, int partialGradeId, int courseId)
         {
-            return examResultListQuery.GetAll(studentId, partialGradeId);
+            if (partialGradeId > 0)
+            {
+                return examResultListQuery.GetAll(studentId, partialGradeId);
+            }
+            else
+            {
+                return examResultListQuery.GetTotals(studentId, courseId);
+            }
         }
 
         // POST api/<controller>

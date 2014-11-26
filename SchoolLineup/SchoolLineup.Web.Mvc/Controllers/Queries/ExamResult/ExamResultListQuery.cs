@@ -54,5 +54,38 @@
 
             return viewModels.OrderBy(v => v.ExamDate);
         }
+
+        public IEnumerable<ExamResultViewModel> GetTotals(int studentId, int courseId)
+        {
+            var viewModels = new List<ExamResultViewModel>();
+
+            var partialGrades = session.Query<PartialGrade>()
+                                          .Where(p => p.CourseId == courseId)
+                                          .OrderBy(p => p.Order)
+                                          .ToList();
+
+            foreach (var partialGrade in partialGrades)
+            {
+                var viewModel = new ExamResultViewModel()
+                {
+                    ExamName = partialGrade.Name
+                };
+
+                var exams = session.Query<Exam>()
+                                   .Where(e => e.PartialGradeId == partialGrade.Id)
+                                   .ToList();
+
+                var examsResults = session.Query<ExamResult>()
+                                          .Where(e => e.ExamId.In(exams.Select(x => x.Id)) && e.StudentId == studentId)
+                                          .ToList();
+
+                viewModel.ExamValue = exams.Sum(e => e.Value);
+                viewModel.Value = examsResults.Sum(e => e.Value);
+
+                viewModels.Add(viewModel);
+            }
+
+            return viewModels;
+        }
     }
 }

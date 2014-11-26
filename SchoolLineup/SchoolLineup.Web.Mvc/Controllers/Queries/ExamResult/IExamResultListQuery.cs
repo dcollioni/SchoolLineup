@@ -6,5 +6,6 @@
     public interface IExamResultListQuery
     {
         IEnumerable<ExamResultViewModel> GetAll(int studentId, int partialGradeId);
+        IEnumerable<ExamResultViewModel> GetTotals(int studentId, int courseId);
     }
 }
