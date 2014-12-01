@@ -7,15 +7,16 @@
 }
 
 <h2>Disciplinas</h2>
-<h3>@ViewBag.SchoolName</h3>
+<h3>Escola: @ViewBag.CollegeName</h3>
 
-<input type="hidden" id="schoolId" value="@ViewBag.SchoolId" />
+<input type="hidden" id="collegeId" value="@ViewBag.CollegeId" />
 
 <fieldset>
     <legend>Informações principais</legend>
     <form action="Course/Save" method="post">
+        <input type="hidden" name="collegeId" data-bind="value: current().collegeId"  />
         <div class="row">
-            <div class="cell w50">
+            <div class="cell w25">
                 <label>
                     Nome
                     <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
@@ -23,14 +24,26 @@
             </div>
             <div class="cell w25">
                 <label>
-                    Início
-                    <input type="date" name="startDate" data-bind="value: current().startDate, attr: { title: errors().startDate }, css: { invalid: !!errors().startDate }" />
+                    Professor
+                    <select name="teacherId" data-bind="options: teachers, optionsCaption: 'Selecione...', optionsText: 'name', optionsValue: 'id', value: current().teacherId, attr: { title: errors().teacherId }, css: { invalid: !!errors().teacherId }"></select>
                 </label>
             </div>
-            <div class="cell w25">
+            <div class="cell w20">
+                <label>
+                    Início
+                    <input type="text" name="startDate" data-bind="value: current().startDateStr, attr: { title: errors().startDate }, css: { invalid: !!errors().startDate }" />
+                </label>
+            </div>
+            <div class="cell w20">
                 <label>
                     Término
-                    <input type="date" name="endDate" data-bind="value: current().endDate, attr: { title: errors().endDate }, css: { invalid: !!errors().endDate }" />
+                    <input type="text" name="finishDate" data-bind="value: current().finishDateStr, attr: { title: errors().finishDate }, css: { invalid: !!errors().finishDate }" />
+                </label>
+            </div>
+            <div class="cell w10">
+                <label>
+                    <input type="checkbox" name="isClosed" data-bind="checked: current().isClosed" />
+                    Fechada
                 </label>
             </div>
         </div>
@@ -53,21 +66,16 @@
             <th class="w25">Término</th>
         </tr>
     </thead>
-    <tbody @*data-bind="foreach: schools"*@>
-        <tr @*data-bind="click: $parent.select, css: { selected: isSelected }, event: { dblclick: $parent.open }"*@>
-            <td @*data-bind="text: name"*@>Internet I</td>
-            <td class="center" @*data-bind="text: email"*@>11/03/2014</td>
-            <td class="center" @*data-bind="text: managerName"*@>08/04/2014</td>
-        </tr>
-        <tr @*data-bind="click: $parent.select, css: { selected: isSelected }, event: { dblclick: $parent.open }"*@>
-            <td @*data-bind="text: name"*@>Automação de Escritório</td>
-            <td class="center" @*data-bind="text: email"*@>10/03/2014</td>
-            <td class="center" @*data-bind="text: managerName"*@>07/04/2014</td>
+    <tbody data-bind="foreach: courses">
+        <tr data-bind="click: $parent.select, css: { selected: isSelected }, event: { dblclick: $parent.open }">
+            <td data-bind="text: name"></td>
+            <td class="center" data-bind="text: startDateStr"></td>
+            <td class="center" data-bind="text: finishDateStr"></td>
         </tr>
     </tbody>
 </table>
 
-@*<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
     <h3>A operação não foi concluída</h3>
     <ul data-bind="foreach: serverErrors">
         <li data-bind="text: $data"></li>
@@ -82,4 +90,4 @@
         <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
     </div>
     <a href="#" data-bind="click: cancelDelete" class="close"></a>
-</div>*@
+</div>

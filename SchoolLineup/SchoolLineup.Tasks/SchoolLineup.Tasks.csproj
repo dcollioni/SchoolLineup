@@ -51,12 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\Course\DeleteCourseHandler.cs" />
+    <Compile Include="CommandHandlers\Course\SaveCourseHandler.cs" />
+    <Compile Include="CourseTasks.cs" />
+    <Compile Include="CommandHandlers\College\DeleteCollegeHandler.cs" />
+    <Compile Include="CommandHandlers\College\SaveCollegeHandler.cs" />
     <Compile Include="CommandHandlers\School\DeleteSchoolHandler.cs" />
     <Compile Include="CommandHandlers\School\SaveSchoolHandler.cs" />
+    <Compile Include="Commands\Course\DeleteCourseCommand.cs" />
+    <Compile Include="Commands\Course\SaveCourseCommand.cs" />
+    <Compile Include="Commands\College\DeleteCollegeCommand.cs" />
+    <Compile Include="Commands\College\SaveCollegeCommand.cs" />
     <Compile Include="Commands\School\DeleteSchoolCommand.cs" />
     <Compile Include="Commands\School\SaveSchoolCommand.cs" />
     <Compile Include="Commands\UnitOfWorkBaseCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CollegeTasks.cs" />
     <Compile Include="SchoolTasks.cs" />
   </ItemGroup>
   <ItemGroup>

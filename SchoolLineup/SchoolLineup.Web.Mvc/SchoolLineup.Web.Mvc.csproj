@@ -181,6 +181,7 @@
     <Content Include="Scripts\string.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\ViewModels\CourseViewModel.js" />
+    <Content Include="Scripts\ViewModels\CollegeViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -195,6 +196,10 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Queries\College\ICollegeListQuery.cs" />
+    <Compile Include="Controllers\Queries\College\CollegeListQuery.cs" />
+    <Compile Include="Controllers\Queries\Teacher\TeacherListQuery.cs" />
+    <Compile Include="Controllers\Queries\Teacher\ITeacherListQuery.cs" />
     <Compile Include="Controllers\Queries\ExamResult\ExamResultListQuery.cs" />
     <Compile Include="Controllers\Queries\ExamResult\IExamResultListQuery.cs" />
     <Compile Include="Controllers\Queries\PartialGrade\PartialGradeListQuery.cs" />
@@ -205,10 +210,13 @@
     <Compile Include="Controllers\Queries\School\ISchoolListQuery.cs" />
     <Compile Include="Controllers\Queries\Student\StudentListQuery.cs" />
     <Compile Include="Controllers\Queries\School\SchoolListQuery.cs" />
+    <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\ViewModels\TeacherViewModel.cs" />
     <Compile Include="Controllers\ViewModels\ExamResultViewModel.cs" />
     <Compile Include="Controllers\ViewModels\CourseViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\CollegeViewModel.cs" />
     <Compile Include="Controllers\ViewModels\SchoolViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -239,6 +247,7 @@
     <Content Include="Views\School\Index.cshtml" />
     <None Include="BundleTransformer.Configuration.xsd" />
     <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\College\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

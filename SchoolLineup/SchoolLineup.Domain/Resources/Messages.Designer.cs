@@ -79,6 +79,15 @@ namespace SchoolLineup.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse campo deve ser maior do que {0}..
+        /// </summary>
+        public static string MustBeGreaterThan {
+            get {
+                return ResourceManager.GetString("MustBeGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esse campo deve ser preenchido..
         /// </summary>
         public static string RequiredField {

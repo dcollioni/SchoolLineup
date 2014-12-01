@@ -70,5 +70,35 @@
 
             return viewModels;
         }
+
+        public IList<CourseViewModel> GetAllByCollege(int collegeId)
+        {
+            var brCulture = new CultureInfo("pt-BR");
+
+            var courses =  session.Query<Course>()
+                                  .Where(c => c.CollegeId == collegeId)
+                                  .Select(e => new CourseViewModel()
+                                  {
+                                        Id = e.Id,
+                                        Name = e.Name,
+                                        CollegeId = e.CollegeId,
+                                        FinishDate = e.FinishDate,
+                                        IsClosed = e.IsClosed,
+                                        StartDate = e.StartDate,
+                                        TeacherId = e.TeacherId
+                                  })
+                                  .OrderBy(e => e.Name)
+                                  .ToList<CourseViewModel>();
+
+            courses.ForEach(c => c.StartDateStr = c.StartDate.ToString("d", brCulture));
+            courses.ForEach(c => c.FinishDateStr = c.FinishDate.ToString("d", brCulture));
+
+            return courses.ToList();
+        }
+
+        public Course Get(int id)
+        {
+            return session.Load<Course>(id);
+        }
     }
 }

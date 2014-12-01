@@ -64,6 +64,10 @@
                 "~/Scripts/ViewModels/",
                 "Course*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko/college").IncludeDirectory(
+                "~/Scripts/ViewModels/",
+                "College*"));
+
             //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity").IncludeDirectory(
             //    "~/Scripts/App/ViewModels/",
             //    "JobOpportunityViewModel*",

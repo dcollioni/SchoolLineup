@@ -1,47 +1,34 @@
-﻿function School(data) {
+﻿function College(data) {
     data = data || {};
 
     var self = this;
     self.id = ko.observable(data.id);
     self.name = ko.observable(data.name);
-    self.managerName = ko.observable(data.managerName);
-    self.email = ko.observable(data.email);
-    self.phoneNumber = ko.observable(data.phone);
     
     self.isSelected = ko.observable(false);
-
-    self.phone = ko.computed({
-        read: function () {
-            return SL.formatters.phone(self.phoneNumber());
-        },
-        write: function (phone) {
-            self.phoneNumber(phone);
-        },
-        owner: self
-    });
 }
 
-School.prototype.clone = function () {
-    return new School(ko.toJS(this));
+College.prototype.clone = function () {
+    return new College(ko.toJS(this));
 };
 
-function SchoolViewModel() {
+function CollegeViewModel() {
     var self = this;
-    self.schools = ko.observableArray([]);
-    self.current = ko.observable(new School({}));
+    self.colleges = ko.observableArray([]);
+    self.current = ko.observable(new College({}));
     self.isLoading = ko.observable(false);
     self.isDeleting = ko.observable(false);
     self.serverErrors = ko.observableArray([]);
     self.errors = ko.observable({});
 
-    self.select = function (school) {
-        self.current(school.clone());
+    self.select = function (college) {
+        self.current(college.clone());
         self.deselectAll();
-        school.isSelected(true);
+        college.isSelected(true);
     };
 
     self.clearSelection = function () {
-        self.current(new School({}));
+        self.current(new College({}));
         self.errors({});
         self.deselectAll();
     };
@@ -52,23 +39,23 @@ function SchoolViewModel() {
     };
 
     self.deselectAll = function () {
-        $.each(self.schools(), function (i, item) {
+        $.each(self.colleges(), function (i, item) {
             item.isSelected(false);
         });
     };
 
     self.getSelected = function () {
-        return _.find(self.schools(), function (school) {
-            return school.isSelected();
+        return _.find(self.colleges(), function (college) {
+            return college.isSelected();
         });
     };
 
     self.create = function () {
         if (self.isValid()) {
-            var newSchool = self.current().clone();
-            newSchool.id(0);
+            var newCollege = self.current().clone();
+            newCollege.id(0);
 
-            var jsonData = ko.toJSON(newSchool);
+            var jsonData = ko.toJSON(newCollege);
 
             if (self.isUnique(jsonData)) {
                 self.save(jsonData);
@@ -93,23 +80,16 @@ function SchoolViewModel() {
             brokenRules['name'] = 'Esse campo deve ser preenchido.';
         }
 
-        if (!self.current().email()) {
-            brokenRules['email'] = 'Esse campo deve ser preenchido.';
-        }
-        else if (!SL.validation.isEmailValid(self.current().email())) {
-            brokenRules['email'] = 'E-mail inválido.';
-        }
-
         self.errors(brokenRules);
 
-        return !self.errors().name && !self.errors().email;
+        return !self.errors().name;
     };
 
     self.isUnique = function (jsonData) {
         var isUnique = true;
 
         $.ajax({
-            url: SL.root + 'School/IsNameUnique',
+            url: SL.root + 'College/IsNameUnique',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json; charset=utf-8;",
@@ -136,33 +116,30 @@ function SchoolViewModel() {
         SL.mask(true);
 
         $.ajax({
-            url: SL.root + 'School/Save',
+            url: SL.root + 'College/Save',
             type: "POST",
             dataType: "json",
             contentType: "application/json; charset=utf-8;",
             data: jsonData,
             success: function (response) {
                 if (response.Success) {
-                    var school;
+                    var college;
 
                     if (isNew) {
-                        school = self.current().clone();
+                        college = self.current().clone();
                     }
                     else {
-                        school = self.getSelected();
+                        college = self.getSelected();
                     }
 
-                    school.id(response.Data.Id);
-                    school.name(response.Data.Name);
-                    school.managerName(response.Data.ManagerName);
-                    school.email(response.Data.Email);
-                    school.phone(response.Data.Phone);
+                    college.id(response.Data.Id);
+                    college.name(response.Data.Name);
 
                     if (isNew) {
-                        self.schools.unshift(school);
+                        self.colleges.unshift(college);
                     }
 
-                    self.select(school);
+                    self.select(college);
 
                     SL.unmask();
                 }
@@ -189,10 +166,10 @@ function SchoolViewModel() {
         self.isDeleting(false);
         SL.mask(true);
 
-        $.post(SL.root + 'School/Delete', { id: self.current().id() }, function (response) {
+        $.post(SL.root + 'College/Delete', { id: self.current().id() }, function (response) {
             if (response.Success) {
-                var selectedSchool = self.getSelected();
-                self.schools.remove(selectedSchool);
+                var selectedCollege = self.getSelected();
+                self.colleges.remove(selectedCollege);
                 self.clearSelection();
             }
             else {
@@ -213,7 +190,7 @@ function SchoolViewModel() {
         SL.mask(true);
 
         $.ajax({
-            url: SL.root + 'School/GetAll',
+            url: SL.root + 'College/GetAll',
             dataType: 'json',
             complete: function () {
                 SL.unmask();
@@ -221,15 +198,12 @@ function SchoolViewModel() {
             success: function (response) {
 
                 $.each(response, function (i, e) {
-                    var school = new School({
+                    var college = new College({
                         id: e.Id,
-                        name: e.Name,
-                        email: e.Email,
-                        phone: e.Phone,
-                        managerName: e.ManagerName
+                        name: e.Name
                     });
 
-                    self.schools.push(school);
+                    self.colleges.push(college);
                 });
             },
             error: function () {
@@ -239,9 +213,9 @@ function SchoolViewModel() {
 
     self.load();
 
-    self.open = function (school) {
-        location.href = SL.root + 'Course/Index/' + school.id();
+    self.open = function (college) {
+        location.href = SL.root + 'Course/Index/' + college.id();
     }
 }
 
-ko.applyBindings(new SchoolViewModel(), $('section')[0]);
+ko.applyBindings(new CollegeViewModel(), $('section')[0]);

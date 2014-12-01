@@ -1,4 +1,11 @@
-﻿SL.mask = function (loading) {
+﻿String.prototype.lpad = function (padString, length) {
+    var str = this;
+    while (str.length < length)
+        str = padString + str;
+    return str;
+}
+
+SL.mask = function (loading) {
     $('#mask').fadeIn('fast');
 
     if (!!loading) {
@@ -36,6 +43,27 @@ SL.formatters = {
         }
 
         return value;
+    },
+    date: function (value) {
+        if (!!value) {
+            var date = new Date(value);
+
+            var curr_date = date.getDate();
+            var curr_month = date.getMonth() + 1;
+            var curr_year = date.getFullYear();
+
+            return curr_date.toString().lpad('0', 2) + '/' + curr_month.toString().lpad('0', 2) + '/' + curr_year;
+        }
+    }
+};
+
+SL.date = {
+    getFromString: function (value) {
+        var day = value.split('/')[0];
+        var month = value.split('/')[1] - 1;
+        var year = value.split('/')[2];
+
+        return new Date(year, month, day, 0, 0, 0, 0);
     }
 };
 
@@ -44,7 +72,7 @@ SL.validation = {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
-}
+};
 
 $(function () {
     $(document).keyup(function (e) {

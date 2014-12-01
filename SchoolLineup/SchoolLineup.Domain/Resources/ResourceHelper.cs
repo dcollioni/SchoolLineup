@@ -33,5 +33,13 @@
         {
             return Messages.InvalidEmail;
         }
+
+        /// <summary>
+        /// Esse campo deve ser maior do que {0}.
+        /// </summary>
+        public static string MustBeGreaterThan(string field)
+        {
+            return string.Format(Messages.MustBeGreaterThan, field);
+        }
     }
 }

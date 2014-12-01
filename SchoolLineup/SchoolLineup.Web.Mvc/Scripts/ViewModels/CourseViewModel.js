@@ -5,25 +5,47 @@
     self.id = ko.observable(data.id);
     self.name = ko.observable(data.name);
     self.startDate = ko.observable(data.startDate);
-    self.endDate = ko.observable(data.endDate);
-    self.schoolId = ko.observable(data.schoolId);
+    self.finishDate = ko.observable(data.finishDate);
+    self.collegeId = ko.observable(data.collegeId);
+    self.teacherId = ko.observable(data.teacherId);
+    self.isClosed = ko.observable(data.isClosed);
+
+    self.startDateStr = ko.computed({
+        read: function () {
+            return SL.formatters.date(self.startDate());
+        },
+        write: function (value) {
+            self.startDate(SL.date.getFromString(value));
+        },
+        owner: self
+    });
+
+    self.finishDateStr = ko.computed({
+        read: function () {
+            return SL.formatters.date(self.finishDate());
+        },
+        write: function (value) {
+            self.finishDate(SL.date.getFromString(value));
+
+        },
+        owner: self
+    });
     
     self.isSelected = ko.observable(false);
-
-    //self.phone = ko.computed({
-    //    read: function () {
-    //        return SL.formatters.phone(self.phoneNumber());
-    //    },
-    //    write: function (phone) {
-    //        self.phoneNumber(phone);
-    //    },
-    //    owner: self
-    //});
 }
 
 Course.prototype.clone = function () {
     return new Course(ko.toJS(this));
 };
+
+function Teacher(data) {
+    data = data || {};
+
+    var self = this;
+    self.id = ko.observable(data.id);
+    self.name = ko.observable(data.name);
+    self.email = ko.observable(data.email);
+}
 
 function CourseViewModel() {
     var self = this;
@@ -33,7 +55,8 @@ function CourseViewModel() {
     self.isDeleting = ko.observable(false);
     self.serverErrors = ko.observableArray([]);
     self.errors = ko.observable({});
-    self.schoolId = ko.observable($('#schoolId').val());
+    self.collegeId = ko.observable($('#collegeId').val());
+    self.teachers = ko.observableArray([]);
 
     self.select = function (course) {
         self.current(course.clone());
@@ -68,6 +91,7 @@ function CourseViewModel() {
         if (self.isValid()) {
             var newCourse = self.current().clone();
             newCourse.id(0);
+            newCourse.collegeId(self.collegeId);
 
             var jsonData = ko.toJSON(newCourse);
             self.save(jsonData);
@@ -78,9 +102,7 @@ function CourseViewModel() {
         if (self.isValid()) {
             var jsonData = ko.toJSON(self.current);
 
-            if (self.isUnique(jsonData)) {
-                self.save(jsonData);
-            }
+            self.save(jsonData);
         }
     };
 
@@ -90,10 +112,19 @@ function CourseViewModel() {
         if (!self.current().name()) {
             brokenRules['name'] = 'Esse campo deve ser preenchido.';
         }
+        if (isNaN(self.current().teacherId())) {
+            brokenRules['teacherId'] = 'Esse campo deve ser preenchido.';
+        }
+        if (!self.current().startDate()) {
+            brokenRules['startDate'] = 'Esse campo deve ser preenchido.';
+        }
+        if (!self.current().finishDate()) {
+            brokenRules['finishDate'] = 'Esse campo deve ser preenchido.';
+        }
 
         self.errors(brokenRules);
 
-        return !self.errors().name;
+        return !self.errors().name && !self.errors().teacherId && !self.errors.startDate && !self.errors.finishDate;
     };
 
     self.save = function (jsonData) {
@@ -120,9 +151,11 @@ function CourseViewModel() {
 
                     course.id(response.Data.Id);
                     course.name(response.Data.Name);
-                    course.startDate(response.Data.StartDate);
-                    course.endDate(response.Data.EndDate);
-                    course.schoolId(response.Data.SchoolId);
+                    course.startDate(new Date(parseInt(response.Data.StartDate.substr(6))));
+                    course.finishDate(new Date(parseInt(response.Data.FinishDate.substr(6))));
+                    course.teacherId(response.Data.TeacherId);
+                    course.collegeId(response.Data.CollegeId);
+                    course.isClosed(response.Data.IsClosed);
 
                     if (isNew) {
                         self.courses.unshift(course);
@@ -179,7 +212,7 @@ function CourseViewModel() {
         SL.mask(true);
 
         $.ajax({
-            url: SL.root + 'Course/GetAll/' + self.schoolId(),
+            url: SL.root + 'Course/GetAll/?collegeId=' + self.collegeId(),
             dataType: 'json',
             complete: function () {
                 SL.unmask();
@@ -190,9 +223,11 @@ function CourseViewModel() {
                     var course = new Course({
                         id: e.Id,
                         name: e.Name,
-                        startDate: e.StartDate,
-                        endDate: e.EndDate,
-                        schoolId: e.SchoolId
+                        startDate: new Date(parseInt(e.StartDate.substr(6))),
+                        finishDate: new Date(parseInt(e.FinishDate.substr(6))),
+                        collegeId: e.CollegeId,
+                        teacherId: e.TeacherId,
+                        isClosed: e.IsClosed
                     });
 
                     self.courses.push(course);
@@ -204,6 +239,31 @@ function CourseViewModel() {
     };
 
     self.load();
+
+    self.loadTeachers = function () {
+        $.ajax({
+            url: SL.root + 'Course/GetTeachers/',
+            dataType: 'json',
+            complete: function () {
+            },
+            success: function (response) {
+
+                $.each(response, function (i, e) {
+                    var teacher = new Teacher({
+                        id: e.Id,
+                        name: e.Name,
+                        email: e.Email
+                    });
+
+                    self.teachers.push(teacher);
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    self.loadTeachers();
 
     self.open = function (course) {
         location.href = SL.root + 'Student/' + course.id();

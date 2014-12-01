@@ -201,12 +201,15 @@ form {
         form .cell.w15 {
             width: 15%;
         }
+        form .cell.w10 {
+            width: 10%;
+        }
 
     .cell.buttons {
         text-align: right;
     }
 
-    input {
+    input, select {
         background-color: #FFFFFF;
         border: 1px solid #AAAAAA;
         box-sizing: border-box;
@@ -246,12 +249,13 @@ form {
             margin-right: 5px;
         }
 
-    input:focus {
+    input:focus, select:focus {
         border-color: #6688BB;
     }
 
     input[type=text],
-    input[type=date] {
+    input[type=date],
+    select {
         display: block;
         width: 100%;
     }
@@ -260,7 +264,7 @@ form {
         padding: 1px 3px;
     }
 
-    input.invalid {
+    input.invalid, select.invalid {
         border-color: #DD4444;
     }
 
