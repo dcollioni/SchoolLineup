@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section ko{
+    @System.Web.Optimization.Scripts.Render("~/bundles/ko/college")
+}
+
+<h2>Escolas</h2>
+
+<fieldset>
+    <legend>Informações principais</legend>
+    <form action="College/Save" method="post">
+        <div class="row">
+            <div class="cell w100">
+                <label>
+                    Nome
+                    <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell buttons">
+                <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
+                <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: $root.update" />
+                <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: $root.delete" />
+                <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
+            </div>
+        </div>
+    </form>
+</fieldset>
+
+<table>
+    <thead>
+        <tr>
+            <th class="w100">Nome</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: colleges">
+        <tr data-bind="click: $parent.select, css: { selected: isSelected }, event: { dblclick: $parent.open }">
+            <td data-bind="text: name"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+    <h3>A operação não foi concluída</h3>
+    <ul data-bind="foreach: serverErrors">
+        <li data-bind="text: $data"></li>
+    </ul>
+    <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+</div>
+
+<div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
+    <h3>Confirmar exclusão</h3>
+    <div>
+        <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
+        <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
+    </div>
+    <a href="#" data-bind="click: cancelDelete" class="close"></a>
+</div>

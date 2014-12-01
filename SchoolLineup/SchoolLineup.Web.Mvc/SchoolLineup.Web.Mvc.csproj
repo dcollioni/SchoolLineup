@@ -198,8 +198,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Queries\College\ICollegeListQuery.cs" />
     <Compile Include="Controllers\Queries\College\CollegeListQuery.cs" />
+    <Compile Include="Controllers\Queries\Teacher\ITeacherListQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\Queries\Teacher\TeacherListQuery.cs" />
-    <Compile Include="Controllers\Queries\Teacher\ITeacherListQuery.cs" />
     <Compile Include="Controllers\Queries\ExamResult\ExamResultListQuery.cs" />
     <Compile Include="Controllers\Queries\ExamResult\IExamResultListQuery.cs" />
     <Compile Include="Controllers\Queries\PartialGrade\PartialGradeListQuery.cs" />
