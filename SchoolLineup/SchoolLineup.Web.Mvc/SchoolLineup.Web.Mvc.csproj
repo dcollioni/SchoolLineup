@@ -122,7 +122,7 @@
     <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
-	  <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -180,6 +180,7 @@
     <Content Include="Scripts\App\Masks.js" />
     <Content Include="Scripts\string.js" />
     <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\ViewModels\StudentViewModel.js" />
     <Content Include="Scripts\ViewModels\CourseViewModel.js" />
     <Content Include="Scripts\ViewModels\CollegeViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
@@ -194,6 +195,7 @@
     <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\StudentsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Queries\College\ICollegeListQuery.cs" />
@@ -215,6 +217,7 @@
     <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\ViewModels\StudentViewModel.cs" />
     <Compile Include="Controllers\ViewModels\TeacherViewModel.cs" />
     <Compile Include="Controllers\ViewModels\ExamResultViewModel.cs" />
     <Compile Include="Controllers\ViewModels\CourseViewModel.cs" />
@@ -250,6 +253,7 @@
     <None Include="BundleTransformer.Configuration.xsd" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\College\Index.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

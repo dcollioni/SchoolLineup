@@ -319,6 +319,9 @@ th {
     font-weight: normal;
     padding: 5px;
 }
+th.w50 {
+    width: 50%;
+}
 th.w35 {
     width: 35%;
 }
