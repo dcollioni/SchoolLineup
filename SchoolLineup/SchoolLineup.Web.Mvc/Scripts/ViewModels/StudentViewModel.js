@@ -59,9 +59,9 @@ function StudentViewModel() {
 
             var jsonData = ko.toJSON(newStudent);
 
-            //if (self.isUnique(jsonData)) {
-            //    self.save(jsonData);
-            //}
+            if (self.isUnique(jsonData)) {
+                self.save(jsonData);
+            }
         }
     };
 
@@ -69,29 +69,32 @@ function StudentViewModel() {
         if (self.isValid()) {
             var jsonData = ko.toJSON(self.current);
 
-            //if (self.isUnique(jsonData)) {
-            //    self.save(jsonData);
-            //}
+            if (self.isUnique(jsonData)) {
+                self.save(jsonData);
+            }
         }
     };
 
     self.isValid = function () {
         var brokenRules = [];
 
-        //if (!self.current().name()) {
-        //    brokenRules['name'] = 'Esse campo deve ser preenchido.';
-        //}
+        if (!self.current().name()) {
+            brokenRules['name'] = 'Esse campo deve ser preenchido.';
+        }
+        if (!self.current().email()) {
+            brokenRules['email'] = 'Esse campo deve ser preenchido.';
+        }
 
-        //self.errors(brokenRules);
+        self.errors(brokenRules);
 
-        return !self.errors().name;
+        return !self.errors().name && !self.errors().email;
     };
 
     self.isUnique = function (jsonData) {
         var isUnique = true;
 
         $.ajax({
-            url: SL.root + 'College/IsNameUnique',
+            url: SL.root + 'Student/IsEmailUnique',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json; charset=utf-8;",
@@ -102,7 +105,7 @@ function StudentViewModel() {
 
                 if (!isUnique) {
                     var brokenRules = [];
-                    brokenRules['name'] = 'Esse campo deve ter um valor único entre os demais registros.';
+                    brokenRules['email'] = 'Esse campo deve ter um valor único entre os demais registros.';
 
                     self.errors(brokenRules);
                 }
@@ -175,12 +178,19 @@ function StudentViewModel() {
                 var selectedStudent = self.getSelected();
                 self.students.remove(selectedStudent);
                 self.clearSelection();
+
+                SL.unmask();
             }
             else {
-                //self.bindserverErrors(response);
-            }
+                SL.hideModals();
 
-            SL.unmask();
+                $.each(response.Messages, function (i, message) {
+                    var memberName = !!message.MemberNames[0] ? message.MemberNames[0] + ': ' : '';
+                    self.serverErrors.push(memberName + message.ErrorMessage);
+                });
+
+                SL.setModalPosition();
+            }
         });
     };
 

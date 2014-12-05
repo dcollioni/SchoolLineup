@@ -2,9 +2,9 @@
 {
     using SchoolLineup.Domain.Entities;
 
-    public interface ICollegeTasks
+    public interface IStudentTasks
     {
-        bool IsNameUnique(College entity);
+        bool IsEmailUnique(Student entity);
         bool HasChildren(int id);
     }
 }

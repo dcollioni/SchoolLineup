@@ -1,15 +1,15 @@
-﻿namespace SchoolLineup.Tasks.Commands.Course
+﻿namespace SchoolLineup.Tasks.Commands.Student
 {
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Resources;
     using System.ComponentModel.DataAnnotations;
 
-    public class DeleteCourseCommand : UnitOfWorkBaseCommand
+    public class DeleteStudentCommand : UnitOfWorkBaseCommand
     {
         public int EntityId { get; set; }
-        private readonly ICourseTasks tasks;
+        private readonly IStudentTasks tasks;
 
-        public DeleteCourseCommand(int id, ICourseTasks tasks)
+        public DeleteStudentCommand(int id, IStudentTasks tasks)
         {
             this.EntityId = id;
             this.tasks = tasks;

@@ -1,6 +1,8 @@
 ﻿namespace SchoolLineup.Tasks.Commands.College
 {
     using SchoolLineup.Domain.Contracts.Tasks;
+    using SchoolLineup.Domain.Resources;
+    using System.ComponentModel.DataAnnotations;
 
     public class DeleteCollegeCommand : UnitOfWorkBaseCommand
     {
@@ -15,7 +17,14 @@
 
         public override bool IsValid()
         {
-            return true;
+            var hasChildren = tasks.HasChildren(EntityId);
+
+            if (hasChildren)
+            {
+                validationResults.Add(new ValidationResult(ResourceHelper.HasChildren()));
+            }
+
+            return !hasChildren;
         }
     }
 }

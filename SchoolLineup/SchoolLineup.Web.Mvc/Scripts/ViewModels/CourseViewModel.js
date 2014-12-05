@@ -193,12 +193,19 @@ function CourseViewModel() {
                 var selectedCourse = self.getSelected();
                 self.courses.remove(selectedCourse);
                 self.clearSelection();
+
+                SL.unmask();
             }
             else {
-                //self.bindserverErrors(response);
-            }
+                SL.hideModals();
 
-            SL.unmask();
+                $.each(response.Messages, function (i, message) {
+                    var memberName = !!message.MemberNames[0] ? message.MemberNames[0] + ': ' : '';
+                    self.serverErrors.push(memberName + message.ErrorMessage);
+                });
+
+                SL.setModalPosition();
+            }
         });
     };
 

@@ -61,6 +61,15 @@ namespace SchoolLineup.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse registro possui associações e não pode ser excluído..
+        /// </summary>
+        public static string HasChildren {
+            get {
+                return ResourceManager.GetString("HasChildren", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail inválido..
         /// </summary>
         public static string InvalidEmail {

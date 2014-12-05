@@ -7,5 +7,6 @@
     {
         void Evict(PartialGrade entity);
         void Delete(int entityId);
+        int CountByCourse(int courseId);
     }
 }

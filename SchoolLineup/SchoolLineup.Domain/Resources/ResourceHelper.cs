@@ -41,5 +41,13 @@
         {
             return string.Format(Messages.MustBeGreaterThan, field);
         }
+
+        /// <summary>
+        /// Esse registro possui associações e não pode ser excluído.
+        /// </summary>
+        public static string HasChildren()
+        {
+            return string.Format(Messages.HasChildren);
+        }
     }
 }
