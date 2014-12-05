@@ -169,6 +169,7 @@
     <Content Include="Content\images\noise.png" />
     <Content Include="Content\images\ok.png" />
     <Content Include="Content\images\plus.png" />
+    <Content Include="Content\images\upload.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />

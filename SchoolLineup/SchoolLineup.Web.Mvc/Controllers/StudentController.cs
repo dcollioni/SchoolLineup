@@ -7,6 +7,9 @@
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Web;
     using System.Web.Mvc;
 
     public class StudentController : BaseController
@@ -67,6 +70,47 @@
             }
 
             return Json(new { Success = true });
+        }
+
+        [Transaction]
+        public ActionResult Import()
+        {
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+
+                if (file.ContentLength > 0)
+                {
+                    using (var reader = new StreamReader(file.InputStream))
+                    {
+                        var students = new List<Student>();
+
+                        while (!reader.EndOfStream)
+                        {
+                            var studentData = reader.ReadLine().Split(',');
+
+                            var student = new Student()
+                            {
+                                Name = studentData[0].Trim(),
+                                Email = studentData[1].Trim(),
+                                RegistrationCode = studentData[2].Trim()
+                            };
+
+                            if (string.IsNullOrEmpty(student.Name))
+                            {
+                                student.Name = student.Email;
+                            }
+
+                            students.Add(student);
+                        }
+
+                        var command = new ImportStudentsCommand(students, studentTasks);
+                        commandProcessor.Process(command);
+                    }
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         public JsonResult IsEmailUnique(StudentViewModel viewModel)

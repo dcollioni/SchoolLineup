@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
+    using System.Collections.Generic;
 
     public class StudentTasks : IStudentTasks
     {
@@ -19,6 +20,11 @@
         public bool IsEmailUnique(Student entity)
         {
             return studentRepository.CountByEmail(entity) == 0;
+        }
+
+        public bool AreEmailsUnique(IEnumerable<string> emails)
+        {
+            return studentRepository.CountByEmailList(emails) == 0;
         }
 
         public bool HasChildren(int id)

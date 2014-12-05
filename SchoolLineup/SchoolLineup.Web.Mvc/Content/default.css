@@ -209,6 +209,10 @@ form {
         text-align: right;
     }
 
+    .cell.buttons .left {
+        float: left;
+    }
+
     input, select {
         background-color: #FFFFFF;
         border: 1px solid #AAAAAA;
@@ -255,6 +259,7 @@ form {
 
     input[type=text],
     input[type=date],
+    input[type=input],
     select {
         display: block;
         width: 100%;
@@ -295,6 +300,12 @@ form {
         background: #DDDDDD url(images/cancel.png) no-repeat 3px 3px;
         padding: 6px 8px 6px 6px;
         width: 100px;
+    }
+
+    input.import {
+        background: #DDDDDD url(images/upload.png) no-repeat 3px 3px;
+        padding: 6px 8px 6px 6px;
+        width: 95px;
     }
 
 table {
@@ -479,4 +490,40 @@ tbody tr.selected {
 
 .closable .close:hover {
     opacity: 1;
+}
+
+#importData {
+    background: #E6E6E6;
+    border: 1px solid #444444;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px #666666;
+    display: none;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    text-shadow: 0 0 4px #CCCCCC;
+    top: 50%;
+    width: auto;
+    max-width: 500px;
+    z-index: 3;
+}
+
+#importData h3 {
+    background-color: #888888;
+    border-bottom: 1px solid #111111;
+    color: #DDDDDD;
+    text-shadow: 0px 0px 4px #000000;
+    font-size: 14pt;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 10px 40px;
+    text-align: center;
+}
+
+#importData.active {
+    display: inline;
+}
+
+#importData input[type=file] {
+    margin-right: 15px;
 }

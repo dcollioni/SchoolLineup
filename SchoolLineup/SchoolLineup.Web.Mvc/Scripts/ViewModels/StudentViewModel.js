@@ -20,6 +20,7 @@ function StudentViewModel() {
     self.current = ko.observable(new Student({}));
     self.isLoading = ko.observable(false);
     self.isDeleting = ko.observable(false);
+    self.isImporting = ko.observable(false);
     self.serverErrors = ko.observableArray([]);
     self.errors = ko.observable({});
 
@@ -225,6 +226,17 @@ function StudentViewModel() {
             error: function () {
             }
         });
+    };
+
+    self.importData = function () {
+        self.isImporting(true);
+        SL.mask();
+        SL.setModalPosition();
+    };
+
+    self.cancelImport = function () {
+        self.isImporting(false);
+        SL.unmask();
     };
 
     self.load();

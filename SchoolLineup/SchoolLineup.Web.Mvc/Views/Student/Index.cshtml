@@ -33,6 +33,7 @@
         </div>
         <div class="row">
             <div class="cell buttons">
+                <input type="button" name="import" class="import left" value="Importar" data-bind="click: importData" />
                 <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
                 <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: $root.update" />
                 <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: $root.delete" />
@@ -74,4 +75,23 @@
         <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
     </div>
     <a href="#" data-bind="click: cancelDelete" class="close"></a>
+</div>
+
+<div id="importData" data-bind="css: { active: isImporting }" class="modal closable">
+    <h3>Importar</h3>
+    <div>
+        <form action="Student/Import" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="cell w100">
+                    <input type="file" name="file" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell buttons">
+                    <input type="submit" name="upload" value="Importar" class="import" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <a href="#" data-bind="click: cancelImport" class="close"></a>
 </div>
