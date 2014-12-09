@@ -273,7 +273,7 @@ function CourseViewModel() {
     self.loadTeachers();
 
     self.open = function (course) {
-        location.href = SL.root + 'Student/' + course.id();
+        location.href = SL.root + 'Course/Dashboard/' + course.id();
     }
 }
 

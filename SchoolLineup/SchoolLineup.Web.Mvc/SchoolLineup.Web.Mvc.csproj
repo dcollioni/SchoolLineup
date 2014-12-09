@@ -255,6 +255,7 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\College\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Course\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

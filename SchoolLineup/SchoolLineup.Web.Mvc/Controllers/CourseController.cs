@@ -32,17 +32,36 @@
             this.courseTasks = courseTasks;
         }
 
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? collegeId)
         {
-            if (id.HasValue)
+            if (collegeId.HasValue)
             {
-                var college = collegeListQuery.Get(id.Value);
+                var college = collegeListQuery.Get(collegeId.Value);
 
                 if (college != null)
                 {
                     ViewBag.CollegeName = college.Name;
                     ViewBag.CollegeId = college.Id;
 
+                    return View();
+                }
+            }
+
+            return RedirectToAction("Index", "College");
+        }
+
+        public ActionResult Dashboard(int? id)
+        {
+            if (id.HasValue)
+            {
+                var course = courseListQuery.Get(id.Value);
+
+                if (course != null)
+                {
+                    ViewBag.CourseName = course.Name;
+                    ViewBag.CourseId = course.Id;
+                    ViewBag.CollegeName = "FL06";
+                    
                     return View();
                 }
             }

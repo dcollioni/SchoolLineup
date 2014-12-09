@@ -174,6 +174,9 @@ form {
             padding-left: 10px;
         }
 
+        form .cell.w90 {
+            width: 90%;
+        }
         form .cell.w80 {
             width: 80%;
         }
@@ -526,4 +529,32 @@ tbody tr.selected {
 
 #importData input[type=file] {
     margin-right: 15px;
+}
+
+ul.student-set {
+    background-color: #FFF;
+    border: 1px solid #AAA;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+}
+
+ul.student-set li {
+    background-color: #DEF;
+    border: 1px solid #AAA;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 0 5px 5px;
+}
+
+ul.student-set li .remove a {
+    border-left: 1px solid #AAA;
+    color: #444;
+    margin-left: 5px;
+    padding: 5px 8px;
+    text-decoration: none;
+}
+
+ul.student-set li .remove a:hover {
+    background-color: #C66;
 }

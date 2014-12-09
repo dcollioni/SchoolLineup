@@ -221,7 +221,7 @@ function CollegeViewModel() {
     self.load();
 
     self.open = function (college) {
-        location.href = SL.root + 'Course/Index/' + college.id();
+        location.href = SL.root + 'Course/?collegeId=' + college.id();
     }
 }
 

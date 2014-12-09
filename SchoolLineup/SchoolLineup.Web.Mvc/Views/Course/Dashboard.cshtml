@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section ko{
+    @System.Web.Optimization.Scripts.Render("~/bundles/ko/course")
+}
+
+<h2>Dashboard da Disciplina</h2>
+<h3>@ViewBag.CourseName (@ViewBag.CollegeName)</h3>
+
+<input type="hidden" id="courseId" value="@ViewBag.CourseId" />
+
+<fieldset>
+    <legend>Alunos</legend>
+    <form action="Course/AddStudent" method="post">
+        <div class="row">
+            <div class="cell w50">
+                <label>
+                    Buscar
+                    <input type="text" name="name" maxlength="50" placeholder="Nome ou e-mail do aluno..." />
+                </label>
+            </div>
+            <div class="cell w10">
+                <input type="button" name="addStudent" value="Adicionar" data-bind="click: addStudent" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell w100">
+                <ul class="student-set">
+                    <li>
+                        <span>Maria da Silva</span>
+                        <span class="remove"><a href="#">X</a></span>
+                    </li>
+                    <li>
+                        <span>João dos Santos</span>
+                        <span class="remove"><a href="#">X</a></span>
+                    </li>
+                    <li>
+                        <span>Paulo Roberto Machado</span>
+                        <span class="remove"><a href="#">X</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</fieldset>
