@@ -60,9 +60,8 @@
                 "~/Scripts/ViewModels/",
                 "School*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/ko/course").IncludeDirectory(
-                "~/Scripts/ViewModels/",
-                "Course*"));
+            bundles.Add(new ScriptBundle("~/bundles/ko/course")
+                .Include("~/Scripts/ViewModels/CourseViewModel.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ko/college").IncludeDirectory(
                 "~/Scripts/ViewModels/",
@@ -71,6 +70,9 @@
             bundles.Add(new ScriptBundle("~/bundles/ko/student").IncludeDirectory(
                 "~/Scripts/ViewModels/",
                 "Student*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ko/coursedashboard")
+                .Include("~/Scripts/ViewModels/CourseDashboardViewModel.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity").IncludeDirectory(
             //    "~/Scripts/App/ViewModels/",

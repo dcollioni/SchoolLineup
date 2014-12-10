@@ -3,7 +3,8 @@
 }
 
 @section ko{
-    @System.Web.Optimization.Scripts.Render("~/bundles/ko/course")
+    @System.Web.Optimization.Scripts.Render("~/bundles/ko/coursedashboard")
+
 }
 
 <h2>Dashboard da Disciplina</h2>
@@ -12,33 +13,29 @@
 <input type="hidden" id="courseId" value="@ViewBag.CourseId" />
 
 <fieldset>
-    <legend>Alunos</legend>
+    <legend>Alunos<span data-bind="text: studentsCount"></span></legend>
     <form action="Course/AddStudent" method="post">
         <div class="row">
             <div class="cell w50">
                 <label>
                     Buscar
-                    <input type="text" name="name" maxlength="50" placeholder="Nome ou e-mail do aluno..." />
+                    <input type="text" name="name" maxlength="50" placeholder="Nome ou e-mail do aluno..." data-bind="value: studentQuery, valueUpdate: 'afterkeydown', hasFocus: studentQueryHasFocus" />
+                    <input type="hidden" data-bind="value: selectedStudentId" />
                 </label>
+                <ul class="auto-complete" data-bind="css: { shown: hasStudentQueryResults }, foreach: studentResults, event: { mouseout: $root.hoverStudentResults(false) }">
+                    <li data-bind="text: display, click: $root.selectStudent, event: { mouseover: $root.hoverStudentResults(true) }"></li>
+                </ul>
             </div>
             <div class="cell w10">
-                <input type="button" name="addStudent" value="Adicionar" data-bind="click: addStudent" />
+                <input type="button" name="addStudent" value="Adicionar" data-bind="enable: selectedStudentId() > 0, click: addStudent" />
             </div>
         </div>
         <div class="row">
             <div class="cell w100">
-                <ul class="student-set">
+                <ul class="student-set" data-bind="foreach: students">
                     <li>
-                        <span>Maria da Silva</span>
-                        <span class="remove"><a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <span>João dos Santos</span>
-                        <span class="remove"><a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <span>Paulo Roberto Machado</span>
-                        <span class="remove"><a href="#">X</a></span>
+                        <span data-bind="text: display"></span>
+                        <span class="remove"><a href="#" data-bind="click: $root.removeStudent" title="Remover aluno">X</a></span>
                     </li>
                 </ul>
             </div>

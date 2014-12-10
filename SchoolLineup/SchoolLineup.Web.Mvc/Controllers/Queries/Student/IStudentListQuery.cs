@@ -9,5 +9,7 @@
         Student Get(string email, string password);
         Student Get(int id);
         IEnumerable<StudentViewModel> GetAll();
+        IEnumerable<StudentViewModel> GetAll(string query);
+        IEnumerable<StudentViewModel> GetAllByCourse(int courseId);
     }
 }

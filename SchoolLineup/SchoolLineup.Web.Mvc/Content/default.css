@@ -558,3 +558,31 @@ ul.student-set li .remove a {
 ul.student-set li .remove a:hover {
     background-color: #C66;
 }
+
+ul.auto-complete {
+    background-color: #FFF;
+    border: 1px solid #68C;
+    box-shadow: 0 0 10px #AAA;
+    display: none;
+    list-style-type: none;
+    margin: 1px 0;
+    padding: 0;
+    position: absolute;
+    width: 600px;
+}
+
+ul.auto-complete.shown {
+    display: block;
+}
+
+ul.auto-complete li {
+    padding: 5px;
+}
+
+ul.auto-complete li:hover {
+    background-color: #9BE;
+}
+
+ul.auto-complete li:not(:last-child) {
+    border-bottom: 1px solid #68C;
+}

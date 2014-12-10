@@ -121,6 +121,12 @@
             return Json(isUnique, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Search(string query)
+        {
+            var data = studentListQuery.GetAll(query);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
         private Student GetEntity(StudentViewModel viewModel)
         {
             var entity = new Student();

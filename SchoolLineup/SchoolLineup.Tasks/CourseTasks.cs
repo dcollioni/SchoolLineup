@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
+    using SchoolLineup.Domain.Entities;
 
     public class CourseTasks : ICourseTasks
     {

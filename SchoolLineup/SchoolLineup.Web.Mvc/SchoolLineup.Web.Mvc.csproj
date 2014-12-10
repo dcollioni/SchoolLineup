@@ -181,6 +181,7 @@
     <Content Include="Scripts\App\Masks.js" />
     <Content Include="Scripts\string.js" />
     <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\ViewModels\CourseDashboardViewModel.js" />
     <Content Include="Scripts\ViewModels\StudentViewModel.js" />
     <Content Include="Scripts\ViewModels\CourseViewModel.js" />
     <Content Include="Scripts\ViewModels\CollegeViewModel.js" />

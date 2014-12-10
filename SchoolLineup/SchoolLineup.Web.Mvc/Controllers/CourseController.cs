@@ -5,6 +5,7 @@
     using SchoolLineup.Tasks.Commands.Course;
     using SchoolLineup.Web.Mvc.Controllers.Queries.College;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Course;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Teacher;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
@@ -18,18 +19,21 @@
         private readonly ICourseListQuery courseListQuery;
         private readonly ITeacherListQuery teacherListQuery;
         private readonly ICourseTasks courseTasks;
+        private readonly IStudentListQuery studentListQuery;
 
         public CourseController(ICommandProcessor commandProcessor,
                                 ICollegeListQuery collegeListQuery,
                                 ICourseListQuery courseListQuery,
                                 ITeacherListQuery teacherListQuery,
-                                ICourseTasks courseTasks)
+                                ICourseTasks courseTasks,
+                                IStudentListQuery studentListQuery)
         {
             this.commandProcessor = commandProcessor;
             this.collegeListQuery = collegeListQuery;
             this.courseListQuery = courseListQuery;
             this.teacherListQuery = teacherListQuery;
             this.courseTasks = courseTasks;
+            this.studentListQuery = studentListQuery;
         }
 
         public ActionResult Index(int? collegeId)
@@ -113,6 +117,60 @@
             }
 
             return Json(new { Success = true });
+        }
+
+        public JsonResult GetAllStudents(int courseId)
+        {
+            var data = studentListQuery.GetAllByCourse(courseId);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [Transaction]
+        public JsonResult AddStudent(int courseId, int studentId)
+        {
+            var course = courseListQuery.Get(courseId);
+
+            if (course != null)
+            {
+                if (studentId > 0 && !course.StudentsIds.Contains(studentId))
+                {
+                    course.StudentsIds.Add(studentId);
+
+                    var command = new SaveCourseCommand(course, courseTasks);
+                    this.commandProcessor.Process(command);
+
+                    if (!command.Success)
+                    {
+                        return Json(new { Success = false, Messages = command.ValidationResults() });
+                    }
+                }
+            }
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Transaction]
+        public JsonResult RemoveStudent(int courseId, int studentId)
+        {
+            var course = courseListQuery.Get(courseId);
+
+            if (course != null)
+            {
+                if (studentId > 0 && course.StudentsIds.Contains(studentId))
+                {
+                    course.StudentsIds.Remove(studentId);
+
+                    var command = new SaveCourseCommand(course, courseTasks);
+                    this.commandProcessor.Process(command);
+
+                    if (!command.Success)
+                    {
+                        return Json(new { Success = false, Messages = command.ValidationResults() });
+                    }
+                }
+            }
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
         private Course GetEntity(CourseViewModel viewModel)
