@@ -86,7 +86,7 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: models">
-                <tr data-bind="click: select, css: { selected: isSelected }, event: { dblclick: $context.open }">
+                <tr data-bind="click: $parent.select.bind($data, $parent), css: { selected: isSelected }, event: { dblclick: $context.open }">
                     <td data-bind="text: name"></td>
                     <td data-bind="text: order" class="center"></td>
                 </tr>
@@ -110,15 +110,18 @@
             <a href="#" data-bind="click: cancelDelete" class="close"></a>
         </div>
 
-        <div class="mt-20" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }">
-            <fieldset data-bind="enable: current().id() > 0">
-                <legend>Avaliações</legend>
-                <form action="Exam/Save" method="post">
+        <div class="mt-20" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }, with: examContext">
+            <fieldset data-bind="enable: $parent.current().id() > 0">
+                <legend data-bind="click: $parent.toggleExamFieldset.bind($parent)">
+                    Avaliações
+                    <span data-bind="text: $parent.isExamFieldsetOpen() ? '[-]' : '[+]', attr: { title: $parent.isExamFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
+                </legend>
+                <form action="Exam/Save" method="post" data-bind="style: { display: $parent.isExamFieldsetOpen() ? 'block' : 'none' }">
                     <div class="row">
                         <div class="cell w60">
                             <label>
                                 Nome
-                                <input type="text" name="name" maxlength="50" />
+                                <input type="text" name="name" maxlength="50" @*data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }"*@ />
                             </label>
                         </div>
                         <div class="cell w20">
@@ -152,7 +155,7 @@
                     </div>
                 </form>
 
-                <table>
+                <table data-bind="style: { display: $parent.isExamFieldsetOpen() ? 'table' : 'none' }">
                     <thead>
                         <tr>
                             <th class="w60">Nome</th>

@@ -25,6 +25,19 @@ function PartialGrade(data) {
     self.isSelected = ko.observable(false);
 }
 
+function Exam(data) {
+    var self = this;
+
+    self.id = ko.observable(data.id);
+    self.name = ko.observable(data.name);
+    self.date = ko.observable(data.date);
+    self.value = ko.observable(data.value);
+    self.description = ko.observable(data.description);
+    self.partialGradeId = ko.observable(data.partialGradeId);
+
+    self.isSelected = ko.observable(false);
+}
+
 PartialGrade.prototype.clone = function () {
     return new PartialGrade(ko.toJS(this));
 };
@@ -178,45 +191,49 @@ function CourseDashboardViewModel() {
     self.loadStudents();
 
     // -- Partial Grade context
-    self.partialGradeContext = function () {
-        var pg = this;
+    self.partialGradeContext = {
 
-        pg.models = ko.observableArray([]);
-        pg.current = ko.observable(new PartialGrade({}));
-        pg.serverErrors = ko.observableArray([]);
-        pg.errors = ko.observable({});
-        pg.isDeleting = ko.observable(false);
+        models: ko.observableArray([]),
+        current: ko.observable(new PartialGrade({})),
+        serverErrors: ko.observableArray([]),
+        errors: ko.observable({}),
+        isDeleting: ko.observable(false),
 
-        pg.select = function (model) {
+        select: function (pg, model) {
             pg.current(model.clone());
             pg.deselectAll();
             model.isSelected(true);
-        };
+        },
 
-        pg.clearSelection = function () {
+        clearSelection: function () {
+            var pg = this;
             pg.current(new PartialGrade({}));
             pg.errors({});
             pg.deselectAll();
-        };
+        },
 
-        pg.clearServerErrors = function () {
+        clearServerErrors: function () {
+            var pg = this;
             pg.serverErrors([]);
             SL.unmask();
-        };
+        },
 
-        pg.deselectAll = function () {
+        deselectAll: function () {
+            var pg = this;
             $.each(pg.models(), function (i, item) {
                 item.isSelected(false);
             });
-        };
+        },
 
-        pg.getSelected = function () {
+        getSelected: function () {
+            var pg = this;
             return _.find(pg.models(), function (model) {
                 return model.isSelected();
             });
-        };
+        },
 
-        pg.create = function () {
+        create: function () {
+            var pg = this;
             if (pg.isValid()) {
                 var newModel = pg.current().clone();
                 newModel.id(0);
@@ -225,17 +242,19 @@ function CourseDashboardViewModel() {
                 var jsonData = ko.toJSON(newModel);
                 pg.save(jsonData);
             }
-        };
+        },
 
-        pg.update = function () {
+        update: function () {
+            var pg = this;
             if (pg.isValid()) {
                 var jsonData = ko.toJSON(pg.current);
 
                 pg.save(jsonData);
             }
-        };
+        },
 
-        pg.isValid = function () {
+        isValid: function () {
+            var pg = this;
             var brokenRules = [];
 
             if (!pg.current().name()) {
@@ -248,9 +267,10 @@ function CourseDashboardViewModel() {
             pg.errors(brokenRules);
 
             return !pg.errors().name && !pg.errors().order;
-        };
+        },
 
-        pg.save = function (jsonData) {
+        save: function (jsonData) {
+            var pg = this;
             var isNew = JSON.parse(jsonData).id === 0;
 
             SL.mask(true);
@@ -281,7 +301,7 @@ function CourseDashboardViewModel() {
                             pg.models.unshift(model);
                         }
 
-                        pg.select(model);
+                        pg.select(pg, model);
 
                         SL.unmask();
                     }
@@ -296,15 +316,17 @@ function CourseDashboardViewModel() {
                     }
                 }
             });
-        };
+        },
 
-        pg.destroy = function () {
+        destroy: function () {
+            var pg = this;
             pg.isDeleting(true);
             SL.mask();
             SL.setModalPosition();
-        };
+        },
 
-        pg.confirmDelete = function () {
+        confirmDelete: function () {
+            var pg = this;
             pg.isDeleting(false);
             SL.mask(true);
 
@@ -327,14 +349,16 @@ function CourseDashboardViewModel() {
                     SL.setModalPosition();
                 }
             });
-        };
+        },
 
-        pg.cancelDelete = function () {
+        cancelDelete: function () {
+            var pg = this;
             pg.isDeleting(false);
             SL.unmask();
-        };
+        },
 
-        pg.load = function () {
+        load: function () {
+            var pg = this;
 
             SL.mask(true);
 
@@ -360,10 +384,25 @@ function CourseDashboardViewModel() {
                 error: function () {
                 }
             });
-        };
+        },
 
-        pg.load();
+        isExamFieldsetOpen: ko.observable(true),
+
+        toggleExamFieldset: function () {
+            var pg = this;
+
+            var current = pg.isExamFieldsetOpen();
+            pg.isExamFieldsetOpen(!current);
+        },
+
+        // -- Exam context
+        examContext: {
+
+            current: ko.observable(new Exam({ name: 'Prova 1' }))
+        }
     };
+
+    self.partialGradeContext.load();
 }
 
 var timer;
