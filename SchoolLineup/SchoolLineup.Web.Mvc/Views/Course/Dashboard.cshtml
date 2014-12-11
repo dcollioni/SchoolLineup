@@ -13,8 +13,12 @@
 <input type="hidden" id="courseId" value="@ViewBag.CourseId" />
 
 <fieldset>
-    <legend>Alunos<span data-bind="text: studentsCount"></span></legend>
-    <form action="Course/AddStudent" method="post">
+    <legend data-bind="click: toggleStudentFieldset">
+        Alunos
+        <span data-bind="text: studentsCount"></span>
+        <span data-bind="text: isStudentFieldsetOpen() ? '[-]' : '[+]', attr: { title: isStudentFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
+    </legend>
+    <form action="Course/AddStudent" method="post" data-bind="style: { display: isStudentFieldsetOpen() ? 'block' : 'none' }">
         <div class="row">
             <div class="cell w50">
                 <label>
@@ -42,3 +46,145 @@
         </div>
     </form>
 </fieldset>
+
+<div data-bind="with: partialGradeContext">
+    <fieldset>
+        <legend data-bind="click: $root.togglePartialGradeFieldset">
+            Parciais
+            <span data-bind="text: $root.isPartialGradeFieldsetOpen() ? '[-]' : '[+]', attr: { title: $root.isPartialGradeFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
+        </legend>
+        <form action="PartialGrade/Save" method="post" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }">
+            <div class="row">
+                <div class="cell w80">
+                    <label>
+                        Nome
+                        <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
+                    </label>
+                </div>
+                <div class="cell w20">
+                    <label>
+                        Ordem
+                        <input type="text" name="order" maxlength="2" data-bind="value: current().order, attr: { title: errors().order }, css: { invalid: !!errors().order }" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell buttons">
+                    <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
+                    <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: update" />
+                    <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: destroy" />
+                    <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
+                </div>
+            </div>
+        </form>
+
+        <table data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'table' : 'none' }">
+            <thead>
+                <tr>
+                    <th class="w80">Nome</th>
+                    <th class="w20">Ordem</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: models">
+                <tr data-bind="click: select, css: { selected: isSelected }, event: { dblclick: $context.open }">
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: order" class="center"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+            <h3>A operação não foi concluída</h3>
+            <ul data-bind="foreach: serverErrors">
+                <li data-bind="text: $data"></li>
+            </ul>
+            <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+        </div>
+
+        <div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
+            <h3>Confirmar exclusão</h3>
+            <div>
+                <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
+                <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
+            </div>
+            <a href="#" data-bind="click: cancelDelete" class="close"></a>
+        </div>
+
+        <div class="mt-20" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }">
+            <fieldset data-bind="enable: current().id() > 0">
+                <legend>Avaliações</legend>
+                <form action="Exam/Save" method="post">
+                    <div class="row">
+                        <div class="cell w60">
+                            <label>
+                                Nome
+                                <input type="text" name="name" maxlength="50" />
+                            </label>
+                        </div>
+                        <div class="cell w20">
+                            <label>
+                                Data
+                                <input type="text" name="date" />
+                            </label>
+                        </div>
+                        <div class="cell w20">
+                            <label>
+                                Peso
+                                <input type="text" name="value" maxlength="5" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell w100">
+                            <label>
+                                Descrição
+                                <textarea name="description"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell buttons">
+                            <input type="button" name="create" class="create" value="Criar" />
+                            <input type="button" name="update" class="update" value="Editar" />
+                            <input type="button" name="delete" class="delete" value="Excluir" />
+                            <input type="button" name="reset" class="reset" value="Limpar" />
+                        </div>
+                    </div>
+                </form>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="w60">Nome</th>
+                            <th class="w20">Data</th>
+                            <th class="w20">Peso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            @*<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+                <h3>A operação não foi concluída</h3>
+                <ul data-bind="foreach: serverErrors">
+                    <li data-bind="text: $data"></li>
+                </ul>
+                <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+            </div>
+
+            <div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
+                <h3>Confirmar exclusão</h3>
+                <div>
+                    <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
+                    <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
+                </div>
+                <a href="#" data-bind="click: cancelDelete" class="close"></a>
+            </div>*@
+        </div>
+    </fieldset>
+</div>

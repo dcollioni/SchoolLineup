@@ -8,5 +8,7 @@
         void Evict(PartialGrade entity);
         void Delete(int entityId);
         int CountByCourse(int courseId);
+        int CountByName(PartialGrade entity);
+        int CountByOrder(PartialGrade entity);
     }
 }

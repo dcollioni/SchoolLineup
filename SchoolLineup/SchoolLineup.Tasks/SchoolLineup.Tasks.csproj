@@ -51,12 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\PartialGrade\DeletePartialGradeHandler.cs" />
+    <Compile Include="CommandHandlers\PartialGrade\SavePartialGradeHandler.cs" />
     <Compile Include="CommandHandlers\Student\DeleteStudentHandler.cs" />
     <Compile Include="CommandHandlers\Student\ImportStudentsHandler.cs" />
     <Compile Include="CommandHandlers\Student\SaveStudentHandler.cs" />
+    <Compile Include="Commands\PartialGrade\DeletePartialGradeCommand.cs" />
+    <Compile Include="Commands\PartialGrade\SavePartialGradeCommand.cs" />
     <Compile Include="Commands\Student\DeleteStudentCommand.cs" />
     <Compile Include="Commands\Student\ImportStudentsCommand.cs" />
     <Compile Include="Commands\Student\SaveStudentCommand.cs" />
+    <Compile Include="PartialGradeTasks.cs" />
     <Compile Include="StudentTasks.cs" />
     <Compile Include="CommandHandlers\Course\DeleteCourseHandler.cs" />
     <Compile Include="CommandHandlers\Course\SaveCourseHandler.cs" />

@@ -102,7 +102,7 @@ section {
     width: 90%;
 }
 
-section div {
+section div.main {
     margin: 0 auto;
     margin-bottom: 20px;
     width: 95%;
@@ -183,6 +183,9 @@ form {
         form .cell.w70 {
             width: 70%;
         }
+        form .cell.w60 {
+            width: 60%;
+        }
         form .cell.w50 {
             width: 50%;
         }
@@ -216,7 +219,7 @@ form {
         float: left;
     }
 
-    input, select {
+    input, select, textarea {
         background-color: #FFFFFF;
         border: 1px solid #AAAAAA;
         box-sizing: border-box;
@@ -256,23 +259,36 @@ form {
             margin-right: 5px;
         }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus,
+    textarea:focus {
         border-color: #6688BB;
+    }
+
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+        background-color: #EEE;
     }
 
     input[type=text],
     input[type=date],
     input[type=input],
-    select {
+    select,
+    textarea {
         display: block;
         width: 100%;
+    }
+
+    textarea {
+        resize: none;
     }
 
     input[type=date] {
         padding: 1px 3px;
     }
 
-    input.invalid, select.invalid {
+    input.invalid, select.invalid, textarea.invalid {
         border-color: #DD4444;
     }
 
@@ -333,6 +349,12 @@ th {
     font-weight: normal;
     padding: 5px;
 }
+th.w80 {
+    width: 80%;
+}
+th.w60 {
+    width: 60%;
+}
 th.w50 {
     width: 50%;
 }
@@ -341,6 +363,9 @@ th.w35 {
 }
 th.w25 {
     width: 25%;
+}
+th.w20 {
+    width: 20%;
 }
 th.w15 {
     width: 15%;
@@ -585,4 +610,12 @@ ul.auto-complete li:hover {
 
 ul.auto-complete li:not(:last-child) {
     border-bottom: 1px solid #68C;
+}
+
+.toggle-action {
+    cursor: pointer;
+}
+
+.mt-20 {
+    margin-top: 20px;
 }

@@ -64,7 +64,13 @@
                 {
                     ViewBag.CourseName = course.Name;
                     ViewBag.CourseId = course.Id;
-                    ViewBag.CollegeName = "FL06";
+
+                    var college = collegeListQuery.Get(course.CollegeId);
+
+                    if (college != null)
+                    {
+                        ViewBag.CollegeName = college.Name;
+                    }
                     
                     return View();
                 }
