@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\StudentsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ExamResultController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\PartialGradeController.cs" />
     <Compile Include="Controllers\Queries\Exam\IExamListQuery.cs" />
@@ -264,6 +265,7 @@
     <Content Include="Views\College\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Course\Dashboard.cshtml" />
+    <Content Include="Views\ExamResult\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

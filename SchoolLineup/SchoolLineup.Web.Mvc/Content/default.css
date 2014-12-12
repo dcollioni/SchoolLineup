@@ -352,6 +352,9 @@ th {
 th.w80 {
     width: 80%;
 }
+th.w70 {
+    width: 70%;
+}
 th.w60 {
     width: 60%;
 }
@@ -369,6 +372,9 @@ th.w20 {
 }
 th.w15 {
     width: 15%;
+}
+th.w10 {
+    width: 10%;
 }
 
 th:not(:last-child) {
@@ -393,7 +399,7 @@ tbody tr {
     background-color: #FFFFFF;
 }
 
-tbody tr:not(.selected):hover {
+tbody tr:not(.selected):not(.non-hover):hover {
     background-color: #EEEEEE;
 }
 
