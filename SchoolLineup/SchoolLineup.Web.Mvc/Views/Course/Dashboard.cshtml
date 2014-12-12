@@ -18,7 +18,7 @@
         <span data-bind="text: studentsCount"></span>
         <span data-bind="text: isStudentFieldsetOpen() ? '[-]' : '[+]', attr: { title: isStudentFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
     </legend>
-    <form action="Course/AddStudent" method="post" data-bind="style: { display: isStudentFieldsetOpen() ? 'block' : 'none' }">
+    <form action="Course/AddStudent" method="post" data-bind="style: { display: isStudentFieldsetOpen() ? 'block' : 'none' }, submit: addStudent">
         <div class="row">
             <div class="cell w50">
                 <label>

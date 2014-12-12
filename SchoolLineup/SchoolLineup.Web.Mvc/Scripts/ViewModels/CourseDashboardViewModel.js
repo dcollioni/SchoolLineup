@@ -154,21 +154,23 @@ function CourseDashboardViewModel() {
     };
 
     self.addStudent = function () {
-        SL.mask(true);
-        $.ajax({
-            url: SL.root + 'Course/AddStudent',
-            data: {
-                courseId: self.courseId(),
-                studentId: self.selectedStudentId()
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (response.Success) {
-                    self.studentQuery('');
-                    self.loadStudents();
+        if (!!self.selectedStudentId()) {
+            SL.mask(true);
+            $.ajax({
+                url: SL.root + 'Course/AddStudent',
+                data: {
+                    courseId: self.courseId(),
+                    studentId: self.selectedStudentId()
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.Success) {
+                        self.studentQuery('');
+                        self.loadStudents();
+                    }
                 }
-            }
-        });
+            });
+        }
     };
 
     self.removeStudent = function (student) {
