@@ -8,5 +8,6 @@
         void Evict(ExamResult entity);
         void Delete(int entityId);
         int CountByStudent(int studentId);
+        int CountByExam(int examId);
     }
 }

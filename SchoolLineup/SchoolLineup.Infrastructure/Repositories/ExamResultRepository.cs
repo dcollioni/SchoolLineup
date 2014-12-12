@@ -18,5 +18,12 @@
                           .Where(e => e.StudentId == studentId)
                           .Count();
         }
+
+        public int CountByExam(int examId)
+        {
+            return Session.Query<ExamResult>()
+                          .Where(e => e.ExamId == examId)
+                          .Count();
+        }
     }
 }

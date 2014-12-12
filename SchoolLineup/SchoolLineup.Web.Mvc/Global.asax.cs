@@ -6,6 +6,7 @@
     using Microsoft.Practices.ServiceLocation;
     using SchoolLineup.Web.Mvc.App_Start;
     using SchoolLineup.Web.Mvc.CastleWindsor;
+    using SchoolLineup.Web.Mvc.ModelBinding;
     using SharpArch.Domain.Events;
     using SharpArch.Web.Mvc.Castle;
     using System.Web.Http;
@@ -18,10 +19,9 @@
     {
         protected void Application_Start()
         {
-            //ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
-            //ModelValidatorProviders.Providers.Add(new ClientDataTypeModelValidatorProvider());
-
             this.InitializeServiceLocator();
+
+            ModelBinders.Binders.DefaultBinder = new U413ModelBinder();
 
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);

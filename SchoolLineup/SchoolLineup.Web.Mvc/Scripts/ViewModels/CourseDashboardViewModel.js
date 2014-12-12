@@ -35,11 +35,25 @@ function Exam(data) {
     self.description = ko.observable(data.description);
     self.partialGradeId = ko.observable(data.partialGradeId);
 
+    self.dateStr = ko.computed({
+        read: function () {
+            return SL.formatters.date(self.date());
+        },
+        write: function (value) {
+            self.date(SL.date.getFromString(value));
+        },
+        owner: self
+    });
+
     self.isSelected = ko.observable(false);
 }
 
 PartialGrade.prototype.clone = function () {
     return new PartialGrade(ko.toJS(this));
+};
+
+Exam.prototype.clone = function () {
+    return new Exam(ko.toJS(this));
 };
 
 function CourseDashboardViewModel() {
@@ -174,7 +188,7 @@ function CourseDashboardViewModel() {
         });
     };
 
-    self.isStudentFieldsetOpen = ko.observable(true);
+    self.isStudentFieldsetOpen = ko.observable(false);
 
     self.toggleStudentFieldset = function () {
         var current = self.isStudentFieldsetOpen();
@@ -200,9 +214,16 @@ function CourseDashboardViewModel() {
         isDeleting: ko.observable(false),
 
         select: function (pg, model) {
+            if (!!pg.current() && pg.current().id() === model.id()) {
+                return;
+            }
+
             pg.current(model.clone());
             pg.deselectAll();
             model.isSelected(true);
+
+            pg.examContext.clearAll();
+            pg.examContext.load();
         },
 
         clearSelection: function () {
@@ -210,6 +231,8 @@ function CourseDashboardViewModel() {
             pg.current(new PartialGrade({}));
             pg.errors({});
             pg.deselectAll();
+
+            pg.examContext.clearAll();
         },
 
         clearServerErrors: function () {
@@ -398,7 +421,214 @@ function CourseDashboardViewModel() {
         // -- Exam context
         examContext: {
 
-            current: ko.observable(new Exam({ name: 'Prova 1' }))
+            models: ko.observableArray([]),
+            current: ko.observable(new Exam({})),
+            serverErrors: ko.observableArray([]),
+            errors: ko.observable({}),
+            isDeleting: ko.observable(false),
+
+            select: function (ex, model) {
+                ex.current(model.clone());
+                ex.deselectAll();
+                model.isSelected(true);
+            },
+
+            clearSelection: function () {
+                var ex = this;
+                ex.current(new Exam({}));
+                ex.errors({});
+                ex.deselectAll();
+            },
+
+            clearServerErrors: function () {
+                var ex = this;
+                ex.serverErrors([]);
+                SL.unmask();
+            },
+
+            deselectAll: function () {
+                var ex = this;
+                $.each(ex.models(), function (i, item) {
+                    item.isSelected(false);
+                });
+            },
+
+            getSelected: function () {
+                var ex = this;
+                return _.find(ex.models(), function (model) {
+                    return model.isSelected();
+                });
+            },
+
+            clearAll: function () {
+                var ex = this;
+                ex.clearSelection();
+                ex.models.removeAll();
+            },
+
+            create: function () {
+                var ex = this;
+                if (ex.isValid()) {
+                    var newModel = ex.current().clone();
+                    newModel.id(0);
+                    newModel.partialGradeId(self.partialGradeContext.current().id());
+
+                    var jsonData = ko.toJSON(newModel);
+                    ex.save(jsonData);
+                }
+            },
+
+            update: function () {
+                var ex = this;
+                if (ex.isValid()) {
+                    var jsonData = ko.toJSON(ex.current);
+
+                    ex.save(jsonData);
+                }
+            },
+
+            isValid: function () {
+                var ex = this;
+                var brokenRules = [];
+
+                if (!ex.current().name()) {
+                    brokenRules['name'] = 'Esse campo deve ser preenchido.';
+                }
+                if (!ex.current().date()) {
+                    brokenRules['date'] = 'Esse campo deve ser preenchido.';
+                }
+                if (!ex.current().value()) {
+                    brokenRules['value'] = 'Esse campo deve ser preenchido.';
+                }
+                else if (isNaN(ex.current().value())) {
+                    brokenRules['value'] = 'Esse campo deve ser um valor numérico.';
+                }
+
+                ex.errors(brokenRules);
+
+                return !ex.errors().name && !ex.errors().date && !ex.errors().value;
+            },
+
+            save: function (jsonData) {
+                var ex = this;
+                var isNew = JSON.parse(jsonData).id === 0;
+
+                SL.mask(true);
+
+                $.ajax({
+                    url: SL.root + 'Exam/Save',
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8;",
+                    data: jsonData,
+                    success: function (response) {
+                        if (response.Success) {
+                            var model;
+
+                            if (isNew) {
+                                model = ex.current().clone();
+                            }
+                            else {
+                                model = ex.getSelected();
+                            }
+
+                            model.id(response.Data.Id);
+                            model.name(response.Data.Name);
+                            model.date(new Date(parseInt(response.Data.Date.substr(6))));
+                            model.value(SL.formatters.double(response.Data.Value));
+                            model.description(response.Data.Description);
+                            model.partialGradeId(response.Data.PartialGradeId);
+
+                            if (isNew) {
+                                ex.models.unshift(model);
+                            }
+
+                            ex.select(ex, model);
+
+                            SL.unmask();
+                        }
+                        else {
+                            SL.hideModals();
+
+                            $.each(response.Messages, function (i, message) {
+                                ex.serverErrors.push(message.MemberNames[0] + ': ' + message.ErrorMessage);
+                            });
+
+                            SL.setModalPosition();
+                        }
+                    }
+                });
+            },
+
+            destroy: function () {
+                var ex = this;
+                ex.isDeleting(true);
+                SL.mask();
+                SL.setModalPosition();
+            },
+
+            confirmDelete: function () {
+                var ex = this;
+                ex.isDeleting(false);
+                SL.mask(true);
+
+                $.post(SL.root + 'Exam/Delete', { id: ex.current().id() }, function (response) {
+                    if (response.Success) {
+                        var selectedModel = ex.getSelected();
+                        ex.models.remove(selectedModel);
+                        ex.clearSelection();
+
+                        SL.unmask();
+                    }
+                    else {
+                        SL.hideModals();
+
+                        $.each(response.Messages, function (i, message) {
+                            var memberName = !!message.MemberNames[0] ? message.MemberNames[0] + ': ' : '';
+                            ex.serverErrors.push(memberName + message.ErrorMessage);
+                        });
+
+                        SL.setModalPosition();
+                    }
+                });
+            },
+
+            cancelDelete: function () {
+                var ex = this;
+                ex.isDeleting(false);
+                SL.unmask();
+            },
+
+            load: function () {
+                var ex = this;
+
+                SL.mask(true);
+
+                $.ajax({
+                    url: SL.root + 'Exam/GetAll/?partialGradeId=' + self.partialGradeContext.current().id(),
+                    dataType: 'json',
+                    complete: function () {
+                        SL.unmask();
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (i, e) {
+                            var model = new Exam({
+                                id: e.Id,
+                                name: e.Name,
+                                date: new Date(parseInt(e.Date.substr(6))),
+                                value: SL.formatters.double(e.Value),
+                                description: e.Description,
+                                partialGradeId: e.PartialGradeId
+                            });
+
+                            ex.models.push(model);
+                        });
+                    },
+                    error: function () {
+                    }
+                });
+            }
         }
     };
 

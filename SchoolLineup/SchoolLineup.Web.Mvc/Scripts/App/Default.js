@@ -54,6 +54,11 @@ SL.formatters = {
 
             return curr_date.toString().lpad('0', 2) + '/' + curr_month.toString().lpad('0', 2) + '/' + curr_year;
         }
+    },
+    double: function (value) {
+        if (!!value) {
+            return parseFloat(value).toFixed(2).toString();
+        }
     }
 };
 
