@@ -164,7 +164,7 @@
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: models">
-                        <tr data-bind="click: $parent.select.bind($data, $parent), css: { selected: isSelected }">
+                        <tr data-bind="click: $parent.select.bind($data, $parent), css: { selected: isSelected },  event: { dblclick: $parent.open }">
                             <td data-bind="text: name"></td>
                             <td data-bind="text: dateStr" class="center"></td>
                             <td data-bind="text: value" class="center"></td>

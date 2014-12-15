@@ -312,6 +312,8 @@ form {
     input.confirm {
         background: #DDDDDD url(images/ok.png) no-repeat 4px 4px;
         padding: 6px 8px 6px 6px;
+    }
+    input.confirm:not(.no-fixed-width) {
         width: 105px;
     }
 
@@ -624,4 +626,8 @@ ul.auto-complete li:not(:last-child) {
 
 .mt-20 {
     margin-top: 20px;
+}
+
+.text-right {
+    text-align: right;
 }

@@ -74,6 +74,9 @@
             bundles.Add(new ScriptBundle("~/bundles/ko/coursedashboard")
                 .Include("~/Scripts/ViewModels/CourseDashboardViewModel.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko/examresult")
+                .Include("~/Scripts/ViewModels/ExamResultViewModel.js"));
+
             //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity").IncludeDirectory(
             //    "~/Scripts/App/ViewModels/",
             //    "JobOpportunityViewModel*",

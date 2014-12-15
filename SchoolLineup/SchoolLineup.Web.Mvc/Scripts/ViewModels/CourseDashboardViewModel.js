@@ -630,6 +630,10 @@ function CourseDashboardViewModel() {
                     error: function () {
                     }
                 });
+            },
+
+            open: function (exam) {
+                location.href = SL.root + 'ExamResult/?examId=' + exam.id();
             }
         }
     };

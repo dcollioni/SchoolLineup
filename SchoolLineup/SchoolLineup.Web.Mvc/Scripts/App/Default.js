@@ -56,7 +56,7 @@ SL.formatters = {
         }
     },
     double: function (value) {
-        if (!!value) {
+        if (!isNaN(value)) {
             return parseFloat(value).toFixed(2).toString();
         }
     }

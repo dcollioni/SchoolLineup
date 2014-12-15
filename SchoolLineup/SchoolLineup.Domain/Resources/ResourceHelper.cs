@@ -43,6 +43,14 @@
         }
 
         /// <summary>
+        /// Esse campo deve ser menor do que {0}.
+        /// </summary>
+        public static string MustBeLessThan(string field)
+        {
+            return string.Format(Messages.MustBeLessThan, field);
+        }
+
+        /// <summary>
         /// Esse registro possui associações e não pode ser excluído.
         /// </summary>
         public static string HasChildren()

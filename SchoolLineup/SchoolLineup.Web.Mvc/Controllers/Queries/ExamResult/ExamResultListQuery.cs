@@ -17,6 +17,18 @@
             this.session = session;
         }
 
+        public ExamResult Get(int id)
+        {
+            return session.Load<ExamResult>(id);
+        }
+
+        public IEnumerable<ExamResult> Get(int[] ids)
+        {
+            return session.Query<ExamResult>()
+                          .Where(e => e.Id.In(ids))
+                          .ToList();
+        }
+
         public IEnumerable<ExamResultViewModel> GetAll(int studentId, int partialGradeId)
         {
             var viewModels = new List<ExamResultViewModel>();
@@ -87,6 +99,58 @@
             }
 
             return viewModels;
+        }
+
+        public IEnumerable<ExamResultViewModel> GetAllByExam(int examId)
+        {
+            var result = new List<ExamResultViewModel>();
+
+            var exam = session.Load<Exam>(examId);
+
+            if (exam != null)
+            {
+                var partialGrade = session.Load<PartialGrade>(exam.PartialGradeId);
+
+                if (partialGrade != null)
+                {
+                    var course = session.Load<Course>(partialGrade.CourseId);
+
+                    if (course != null)
+                    {
+                        var students = session.Query<Student>()
+                                              .Where(s => s.Id.In(course.StudentsIds))
+                                              .OrderBy(s => s.Name)
+                                              .ToList();
+
+                        var examResults = session.Query<ExamResult>()
+                                                 .Where(e => e.ExamId == examId)
+                                                 .ToList();
+
+                        foreach (var student in students)
+                        {
+                            var vm = new ExamResultViewModel()
+                            {
+                                ExamId = examId,
+                                StudentId = student.Id,
+                                StudentName = student.Name
+                            };
+
+                            var examResult = examResults.SingleOrDefault(e => e.StudentId == vm.StudentId);
+
+                            if (examResult != null)
+                            {
+                                vm.Description = examResult.Description;
+                                vm.Id = examResult.Id;
+                                vm.Value = examResult.Value;
+                            }
+
+                            result.Add(vm);
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

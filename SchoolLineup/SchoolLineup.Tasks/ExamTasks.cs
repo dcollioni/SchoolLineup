@@ -29,5 +29,10 @@
 
             return childrenCount > 0;
         }
+
+        public Exam Get(int id)
+        {
+            return examRepository.Get(id);
+        }
     }
 }

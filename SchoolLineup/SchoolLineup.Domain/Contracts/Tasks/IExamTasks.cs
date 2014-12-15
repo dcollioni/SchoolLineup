@@ -6,5 +6,6 @@
     {
         bool IsNameUnique(Exam entity);
         bool HasChildren(int id);
+        Exam Get(int id);
     }
 }

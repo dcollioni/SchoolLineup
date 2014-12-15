@@ -3,14 +3,15 @@
 }
 
 @section ko{
-    @*@System.Web.Optimization.Scripts.Render("~/bundles/ko/coursedashboard")*@
+    @System.Web.Optimization.Scripts.Render("~/bundles/ko/examresult")
 
 }
 
 <h2>Resultados da Avaliação</h2>
-<h3>Simulador de Conta - 01/12/2014 - Peso: 5.00</h3>
+<h3>@ViewBag.ExamName - @ViewBag.ExamDate - Peso: @ViewBag.ExamValue</h3>
 
-@*<input type="hidden" id="courseId" value="@ViewBag.CourseId" />*@
+<input type="hidden" id="examId" value="@ViewBag.ExamId" />
+<input type="hidden" id="examValue" value="@ViewBag.ExamValue" />
 
 <form>
     <table>
@@ -21,207 +22,25 @@
                 <th class="w60">Observações</th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="non-hover">
-                <td>Ana Maria</td>
-                <td><input type="text" name="value" maxlength="6" /></td>
-                <td><textarea name="description" rows="1"></textarea></td>
-            </tr>
-            <tr class="non-hover">
-                <td>Bernardo</td>
-                <td><input type="text" name="value" maxlength="6" /></td>
-                <td><textarea name="description" rows="1"></textarea></td>
-            </tr>
-            <tr class="non-hover">
-                <td>Camila</td>
-                <td><input type="text" name="value" maxlength="6" /></td>
-                <td><textarea name="description" rows="1"></textarea></td>
-            </tr>
-            <tr class="non-hover">
-                <td>Danilo</td>
-                <td><input type="text" name="value" maxlength="6" /></td>
-                <td><textarea name="description" rows="1"></textarea></td>
+        <tbody data-bind="foreach: models">
+            <tr @*class="non-hover"*@>
+                <td data-bind="text: studentName"></td>
+                <td><input type="text" name="value" maxlength="6" class="text-right" data-bind="value: value, attr: { title: valueError }, css: { invalid: !!valueError() }" /></td>
+                <td><textarea name="description" rows="1" data-bind="value: description"></textarea></td>
             </tr>
         </tbody>
     </table>
+    <div class="row">
+        <div class="cell buttons">
+            <input type="button" name="save" class="confirm no-fixed-width" value="Salvar" data-bind="click: save" />
+        </div>
+    </div>
 </form>
 
-@*<fieldset>
-    <legend data-bind="click: toggleStudentFieldset">
-        Alunos
-        <span data-bind="text: studentsCount"></span>
-        <span data-bind="text: isStudentFieldsetOpen() ? '[-]' : '[+]', attr: { title: isStudentFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
-    </legend>
-    <form action="Course/AddStudent" method="post" data-bind="style: { display: isStudentFieldsetOpen() ? 'block' : 'none' }, submit: addStudent">
-        <div class="row">
-            <div class="cell w50">
-                <label>
-                    Buscar
-                    <input type="text" name="name" maxlength="50" placeholder="Nome ou e-mail do aluno..." data-bind="value: studentQuery, valueUpdate: 'afterkeydown', hasFocus: studentQueryHasFocus" />
-                    <input type="hidden" data-bind="value: selectedStudentId" />
-                </label>
-                <ul class="auto-complete" data-bind="css: { shown: hasStudentQueryResults }, foreach: studentResults, event: { mouseout: $root.hoverStudentResults(false) }">
-                    <li data-bind="text: display, click: $root.selectStudent, event: { mouseover: $root.hoverStudentResults(true) }"></li>
-                </ul>
-            </div>
-            <div class="cell w10">
-                <input type="button" name="addStudent" value="Adicionar" data-bind="enable: selectedStudentId() > 0, click: addStudent" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="cell w100">
-                <ul class="student-set" data-bind="foreach: students">
-                    <li>
-                        <span data-bind="text: display"></span>
-                        <span class="remove"><a href="#" data-bind="click: $root.removeStudent" title="Remover aluno">X</a></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </form>
-</fieldset>
-
-<div data-bind="with: partialGradeContext">
-    <fieldset>
-        <legend data-bind="click: $root.togglePartialGradeFieldset">
-            Parciais
-            <span data-bind="text: $root.isPartialGradeFieldsetOpen() ? '[-]' : '[+]', attr: { title: $root.isPartialGradeFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
-        </legend>
-        <form action="PartialGrade/Save" method="post" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }">
-            <div class="row">
-                <div class="cell w80">
-                    <label>
-                        Nome
-                        <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
-                    </label>
-                </div>
-                <div class="cell w20">
-                    <label>
-                        Ordem
-                        <input type="text" name="order" maxlength="2" data-bind="value: current().order, attr: { title: errors().order }, css: { invalid: !!errors().order }" />
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell buttons">
-                    <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
-                    <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: update" />
-                    <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: destroy" />
-                    <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
-                </div>
-            </div>
-        </form>
-
-        <table data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'table' : 'none' }">
-            <thead>
-                <tr>
-                    <th class="w80">Nome</th>
-                    <th class="w20">Ordem</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: models">
-                <tr data-bind="click: $parent.select.bind($data, $parent), css: { selected: isSelected }">
-                    <td data-bind="text: name"></td>
-                    <td data-bind="text: order" class="center"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
-            <h3>A operação não foi concluída</h3>
-            <ul data-bind="foreach: serverErrors">
-                <li data-bind="text: $data"></li>
-            </ul>
-            <a href="#" data-bind="click: clearServerErrors" class="close"></a>
-        </div>
-
-        <div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
-            <h3>Confirmar exclusão</h3>
-            <div>
-                <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
-                <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
-            </div>
-            <a href="#" data-bind="click: cancelDelete" class="close"></a>
-        </div>
-
-        <div class="mt-20" data-bind="style: { display: $root.isPartialGradeFieldsetOpen() ? 'block' : 'none' }, with: examContext">
-            <fieldset data-bind="enable: $parent.current().id() > 0">
-                <legend data-bind="click: $parent.toggleExamFieldset.bind($parent)">
-                    Avaliações
-                    <span data-bind="text: $parent.isExamFieldsetOpen() ? '[-]' : '[+]', attr: { title: $parent.isExamFieldsetOpen() ? 'Recolher' : 'Expandir' }" class="toggle-action"></span>
-                </legend>
-                <form action="Exam/Save" method="post" data-bind="style: { display: $parent.isExamFieldsetOpen() ? 'block' : 'none' }">
-                    <div class="row">
-                        <div class="cell w60">
-                            <label>
-                                Nome
-                                <input type="text" name="name" maxlength="50" data-bind="value: current().name, attr: { title: errors().name }, css: { invalid: !!errors().name }" />
-                            </label>
-                        </div>
-                        <div class="cell w20">
-                            <label>
-                                Data
-                                <input type="text" name="date" data-bind="value: current().dateStr, attr: { title: errors().date }, css: { invalid: !!errors().date }" />
-                            </label>
-                        </div>
-                        <div class="cell w20">
-                            <label>
-                                Peso
-                                <input type="text" name="value" maxlength="5" data-bind="value: current().value, attr: { title: errors().value }, css: { invalid: !!errors().value }" />
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell w100">
-                            <label>
-                                Descrição
-                                <textarea name="description" data-bind="value: current().description, attr: { title: errors().description }, css: { invalid: !!errors().description }"></textarea>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell buttons">
-                            <input type="button" name="create" class="create" value="Criar" data-bind="click: create" />
-                            <input type="button" name="update" class="update" value="Editar" data-bind="enable: current().id() > 0, click: update" />
-                            <input type="button" name="delete" class="delete" value="Excluir" data-bind="enable: current().id() > 0, click: destroy" />
-                            <input type="button" name="reset" class="reset" value="Limpar" data-bind="click: clearSelection" />
-                        </div>
-                    </div>
-                </form>
-
-                <table data-bind="style: { display: $parent.isExamFieldsetOpen() ? 'table' : 'none' }">
-                    <thead>
-                        <tr>
-                            <th class="w60">Nome</th>
-                            <th class="w20">Data</th>
-                            <th class="w20">Peso</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: models">
-                        <tr data-bind="click: $parent.select.bind($data, $parent), css: { selected: isSelected }">
-                            <td data-bind="text: name"></td>
-                            <td data-bind="text: dateStr" class="center"></td>
-                            <td data-bind="text: value" class="center"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-            <div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
-                <h3>A operação não foi concluída</h3>
-                <ul data-bind="foreach: serverErrors">
-                    <li data-bind="text: $data"></li>
-                </ul>
-                <a href="#" data-bind="click: clearServerErrors" class="close"></a>
-            </div>
-
-            <div id="deleteConfirmation" data-bind="css: { active: isDeleting }" class="modal closable">
-                <h3>Confirmar exclusão</h3>
-                <div>
-                    <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmDelete" />
-                    <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelDelete" />
-                </div>
-                <a href="#" data-bind="click: cancelDelete" class="close"></a>
-            </div>
-        </div>
-    </fieldset>
-</div>*@
+<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+    <h3>A operação não foi concluída</h3>
+    <ul data-bind="foreach: serverErrors">
+        <li data-bind="text: $data"></li>
+    </ul>
+    <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+</div>
