@@ -17,6 +17,7 @@
         private readonly ICommandProcessor commandProcessor;
         private readonly IStudentListQuery studentListQuery;
         private readonly IStudentTasks studentTasks;
+        //private readonly IStudentRepository studentRepository;
 
         public StudentController(ICommandProcessor commandProcessor,
                                  IStudentListQuery studentListQuery,
@@ -154,5 +155,19 @@
 
             return viewModel;
         }
+
+        //[Transaction]
+        //public void UpdateAllPasswords()
+        //{
+        //    var students = studentRepository.GetAll();
+
+        //    MD5Cng md5 = new MD5Cng();
+
+        //    foreach (var student in students)
+        //    {
+        //        student.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(student.RegistrationCode)));
+        //        studentRepository.SaveOrUpdate(student);
+        //    }
+        //}
     }
 }
