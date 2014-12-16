@@ -21,28 +21,10 @@
         {
             var viewModels = new List<CourseViewModel>();
 
-            var examsIds = session.Query<ExamResult>()
-                                        .Where(e => e.StudentId == studentId)
-                                        .Select(e => e.ExamId)
-                                        .Distinct()
-                                        .ToArray<int>();
-
-            var partialGradesIds = session.Query<Exam>()
-                                          .Where(e => e.Id.In(examsIds))
-                                          .Select(e => e.PartialGradeId)
-                                          .Distinct()
-                                          .ToArray<int>();
-
-            var coursesIds = session.Query<PartialGrade>()
-                                    .Where(p => p.Id.In(partialGradesIds))
-                                    .Select(p => p.CourseId)
-                                    .Distinct()
-                                    .ToArray<int>();
-
             var courses = session.Query<Course>()
                                  .Customize(x => x.Include<Course, College>(e => e.CollegeId))
                                  .Customize(x => x.Include<Course, Teacher>(e => e.TeacherId))
-                                 .Where(c => c.Id.In(coursesIds))
+                                 .Where(c => c.StudentsIds.Any(id => id == studentId))
                                  .ToList();
 
             var brCulture = new CultureInfo("pt-BR");

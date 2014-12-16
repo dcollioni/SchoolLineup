@@ -33,38 +33,38 @@
         {
             var viewModels = new List<ExamResultViewModel>();
 
-            var examsIds = session.Query<Exam>()
-                                        .Where(e => e.PartialGradeId == partialGradeId)
-                                        .Select(e => e.Id)
-                                        .ToArray<int>();
+            var exams = session.Query<Exam>()
+                               .Where(e => e.PartialGradeId == partialGradeId)
+                               .OrderBy(e => e.Date)
+                               .ToList();
 
             var examResults = session.Query<ExamResult>()
                                      .Customize(e => e.Include<ExamResult, Exam>(x => x.ExamId))
-                                     .Where(e => e.ExamId.In(examsIds) && e.StudentId == studentId)
+                                     .Where(e => e.ExamId.In(exams.Select(x => x.Id)) && e.StudentId == studentId)
                                      .ToList();
 
             var brCulture = new CultureInfo("pt-BR");
 
-            foreach (var examResult in examResults)
+            foreach (var exam in exams)
             {
-                var exam = session.Load<Exam>(examResult.ExamId);
+                var examResult = examResults.SingleOrDefault(e => e.ExamId == exam.Id);
 
                 viewModels.Add(new ExamResultViewModel()
                 {
-                    Description = examResult.Description,
+                    Description = examResult != null ? examResult.Description : null,
                     ExamDate = exam.Date,
                     ExamDateStr = exam.Date.ToString("d", brCulture),
                     ExamDescription = exam.Description,
                     ExamId = exam.Id,
                     ExamName = exam.Name,
                     ExamValue = exam.Value,
-                    Id = examResult.Id,
-                    StudentId = examResult.StudentId,
-                    Value = examResult.Value
+                    Id = examResult != null ? examResult.Id : 0,
+                    StudentId = examResult != null ? examResult.StudentId : 0,
+                    Value = examResult != null ? examResult.Value : 0
                 });
             }
 
-            return viewModels.OrderBy(v => v.ExamDate);
+            return viewModels;
         }
 
         public IEnumerable<ExamResultViewModel> GetTotals(int studentId, int courseId)
