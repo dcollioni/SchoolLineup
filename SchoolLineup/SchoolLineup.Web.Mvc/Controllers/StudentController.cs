@@ -1,5 +1,6 @@
 ﻿namespace SchoolLineup.Web.Mvc.Controllers
 {
+    using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.Student;
@@ -9,6 +10,8 @@
     using SharpArch.RavenDb.Web.Mvc;
     using System.Collections.Generic;
     using System.IO;
+    using System.Security.Cryptography;
+    using System.Text;
     using System.Web;
     using System.Web.Mvc;
 
@@ -17,15 +20,17 @@
         private readonly ICommandProcessor commandProcessor;
         private readonly IStudentListQuery studentListQuery;
         private readonly IStudentTasks studentTasks;
-        //private readonly IStudentRepository studentRepository;
+        private readonly IStudentRepository studentRepository;
 
         public StudentController(ICommandProcessor commandProcessor,
                                  IStudentListQuery studentListQuery,
-                                 IStudentTasks studentTasks)
+                                 IStudentTasks studentTasks,
+            IStudentRepository studentRepository)
         {
             this.commandProcessor = commandProcessor;
             this.studentListQuery = studentListQuery;
             this.studentTasks = studentTasks;
+            this.studentRepository = studentRepository;
         }
 
         public ActionResult Index()

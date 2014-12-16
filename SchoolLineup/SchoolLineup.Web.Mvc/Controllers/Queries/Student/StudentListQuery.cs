@@ -20,10 +20,10 @@
 
         public Student Get(string email, string password)
         {
-            var md5Password = Encoding.UTF8.GetString(new MD5Cng().ComputeHash(Encoding.UTF8.GetBytes(password)));
+            //var md5Password = Encoding.UTF8.GetString(new MD5Cng().ComputeHash(Encoding.UTF8.GetBytes(password)));
 
             return session.Query<Student>()
-                          .Where(s => s.Email == email && s.Password == md5Password)
+                          .Where(s => s.Email == email && s.RegistrationCode == password)
                           .SingleOrDefault();
         }
 
