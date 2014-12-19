@@ -7,5 +7,6 @@
     {
         void Evict(Teacher entity);
         void Delete(int entityId);
+        int CountByEmail(Teacher entity);
     }
 }

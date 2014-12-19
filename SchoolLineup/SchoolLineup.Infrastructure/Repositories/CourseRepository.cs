@@ -18,5 +18,12 @@
                           .Where(e => e.CollegeId == collegeId)
                           .Count();
         }
+
+        public int CountByTeacher(int teacherId)
+        {
+            return Session.Query<Course>()
+                          .Where(e => e.TeacherId == teacherId)
+                          .Count();
+        }
     }
 }

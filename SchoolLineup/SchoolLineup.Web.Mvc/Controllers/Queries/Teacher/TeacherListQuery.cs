@@ -16,6 +16,11 @@
             this.session = session;
         }
 
+        public Teacher Get(int id)
+        {
+            return session.Load<Teacher>(id);
+        }
+
         public IEnumerable<TeacherViewModel> GetAll()
         {
             return session.Query<Teacher>()

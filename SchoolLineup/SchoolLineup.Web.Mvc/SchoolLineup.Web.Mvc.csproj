@@ -187,6 +187,7 @@
     <Content Include="Scripts\ViewModels\CourseViewModel.js" />
     <Content Include="Scripts\ViewModels\CollegeViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
+    <Content Include="Scripts\ViewModels\TeacherViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -203,6 +204,7 @@
     <Compile Include="Controllers\PartialGradeController.cs" />
     <Compile Include="Controllers\Queries\Exam\IExamListQuery.cs" />
     <Compile Include="Controllers\Queries\Exam\ExamListQuery.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -267,6 +269,7 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Course\Dashboard.cshtml" />
     <Content Include="Views\ExamResult\Index.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

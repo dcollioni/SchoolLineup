@@ -77,28 +77,8 @@
             bundles.Add(new ScriptBundle("~/bundles/ko/examresult")
                 .Include("~/Scripts/ViewModels/ExamResultViewModel.js"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity").IncludeDirectory(
-            //    "~/Scripts/App/ViewModels/",
-            //    "JobOpportunityViewModel*",
-            //    true));
-
-            //bundles.Add(new ScriptBundle("~/bundles/app/job-opportunity-list").IncludeDirectory(
-            //    "~/Scripts/App/ViewModels/",
-            //    "JobOpportunityList*",
-            //    true));
-
-            //bundles.Add(new ScriptBundle("~/bundles/app/state").IncludeDirectory(
-            //    "~/Scripts/App/ViewModels/",
-            //    "State*",
-            //    true));
-
-            //bundles.Add(new ScriptBundle("~/bundles/app/menu").IncludeDirectory(
-            //    "~/Scripts/App",
-            //    "Menu*",
-            //    true).IncludeDirectory(
-            //    "~/Scripts/App/ViewModels/",
-            //    "MenuViewModel*",
-            //    true));
+            bundles.Add(new ScriptBundle("~/bundles/ko/teacher")
+                .Include("~/Scripts/ViewModels/TeacherViewModel.js"));
 
             #endregion Knockout And App Scripts
 

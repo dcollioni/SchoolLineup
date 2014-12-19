@@ -63,6 +63,7 @@
     <Compile Include="Contracts\Repositories\ISchoolRepository.cs" />
     <Compile Include="Contracts\Tasks\IExamTasks.cs" />
     <Compile Include="Contracts\Tasks\IPartialGradeTasks.cs" />
+    <Compile Include="Contracts\Tasks\ITeacherTasks.cs" />
     <Compile Include="Contracts\Tasks\IStudentTasks.cs" />
     <Compile Include="Contracts\Tasks\ICourseTasks.cs" />
     <Compile Include="Contracts\Tasks\ICollegeTasks.cs" />
