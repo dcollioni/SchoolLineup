@@ -12,6 +12,8 @@
     @using System.Web.Optimization
     
     @Styles.Render("~/Content/css")
+    @RenderSection("css", false)
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jquery-mask")
     @Scripts.Render("~/bundles/string")

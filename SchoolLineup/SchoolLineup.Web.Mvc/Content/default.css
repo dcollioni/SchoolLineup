@@ -274,6 +274,7 @@ form {
     input[type=text],
     input[type=date],
     input[type=input],
+    input[type=password],
     select,
     textarea {
         display: block;

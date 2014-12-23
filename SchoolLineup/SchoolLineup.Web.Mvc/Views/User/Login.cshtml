@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+@section css {
+    @System.Web.Optimization.Styles.Render("~/Content/css/login")
+}
+
+<div id="login">
+    <h2>Login</h2>
+    <fieldset>
+        <legend>Dados de acesso</legend>
+        <form action="/User/Login" method="post">
+            <div class="row">
+                <div class="cell">
+                    <label>
+                        E-mail
+                        <input type="text" name="email" maxlength="50" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    <label>
+                        Senha
+                        <input type="password" name="password" maxlength="50" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell buttons">
+                    <input type="submit" name="login" value="Entrar" />
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>

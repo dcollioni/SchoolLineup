@@ -1,0 +1,16 @@
+﻿#login h2 {
+    text-align: center;
+}
+
+#login fieldset {
+    margin: 0 auto;
+    width: 400px;
+}
+
+#login input {
+    padding: 10px;
+}
+
+#login .buttons input {
+    text-align: center;
+}

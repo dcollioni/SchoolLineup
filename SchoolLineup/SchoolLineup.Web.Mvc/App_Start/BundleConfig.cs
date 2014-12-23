@@ -102,6 +102,9 @@
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/default.css"));
 
+            bundles.Add(new StyleBundle("~/Content/css/login").Include(
+                "~/Content/login.css"));
+
             //bundles.Add(new StyleBundle("~/Content/css/job-opportunity").Include("~/Content/JobOpportunity.css"));
 
             #endregion Styles

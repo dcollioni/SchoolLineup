@@ -170,6 +170,7 @@
     <Content Include="Content\images\ok.png" />
     <Content Include="Content\images\plus.png" />
     <Content Include="Content\images\upload.png" />
+    <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ViewModels\ExamViewModel.cs" />
     <Compile Include="Controllers\ViewModels\PartialGradeViewModel.cs" />
     <Compile Include="Controllers\ViewModels\StudentViewModel.cs" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Course\Dashboard.cshtml" />
     <Content Include="Views\ExamResult\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
