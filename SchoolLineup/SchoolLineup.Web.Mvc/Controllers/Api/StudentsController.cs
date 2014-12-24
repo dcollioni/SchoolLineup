@@ -1,6 +1,7 @@
 ﻿namespace SchoolLineup.Web.Mvc.Controllers.Api
 {
     using SchoolLineup.Domain.Entities;
+    using SchoolLineup.Util;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -23,6 +24,8 @@
         // GET api/<controller>/5
         public Student Get(string email, string password)
         {
+            password = MD5Helper.GetHash(password);
+
             return studentListQuery.Get(email, password);
         }
 

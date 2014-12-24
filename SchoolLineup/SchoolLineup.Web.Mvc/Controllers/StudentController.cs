@@ -4,6 +4,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.Student;
+    using SchoolLineup.Util;
     using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
@@ -161,18 +162,16 @@
             return viewModel;
         }
 
-        //[Transaction]
-        //public void UpdateAllPasswords()
-        //{
-        //    var students = studentRepository.GetAll();
+        [Transaction]
+        public void UpdateAllPasswords()
+        {
+            var students = studentRepository.GetAll();
 
-        //    MD5Cng md5 = new MD5Cng();
-
-        //    foreach (var student in students)
-        //    {
-        //        student.Password = Encoding.UTF8.GetString(md5.ComputeHash(Encoding.UTF8.GetBytes(student.RegistrationCode)));
-        //        studentRepository.SaveOrUpdate(student);
-        //    }
-        //}
+            foreach (var student in students)
+            {
+                student.Password = MD5Helper.GetHash(student.RegistrationCode);
+                studentRepository.SaveOrUpdate(student);
+            }
+        }
     }
 }
