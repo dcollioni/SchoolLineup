@@ -162,16 +162,16 @@
             return viewModel;
         }
 
-        [Transaction]
-        public void UpdateAllPasswords()
-        {
-            var students = studentRepository.GetAll();
+        //[Transaction]
+        //public void UpdateAllPasswords()
+        //{
+        //    var students = studentRepository.GetAll();
 
-            foreach (var student in students)
-            {
-                student.Password = MD5Helper.GetHash(student.RegistrationCode);
-                studentRepository.SaveOrUpdate(student);
-            }
-        }
+        //    foreach (var student in students)
+        //    {
+        //        student.Password = MD5Helper.GetHash(student.RegistrationCode);
+        //        studentRepository.SaveOrUpdate(student);
+        //    }
+        //}
     }
 }
