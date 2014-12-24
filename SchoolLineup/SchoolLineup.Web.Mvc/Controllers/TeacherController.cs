@@ -3,12 +3,14 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.Teacher;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Teacher;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
     using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class TeacherController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;

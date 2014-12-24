@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.ExamResult;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Exam;
     using SchoolLineup.Web.Mvc.Controllers.Queries.ExamResult;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
@@ -10,9 +11,10 @@
     using SharpArch.RavenDb.Web.Mvc;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Web.Mvc;
     using System.Linq;
+    using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class ExamResultController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;

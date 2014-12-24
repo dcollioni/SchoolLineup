@@ -4,6 +4,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.School;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.School;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
@@ -14,6 +15,7 @@
     using System.Text;
     using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class SchoolController : BaseController
     {
         private readonly ISchoolListQuery schoolListQuery;

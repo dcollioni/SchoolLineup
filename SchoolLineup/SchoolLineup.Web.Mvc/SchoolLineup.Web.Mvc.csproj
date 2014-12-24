@@ -194,6 +194,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\RequiresAuthenticationAttribute.cs" />
     <Compile Include="CastleWindsor\WindsorCompositionRoot.cs" />
     <Compile Include="Controllers\Api\ExamResultsController.cs" />
     <Compile Include="Controllers\Api\PartialGradesController.cs" />

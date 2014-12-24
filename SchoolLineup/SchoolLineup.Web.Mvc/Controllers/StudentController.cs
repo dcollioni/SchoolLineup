@@ -4,17 +4,17 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.Student;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
     using System.Collections.Generic;
     using System.IO;
-    using System.Security.Cryptography;
-    using System.Text;
     using System.Web;
     using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class StudentController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;

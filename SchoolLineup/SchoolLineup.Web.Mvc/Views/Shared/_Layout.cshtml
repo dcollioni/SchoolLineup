@@ -34,13 +34,22 @@
                 <h1><a href="@Url.Content("~")">School Lineup</a></h1>
             </div>
         </header>
-        <nav>
-            <div>
-                <a href="@Url.Content("~")College">Escolas</a>
-                <a href="@Url.Content("~")Student">Alunos</a>
-                <a href="@Url.Content("~")Teacher">Professores</a>
-            </div>
-        </nav>
+        
+        @{
+            var userLogged = Session["UserLogged"] as SchoolLineup.Domain.Entities.User;
+
+            if (userLogged != null)
+            {
+                <nav>
+                    <div>
+                        <a href="@Url.Content("~")College">Escolas</a>
+                        <a href="@Url.Content("~")Student">Alunos</a>
+                        <a href="@Url.Content("~")Teacher">Professores</a>
+                    </div>
+                </nav>
+            }
+        }
+
         <section>
             <div class="main">
                 @RenderBody()

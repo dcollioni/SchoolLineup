@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.Course;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.College;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Course;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Student;
@@ -12,6 +13,7 @@
     using SharpArch.RavenDb.Web.Mvc;
     using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class CourseController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;
@@ -71,7 +73,7 @@
                     {
                         ViewBag.CollegeName = college.Name;
                     }
-                    
+
                     return View();
                 }
             }

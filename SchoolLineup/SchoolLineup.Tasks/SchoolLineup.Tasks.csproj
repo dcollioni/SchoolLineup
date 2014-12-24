@@ -73,6 +73,7 @@
     <Compile Include="Commands\Student\SaveStudentCommand.cs" />
     <Compile Include="ExamTasks.cs" />
     <Compile Include="PartialGradeTasks.cs" />
+    <Compile Include="UserTasks.cs" />
     <Compile Include="TeacherTasks.cs" />
     <Compile Include="StudentTasks.cs" />
     <Compile Include="CommandHandlers\Course\DeleteCourseHandler.cs" />

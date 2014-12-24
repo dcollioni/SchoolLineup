@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Repositories\IExamResultRepository.cs" />
     <Compile Include="Contracts\Repositories\IStudentRepository.cs" />
+    <Compile Include="Contracts\Repositories\IUserRepository.cs" />
     <Compile Include="Contracts\Repositories\ITeacherRepository.cs" />
     <Compile Include="Contracts\Repositories\IPartialGradeRepository.cs" />
     <Compile Include="Contracts\Repositories\IExamRepository.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Contracts\Repositories\ISchoolRepository.cs" />
     <Compile Include="Contracts\Tasks\IExamTasks.cs" />
     <Compile Include="Contracts\Tasks\IPartialGradeTasks.cs" />
+    <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Contracts\Tasks\ITeacherTasks.cs" />
     <Compile Include="Contracts\Tasks\IStudentTasks.cs" />
     <Compile Include="Contracts\Tasks\ICourseTasks.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Entities\College.cs" />
     <Compile Include="Entities\EntityWithId.cs" />
     <Compile Include="Entities\School.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>

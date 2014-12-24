@@ -9,6 +9,8 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            RegisterLoginRoutes(routes);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
@@ -19,29 +21,18 @@
             RegisterCourseRoutes(routes);
         }
 
+        private static void RegisterLoginRoutes(RouteCollection routes)
+        {
+            routes.MapRoute(
+                name: "Login",
+                url: "Login",
+                defaults: new { controller = "User", action = "Login" },
+                namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
+            );
+        }
+
         private static void RegisterCourseRoutes(RouteCollection routes)
         {
-            //routes.MapRoute(
-            //    name: "SaveCourse",
-            //    url: "Course/Save",
-            //    defaults: new { controller = "Course", action = "Save" },
-            //    namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Courses",
-            //    url: "Course/GetAll",
-            //    defaults: new { controller = "Course", action = "GetAll" },
-            //    namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Courses",
-            //    url: "Course/GetAll",
-            //    defaults: new { controller = "Course", action = "GetAll" },
-            //    namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
-            //);
-
             routes.MapRoute(
                 name: "CoursesBySchool",
                 url: "Course/{id}",
