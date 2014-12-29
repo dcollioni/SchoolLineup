@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>School Lineup</title>
+    <title>Graduare</title>
 
     @using System.Web.Optimization
     
@@ -31,7 +31,11 @@
     <main>
         <header>
             <div>
-                <h1><a href="@Url.Content("~")">School Lineup</a></h1>
+                <h1>
+                    <a href="@Url.Content("~")">
+                        <img src="@Url.Content("~")Content/images/graduare-header.png" alt="Graduare" />
+                    </a>
+                </h1>
             </div>
         </header>
         
@@ -57,7 +61,10 @@
         </section>
         <footer>
             <div>
-                <p>Desenvolvido por Douglas Collioni - @@dcollioni</p>
+                <p>
+                    Design and Development |
+                    <a href="http://github.com/dcollioni" target="_blank">@@dcollioni</a>
+                </p>
             </div>
         </footer>
         <div id="mask"></div>

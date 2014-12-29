@@ -165,6 +165,7 @@
     <Content Include="Content\images\error.png" />
     <Content Include="Content\images\escheresque.png" />
     <Content Include="Content\images\file.png" />
+    <Content Include="Content\images\graduare-header.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\noise.png" />
     <Content Include="Content\images\ok.png" />
