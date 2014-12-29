@@ -71,6 +71,7 @@
 
                     if (college != null)
                     {
+                        ViewBag.CollegeId = college.Id;
                         ViewBag.CollegeName = college.Name;
                     }
 

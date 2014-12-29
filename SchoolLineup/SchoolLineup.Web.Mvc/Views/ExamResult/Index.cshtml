@@ -7,8 +7,36 @@
 
 }
 
+<div id="breadcrumb">
+    <ul>
+        <li>
+            <a href="@Url.Content("~")College">Escolas</a> &rarr;
+        </li>
+        <li>
+            <a href="@Url.Content("~")Course/?collegeId=@ViewBag.CollegeId">@ViewBag.CollegeName</a> &rarr;
+        </li>
+        <li>
+            <a href="@Url.Content("~")Course/Dashboard/@ViewBag.CourseId">@ViewBag.CourseName</a> &rarr;
+        </li>
+        <li>
+            <strong>@ViewBag.ExamName</strong>
+        </li>
+    </ul>
+</div>
+
 <h2>Resultados da Avaliação</h2>
-<h3>@ViewBag.ExamName - @ViewBag.ExamDate - Peso: @ViewBag.ExamValue</h3>
+
+<div class="detail">
+    <span class="pair">
+        <span class="key">Parcial:</span><span class="value">@ViewBag.PartialGradeName</span>
+    </span>
+    <span class="pair">
+        <span class="key">Data:</span><span class="value">@ViewBag.ExamDate</span>
+    </span>
+    <span class="pair">
+        <span class="key">Peso:</span><span class="value">@ViewBag.ExamValue</span>
+    </span>
+</div>
 
 <input type="hidden" id="examId" value="@ViewBag.ExamId" />
 <input type="hidden" id="examValue" value="@ViewBag.ExamValue" />

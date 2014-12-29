@@ -6,8 +6,18 @@
     @System.Web.Optimization.Scripts.Render("~/bundles/ko/course")
 }
 
+<div id="breadcrumb">
+    <ul>
+        <li>
+            <a href="@Url.Content("~")College">Escolas</a> &rarr;
+        </li>
+        <li>
+            <strong>@ViewBag.CollegeName</strong>
+        </li>
+    </ul>
+</div>
+
 <h2>Disciplinas</h2>
-<h3>Escola: @ViewBag.CollegeName</h3>
 
 <input type="hidden" id="collegeId" value="@ViewBag.CollegeId" />
 

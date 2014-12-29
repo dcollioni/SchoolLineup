@@ -4,8 +4,11 @@
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.ExamResult;
     using SchoolLineup.Web.Mvc.ActionFilters;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.College;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.Course;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Exam;
     using SchoolLineup.Web.Mvc.Controllers.Queries.ExamResult;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.PartialGrade;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
@@ -21,18 +24,27 @@
         private readonly IExamListQuery examListQuery;
         private readonly IExamResultListQuery examResultListQuery;
         private readonly IExamTasks examTasks;
+        private readonly IPartialGradeListQuery partialGradeListQuery;
+        private readonly ICourseListQuery courseListQuery;
+        private readonly ICollegeListQuery collegeListQuery;
 
         private IEnumerable<ExamResult> examResults;
 
         public ExamResultController(ICommandProcessor commandProcessor,
                                     IExamListQuery examListQuery,
                                     IExamResultListQuery examResultListQuery,
-                                    IExamTasks examTasks)
+                                    IExamTasks examTasks,
+                                    IPartialGradeListQuery partialGradeListQuery,
+                                    ICourseListQuery courseListQuery,
+                                    ICollegeListQuery collegeListQuery)
         {
             this.commandProcessor = commandProcessor;
             this.examListQuery = examListQuery;
             this.examResultListQuery = examResultListQuery;
             this.examTasks = examTasks;
+            this.partialGradeListQuery = partialGradeListQuery;
+            this.courseListQuery = courseListQuery;
+            this.collegeListQuery = collegeListQuery;
         }
 
         public ActionResult Index(int examId)
@@ -43,8 +55,19 @@
             {
                 ViewBag.ExamId = exam.Id;
                 ViewBag.ExamName = exam.Name;
-                ViewBag.ExamValue = exam.Value;
+                ViewBag.ExamValue = exam.Value.ToString("F2", new CultureInfo("en-us"));
                 ViewBag.ExamDate = exam.Date.ToString("d", new CultureInfo("pt-br"));
+
+                var partialGrade = partialGradeListQuery.Get(exam.PartialGradeId);
+                ViewBag.PartialGradeName = partialGrade.Name;
+
+                var course = courseListQuery.Get(partialGrade.CourseId);
+                ViewBag.CourseId = course.Id;
+                ViewBag.CourseName = course.Name;
+
+                var college = collegeListQuery.Get(course.CollegeId);
+                ViewBag.CollegeId = college.Id;
+                ViewBag.CollegeName = college.Name;
             }
 
             return View();

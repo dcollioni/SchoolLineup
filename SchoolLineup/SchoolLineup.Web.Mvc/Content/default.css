@@ -111,7 +111,7 @@ section {
 
 section div.main {
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 95%;
 }
 
@@ -146,7 +146,15 @@ footer {
     }
 
 h2 {
-    font-size: 20pt;
+    font-size: 18pt;
+}
+
+h3 {
+    font-size: 14pt;
+}
+
+h2, h3 {
+    margin: 10px 0;
 }
 
 fieldset {
@@ -649,4 +657,63 @@ ul.auto-complete li:not(:last-child) {
 
 .text-right {
     text-align: right;
+}
+
+#breadcrumb {
+    background: #D6E6FF;
+    font-size: 12pt;
+    padding: 4px 8px;
+}
+
+#breadcrumb ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#breadcrumb ul li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+#breadcrumb ul li a {
+    color: #444;
+}
+
+div.detail {
+    background: #EEEEEE;
+    border: 1px solid #BBBBBB;
+    font-size: 12pt;
+    margin: 10px 0 15px 0;
+    padding: 4px 0;
+}
+
+div.detail .pair {
+    padding: 4px 0;
+}
+
+div.detail .pair .key {
+    border-right: 1px solid #BBBBBB;
+    padding: 4px 8px;
+}
+
+div.detail .pair:not(:first-child) .key {
+    border-left: 1px solid #BBBBBB;
+}
+
+div.detail .pair .value {
+    background: #DDDDDD;
+    box-shadow: 0 0 8px #FFF inset;
+    font-weight: bold;
+    padding: 4px 20px;
+    text-align: center;
+}
+
+div.detail .pair:not(:last-child) .value {
+    margin-right: -4px;
+}
+
+div.detail .pair:last-child .value {
+    border-right: 1px solid #BBBBBB;
 }

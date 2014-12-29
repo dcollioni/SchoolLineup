@@ -4,11 +4,23 @@
 
 @section ko{
     @System.Web.Optimization.Scripts.Render("~/bundles/ko/coursedashboard")
-
 }
 
+<div id="breadcrumb">
+    <ul>
+        <li>
+            <a href="@Url.Content("~")College">Escolas</a> &rarr;
+        </li>
+        <li>
+            <a href="@Url.Content("~")Course/?collegeId=@ViewBag.CollegeId">@ViewBag.CollegeName</a> &rarr;
+        </li>
+        <li>
+            <strong>@ViewBag.CourseName</strong>
+        </li>
+    </ul>
+</div>
+
 <h2>Dashboard da Disciplina</h2>
-<h3>@ViewBag.CourseName (@ViewBag.CollegeName)</h3>
 
 <input type="hidden" id="courseId" value="@ViewBag.CourseId" />
 
