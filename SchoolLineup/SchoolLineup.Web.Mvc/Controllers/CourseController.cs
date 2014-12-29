@@ -11,6 +11,7 @@
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
+    using System.Globalization;
     using System.Web.Mvc;
 
     [RequiresAuthentication]
@@ -66,14 +67,16 @@
                 {
                     ViewBag.CourseName = course.Name;
                     ViewBag.CourseId = course.Id;
+                    ViewBag.StartDate = course.StartDate.ToString("d", new CultureInfo("pt-br"));
+                    ViewBag.FinishDate = course.FinishDate.ToString("d", new CultureInfo("pt-br"));
+                    ViewBag.IsClosed = course.IsClosed ? "Sim" : "Não";
+
+                    var teacher = teacherListQuery.Get(course.TeacherId);
+                    ViewBag.TeacherName = teacher.Name;
 
                     var college = collegeListQuery.Get(course.CollegeId);
-
-                    if (college != null)
-                    {
-                        ViewBag.CollegeId = college.Id;
-                        ViewBag.CollegeName = college.Name;
-                    }
+                    ViewBag.CollegeId = college.Id;
+                    ViewBag.CollegeName = college.Name;
 
                     return View();
                 }

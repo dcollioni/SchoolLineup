@@ -22,6 +22,21 @@
 
 <h2>Dashboard da Disciplina</h2>
 
+<div class="detail">
+    <span class="pair">
+        <span class="key">Professor:</span><span class="value">@ViewBag.TeacherName</span>
+    </span>
+    <span class="pair">
+        <span class="key">Início:</span><span class="value">@ViewBag.StartDate</span>
+    </span>
+    <span class="pair">
+        <span class="key">Término:</span><span class="value">@ViewBag.FinishDate</span>
+    </span>
+    <span class="pair">
+        <span class="key">Fechada:</span><span class="value">@ViewBag.IsClosed</span>
+    </span>
+</div>
+
 <input type="hidden" id="courseId" value="@ViewBag.CourseId" />
 
 <fieldset>
