@@ -222,7 +222,31 @@ function CollegeViewModel() {
 
     self.open = function (college) {
         location.href = SL.root + 'Course/?collegeId=' + college.id();
-    }
+    };
+
+    self.selectByIndex = function (index) {
+        var lastIndex = self.colleges().length - 1;
+
+        if (0 <= index && index <= lastIndex) {
+            var item = self.colleges()[index];
+            self.select(item);
+        }
+    };
+
+    $(document).keyup(function (e) {
+        if (!!self.getSelected()) {
+            var itemIndex = self.colleges.indexOf(self.getSelected());
+
+            if (e.keyCode === SL.consts.KEY_UP) {
+                itemIndex--;
+            }
+            else if (e.keyCode === SL.consts.KEY_DOWN) {
+                itemIndex++;
+            }
+
+            self.selectByIndex(itemIndex);
+        }
+    });
 }
 
 ko.applyBindings(new CollegeViewModel(), $('section')[0]);

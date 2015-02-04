@@ -79,6 +79,11 @@ SL.validation = {
     }
 };
 
+SL.consts = {
+    KEY_UP: 38,
+    KEY_DOWN: 40
+};
+
 $(function () {
     $(document).keyup(function (e) {
         if (e.keyCode == 27) {
