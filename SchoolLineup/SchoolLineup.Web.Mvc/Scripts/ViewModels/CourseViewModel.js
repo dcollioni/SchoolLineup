@@ -275,6 +275,33 @@ function CourseViewModel() {
     self.open = function (course) {
         location.href = SL.root + 'Course/Dashboard/' + course.id();
     }
+
+    self.selectByIndex = function (index) {
+        var lastIndex = self.courses().length - 1;
+
+        if (0 <= index && index <= lastIndex) {
+            var item = self.courses()[index];
+            self.select(item);
+            return true;
+        }
+        return false;
+    };
+
+    $(document).keydown(function (e) {
+        if (!!self.getSelected()) {
+            var itemIndex = self.courses.indexOf(self.getSelected());
+
+            if (e.keyCode === SL.consts.KEY_UP || e.keyCode === SL.consts.KEY_DOWN) {
+                itemIndex = e.keyCode === SL.consts.KEY_UP ? itemIndex - 1 : itemIndex + 1;
+
+                var changed = self.selectByIndex(itemIndex);
+
+                if (changed) {
+                    e.preventDefault();
+                }
+            }
+        }
+    });
 }
 
 ko.applyBindings(new CourseViewModel(), $('section')[0]);

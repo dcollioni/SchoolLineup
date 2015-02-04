@@ -240,6 +240,33 @@ function StudentViewModel() {
     };
 
     self.load();
+
+    self.selectByIndex = function (index) {
+        var lastIndex = self.students().length - 1;
+
+        if (0 <= index && index <= lastIndex) {
+            var item = self.students()[index];
+            self.select(item);
+            return true;
+        }
+        return false;
+    };
+
+    $(document).keydown(function (e) {
+        if (!!self.getSelected()) {
+            var itemIndex = self.students.indexOf(self.getSelected());
+
+            if (e.keyCode === SL.consts.KEY_UP || e.keyCode === SL.consts.KEY_DOWN) {
+                itemIndex = e.keyCode === SL.consts.KEY_UP ? itemIndex - 1 : itemIndex + 1;
+
+                var changed = self.selectByIndex(itemIndex);
+
+                if (changed) {
+                    e.preventDefault();
+                }
+            }
+        }
+    });
 }
 
 ko.applyBindings(new StudentViewModel(), $('section')[0]);

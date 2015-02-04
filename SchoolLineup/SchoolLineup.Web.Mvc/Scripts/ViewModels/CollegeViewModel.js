@@ -230,21 +230,24 @@ function CollegeViewModel() {
         if (0 <= index && index <= lastIndex) {
             var item = self.colleges()[index];
             self.select(item);
+            return true;
         }
+        return false;
     };
 
-    $(document).keyup(function (e) {
+    $(document).keydown(function (e) {
         if (!!self.getSelected()) {
             var itemIndex = self.colleges.indexOf(self.getSelected());
 
-            if (e.keyCode === SL.consts.KEY_UP) {
-                itemIndex--;
-            }
-            else if (e.keyCode === SL.consts.KEY_DOWN) {
-                itemIndex++;
-            }
+            if (e.keyCode === SL.consts.KEY_UP || e.keyCode === SL.consts.KEY_DOWN) {
+                itemIndex = e.keyCode === SL.consts.KEY_UP ? itemIndex - 1 : itemIndex + 1;
 
-            self.selectByIndex(itemIndex);
+                var changed = self.selectByIndex(itemIndex);
+
+                if (changed) {
+                    e.preventDefault();
+                }
+            }
         }
     });
 }
