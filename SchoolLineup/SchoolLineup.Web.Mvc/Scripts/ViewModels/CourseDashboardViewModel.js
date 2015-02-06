@@ -7,7 +7,7 @@
 
     self.display = ko.computed(function () {
         if (self.name() !== self.email()) {
-            return self.name() + ' (' + self.email() + ')';
+            return self.name();// + ' (' + self.email() + ')';
         }
 
         return self.name();

@@ -587,8 +587,8 @@ tbody tr.selected {
     display: inline;
 }
 
-#importData input[type=file] {
-    margin-right: 15px;
+#importData form {
+    margin: 15px;
 }
 
 ul.student-set {
