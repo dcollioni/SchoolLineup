@@ -4,6 +4,7 @@
     using Raven.Client.Linq;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -124,6 +125,7 @@
 
                         var examResults = session.Query<ExamResult>()
                                                  .Where(e => e.ExamId == examId)
+                                                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                                                  .ToList();
 
                         foreach (var student in students)
