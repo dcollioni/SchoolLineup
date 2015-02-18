@@ -28,6 +28,17 @@ function ExamResultViewModel() {
     self.serverErrors = ko.observableArray([]);
     self.errors = ko.observable({});
 
+    self.resultsCount = ko.computed(function () {
+        return '(' + self.models().length + ')';
+    });
+
+    self.isResultsFieldsetOpen = ko.observable(false);
+
+    self.toggleResultsFieldset = function () {
+        var current = self.isResultsFieldsetOpen();
+        self.isResultsFieldsetOpen(!current);
+    };
+
     self.examId = ko.observable($('#examId').val());
     self.examValue = ko.observable($('#examValue').val());
 
@@ -51,7 +62,6 @@ function ExamResultViewModel() {
         });
         
         data = ko.toJSON(data);
-        console.log(data);
 
         $.ajax({
             url: SL.root + 'ExamResult/Save',

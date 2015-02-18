@@ -717,3 +717,26 @@ div.detail .pair:not(:last-child) .value {
 div.detail .pair:last-child .value {
     border-right: 1px solid #BBBBBB;
 }
+
+form table.single-element {
+    margin: 0 0 10px 0;
+}
+
+input[type=button].send-mail {
+    background: #DDDDDD url(images/mail.png) no-repeat 5px 3px;
+    cursor: pointer;
+    padding: 5px 8px 5px 32px;
+    width: auto;
+}
+
+fieldset .action-bar {
+    margin: 0 5px 10px 5px;
+    text-align: right;
+}
+
+input[type=button].secondary {
+    background-color: #F4F4F4;
+}
+input[type=button].secondary:active {
+    background-color: #E4E4E4;
+}
