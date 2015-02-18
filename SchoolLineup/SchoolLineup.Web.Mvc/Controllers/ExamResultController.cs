@@ -15,6 +15,8 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
+    using System.Net.Mail;
     using System.Web.Mvc;
 
     [RequiresAuthentication]
@@ -118,6 +120,16 @@
             entity.Value = viewModel.Value;
 
             return entity;
+        }
+
+        public void SendResultsByEmail()
+        {
+            var smtpClient = new SmtpClient("smtp.mailgun.org", 587);
+            smtpClient.Credentials = new NetworkCredential("postmaster@appda5efe0d303546d899602b9aed346e32.mailgun.org", "8337c041d3106d9996fb50b0e8672a01");
+
+            var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultados", "Teste de e-mail...");
+
+            smtpClient.Send(message);
         }
     }
 }
