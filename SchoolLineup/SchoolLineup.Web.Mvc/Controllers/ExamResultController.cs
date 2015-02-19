@@ -17,6 +17,7 @@
     using System.Linq;
     using System.Net;
     using System.Net.Mail;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
 
     [RequiresAuthentication]
@@ -122,13 +123,14 @@
             return entity;
         }
 
-        public void SendResultsByEmail()
+        public async Task SendResultsByEmail()
         {
-            var smtpClient = new SmtpClient();
-            
-            var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultados", "Teste de e-mail...");
+            using (var smtpClient = new SmtpClient())
+            {
+                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultados", "Teste de e-mail...");
 
-            smtpClient.SendAsync(message, null);
+                await smtpClient.SendMailAsync(message);
+            }
         }
     }
 }
