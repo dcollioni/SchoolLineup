@@ -6,21 +6,30 @@
 </head>
 <body style="font-family: Arial; font-size: 10pt;">
     <div>
-        <h1>Resultado de Avaliação</h1>
+        <h3>Resultado de Avaliação</h3>
     </div>
     <div>
         <p>
-            {collegeName} - {courseName} - {teacherName}
+            Escola: <b>{collegeName}</b>
             <br>
-            <b>{examName}</b>
+            Disciplina: <b>{courseName}</b>
+            <br>
+            Professor(a): <b>{teacherName}</b>
+        </p>
+        <hr>
+        <p>
+            Avaliação: <b>{examName}</b>
             <br>
             Sua nota: <b>{examResultValue}</b>
             <br>
             Obs.: {examResultDescription}
         </p>
+        <hr>
         <p>
-            Baixe o aplicativo e acompanhe suas notas no celular:
-            <a href="https://play.google.com/store/apps/details?id=com.dcollioni.graduare">Graduare</a>
+            Baixe o aplicativo para acompanhar suas notas.
+            <br>
+            <a href="https://play.google.com/store/apps/details?id=com.dcollioni.graduare">
+                <img src="http://www.uscs.edu.br/images/assets/google-play-button.png" alt="Download na Google Play" height="50"></a>
             <br>
             Para acessar, utilize seu e-mail (<b>{studentEmail}</b>) e matrícula (<b>{studentRegistrationCode}</b>).
         </p>
