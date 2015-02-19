@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.ExamResult;
+    using SchoolLineup.Util;
     using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.College;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Course;
@@ -127,7 +128,21 @@
         {
             using (var smtpClient = new SmtpClient())
             {
-                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultados", "Teste de e-mail...");
+                var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
+
+                var param = new Dictionary<string, string>();
+                param["collegeName"] = "QI FL18";
+                param["courseName"] = "Automação de Escritório";
+                param["teacherName"] = "Douglas Collioni";
+                param["examName"] = "Trabalho de Word";
+                param["examResultValue"] = "4.8";
+                param["examResultDescription"] = "Detalhes na formatação do código.";
+                param["studentEmail"] = "dcollioni@gmail.com";
+                param["studentRegistrationCode"] = "007603";
+
+                var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
+
+                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultado de avaliação", body);
 
                 await smtpClient.SendMailAsync(message);
             }

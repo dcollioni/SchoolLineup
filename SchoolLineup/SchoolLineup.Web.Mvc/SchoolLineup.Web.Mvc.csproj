@@ -191,6 +191,7 @@
     <Content Include="Scripts\ViewModels\CollegeViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
     <Content Include="Scripts\ViewModels\TeacherViewModel.js" />
+    <Content Include="Templates\ExamResults.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

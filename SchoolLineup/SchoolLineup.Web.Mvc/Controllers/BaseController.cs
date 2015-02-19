@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Entities;
     using System.Text.RegularExpressions;
+    using System.Web.Configuration;
     using System.Web.Mvc;
 
     public class BaseController : Controller
@@ -36,6 +37,11 @@
             }
 
             return value;
+        }
+
+        protected string GetAppSetting(string name)
+        {
+            return WebConfigurationManager.AppSettings[name];
         }
     }
 }
