@@ -10,13 +10,13 @@
     using SchoolLineup.Web.Mvc.Controllers.Queries.Exam;
     using SchoolLineup.Web.Mvc.Controllers.Queries.ExamResult;
     using SchoolLineup.Web.Mvc.Controllers.Queries.PartialGrade;
+    using SchoolLineup.Web.Mvc.Controllers.Queries.Teacher;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Net;
     using System.Net.Mail;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -31,6 +31,7 @@
         private readonly IPartialGradeListQuery partialGradeListQuery;
         private readonly ICourseListQuery courseListQuery;
         private readonly ICollegeListQuery collegeListQuery;
+        private readonly ITeacherListQuery teacherListQuery;
 
         private IEnumerable<ExamResult> examResults;
 
@@ -40,7 +41,8 @@
                                     IExamTasks examTasks,
                                     IPartialGradeListQuery partialGradeListQuery,
                                     ICourseListQuery courseListQuery,
-                                    ICollegeListQuery collegeListQuery)
+                                    ICollegeListQuery collegeListQuery,
+                                    ITeacherListQuery teacherListQuery)
         {
             this.commandProcessor = commandProcessor;
             this.examListQuery = examListQuery;
@@ -49,6 +51,7 @@
             this.partialGradeListQuery = partialGradeListQuery;
             this.courseListQuery = courseListQuery;
             this.collegeListQuery = collegeListQuery;
+            this.teacherListQuery = teacherListQuery;
         }
 
         public ActionResult Index(int examId)
@@ -124,28 +127,43 @@
             return entity;
         }
 
-        public async Task SendResultsByEmail()
+        public async Task SendResultsByEmail(int examId)
         {
-            using (var smtpClient = new SmtpClient())
+            var exam = examListQuery.Get(examId);
+
+            if (exam != null)
             {
-                var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
+                var partialGrade = partialGradeListQuery.Get(exam.PartialGradeId);
+                var course = courseListQuery.Get(partialGrade.CourseId);
+                var college = collegeListQuery.Get(course.CollegeId);
+                var teacher = teacherListQuery.Get(course.TeacherId);
+                var data = examResultListQuery.GetAllByExam(examId);
 
-                var param = new Dictionary<string, string>();
-                param["collegeName"] = "QI FL18";
-                param["courseName"] = "Automação de Escritório";
-                param["teacherName"] = "Douglas Collioni";
-                param["examName"] = "Trabalho de Word";
-                param["examResultValue"] = "4.8";
-                param["examResultDescription"] = "Detalhes na formatação do código.";
-                param["studentEmail"] = "dcollioni@gmail.com";
-                param["studentRegistrationCode"] = "007603";
+                foreach (var item in data)
+                {
+                    using (var smtpClient = new SmtpClient())
+                    {
+                        var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
 
-                var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
+                        var param = new Dictionary<string, string>();
+                        param["collegeName"] = college.Name;
+                        param["courseName"] = course.Name;
+                        param["teacherName"] = teacher.Name;
+                        param["examName"] = exam.Name;
+                        param["examValue"] = exam.Value.ToString();
+                        param["examResultValue"] = item.Value.ToString();
+                        param["examResultDescription"] = item.Description;
+                        param["studentEmail"] = item.StudentEmail;
+                        param["studentRegistrationCode"] = item.StudentRegistrationCode;
 
-                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultado de Avaliação", body);
-                message.IsBodyHtml = true;
+                        var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
 
-                await smtpClient.SendMailAsync(message);
+                        var message = new MailMessage("resultados@graduare.com", item.StudentEmail, "[Graduare] Resultado de Avaliação", body);
+                        message.IsBodyHtml = true;
+
+                        await smtpClient.SendMailAsync(message);
+                    }
+                }
             }
         }
     }

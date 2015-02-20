@@ -106,6 +106,10 @@ function ExamResultViewModel() {
         return invalid == 0;
     };
 
+    self.sendResultsByEmail = function () {
+        $.get(SL.root + 'ExamResult/SendResultsByEmail/?examId=' + self.examId());
+    };
+
     self.load = function () {
 
         SL.mask(true);

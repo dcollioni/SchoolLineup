@@ -134,7 +134,9 @@
                             {
                                 ExamId = examId,
                                 StudentId = student.Id,
-                                StudentName = student.Name
+                                StudentName = student.Name,
+                                StudentEmail = student.Email,
+                                StudentRegistrationCode = student.RegistrationCode
                             };
 
                             var examResult = examResults.SingleOrDefault(e => e.StudentId == vm.StudentId);
