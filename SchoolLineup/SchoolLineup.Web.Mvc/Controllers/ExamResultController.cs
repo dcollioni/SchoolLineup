@@ -142,7 +142,7 @@
 
                 var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
 
-                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultado de avaliação", body);
+                var message = new MailMessage("resultados@graduare.com", "dcollioni@gmail.com", "[Graduare] Resultado de Avaliação", body);
                 message.IsBodyHtml = true;
 
                 await smtpClient.SendMailAsync(message);
