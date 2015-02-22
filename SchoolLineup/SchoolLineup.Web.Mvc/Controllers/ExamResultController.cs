@@ -139,6 +139,8 @@
                 var teacher = teacherListQuery.Get(course.TeacherId);
                 var data = examResultListQuery.GetAllByExam(examId);
 
+                var brCulture = new CultureInfo("pt-BR");
+
                 foreach (var item in data)
                 {
                     using (var smtpClient = new SmtpClient())
@@ -150,8 +152,8 @@
                         param["courseName"] = course.Name;
                         param["teacherName"] = teacher.Name;
                         param["examName"] = exam.Name;
-                        param["examValue"] = exam.Value.ToString();
-                        param["examResultValue"] = item.Value.ToString();
+                        param["examValue"] = exam.Value.ToString("F", brCulture);
+                        param["examResultValue"] = item.Value.ToString("F", brCulture);
                         param["examResultDescription"] = item.Description;
                         param["studentEmail"] = item.StudentEmail;
                         param["studentRegistrationCode"] = item.StudentRegistrationCode;
