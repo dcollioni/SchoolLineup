@@ -12,6 +12,12 @@
     self.description = ko.observable(data.description);
 
     self.valueError = ko.observable(null);
+
+    self.isSelected = ko.observable(false);
+
+    //self.toggleSelection = function () {
+    //    self.isSelected(!self.isSelected());
+    //};
 }
 
 ExamResult.prototype.clone = function () {
@@ -46,6 +52,30 @@ function ExamResultViewModel() {
         self.serverErrors([]);
         SL.unmask();
     };
+
+    self.isAllSelected = ko.observable(false);
+
+    self.isAllSelected.subscribe(function (selected) {
+        _.each(self.models(), function (item) {
+            item.isSelected(selected);
+        });
+    });
+
+    self.selectedStudentsIds = ko.computed(function () {
+        return _.map(_.filter(self.models(), function (item) { return item.isSelected(); }), function (item) { return item.studentId(); });
+    });
+
+    self.anySelected = ko.computed(function () {
+        return _.some(self.models(), function (item) { return item.isSelected(); });
+    });
+
+    self.studentsSelectedMessage = ko.computed(function () {
+        var count = self.selectedStudentsIds().length;
+
+        var text = count > 1 ? " alunos selecionados" : " aluno selecionado";
+
+        return count + text;
+    });
 
     self.save = function () {
         if (!self.isValid()) {
@@ -106,10 +136,6 @@ function ExamResultViewModel() {
         return invalid == 0;
     };
 
-    self.sendResultsByEmail = function () {
-        $.get(SL.root + 'ExamResult/SendResultsByEmail/?examId=' + self.examId());
-    };
-
     self.load = function () {
 
         SL.mask(true);
@@ -119,6 +145,7 @@ function ExamResultViewModel() {
             dataType: 'json',
             complete: function () {
                 SL.unmask();
+                self.isAllSelected(false);
             },
             success: function (response) {
 
@@ -140,6 +167,39 @@ function ExamResultViewModel() {
             error: function () {
             }
         });
+    };
+
+    self.isSending = ko.observable(false);
+
+    self.sendResultsByEmail = function () {
+        self.isSending(true);
+        SL.mask();
+        SL.setModalPosition();
+    };
+
+    self.confirmSending = function () {
+        self.isSending(false);
+        SL.mask(true);
+
+        var data = { examId: self.examId(), studentsIds: self.selectedStudentsIds() };
+        data = ko.toJSON(data);
+
+        $.ajax({
+            url: SL.root + 'ExamResult/SendResultsByEmail',
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8;",
+            data: data,
+            complete: function () {
+                SL.unmask();
+                self.isAllSelected(false);
+            }
+        });
+    };
+
+    self.cancelSending = function () {
+        self.isSending(false);
+        SL.unmask();
     };
 
     self.load();

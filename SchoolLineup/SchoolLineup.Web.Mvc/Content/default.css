@@ -387,6 +387,9 @@ th.w70 {
 th.w60 {
     width: 60%;
 }
+th.w55 {
+    width: 55%;
+}
 th.w50 {
     width: 50%;
 }
@@ -404,6 +407,9 @@ th.w15 {
 }
 th.w10 {
     width: 10%;
+}
+th.w05 {
+    width: 5%;
 }
 
 th:not(:last-child) {
@@ -734,9 +740,67 @@ fieldset .action-bar {
     text-align: right;
 }
 
+input[type=button]:disabled {
+    cursor: default;
+}
+
 input[type=button].secondary {
     background-color: #F4F4F4;
 }
 input[type=button].secondary:active {
     background-color: #E4E4E4;
+}
+
+#send-emails {
+    background: #E6E6E6;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px #666666;
+    display: none;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    text-shadow: 0 0 4px #CCCCCC;
+    top: 50%;
+    width: auto;
+    max-width: 500px;
+    z-index: 3;
+}
+
+#send-emails h3 {
+    background-color: #888888;
+    border-bottom: 1px solid #666666;
+    color: #DDDDDD;
+    text-shadow: 0px 0px 4px #000000;
+    font-size: 14pt;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 10px 40px;
+    text-align: center;
+}
+
+#send-emails.active {
+    display: inline;
+}
+
+#send-emails .message p {
+    background-color: #bcd;
+    padding: 10px;
+    border: 1px solid #8AB;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+#send-emails .buttons {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+label.column-check {
+    display: block;
+    padding: 5px;
+    margin: -5px;
 }

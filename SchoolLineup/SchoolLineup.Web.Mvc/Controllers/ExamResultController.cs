@@ -127,7 +127,7 @@
             return entity;
         }
 
-        public async Task SendResultsByEmail(int examId)
+        public async Task SendResultsByEmail(int examId, int[] studentsIds)
         {
             var exam = examListQuery.Get(examId);
 
@@ -143,27 +143,30 @@
 
                 foreach (var item in data)
                 {
-                    using (var smtpClient = new SmtpClient())
+                    if (studentsIds.Contains(item.StudentId))
                     {
-                        var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
+                        using (var smtpClient = new SmtpClient())
+                        {
+                            var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
 
-                        var param = new Dictionary<string, string>();
-                        param["collegeName"] = college.Name;
-                        param["courseName"] = course.Name;
-                        param["teacherName"] = teacher.Name;
-                        param["examName"] = exam.Name;
-                        param["examValue"] = exam.Value.ToString("F", brCulture);
-                        param["examResultValue"] = item.Value.ToString("F", brCulture);
-                        param["examResultDescription"] = item.Description;
-                        param["studentEmail"] = item.StudentEmail;
-                        param["studentRegistrationCode"] = item.StudentRegistrationCode;
+                            var param = new Dictionary<string, string>();
+                            param["collegeName"] = college.Name;
+                            param["courseName"] = course.Name;
+                            param["teacherName"] = teacher.Name;
+                            param["examName"] = exam.Name;
+                            param["examValue"] = exam.Value.ToString("F", brCulture);
+                            param["examResultValue"] = item.Value.ToString("F", brCulture);
+                            param["examResultDescription"] = item.Description;
+                            param["studentEmail"] = item.StudentEmail;
+                            param["studentRegistrationCode"] = item.StudentRegistrationCode;
 
-                        var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
+                            var body = HtmlTemplateHelper.FillTemplate(examResultsTemplate, param);
 
-                        var message = new MailMessage("resultados@graduare.com", item.StudentEmail, "[Graduare] Resultado de Avaliação", body);
-                        message.IsBodyHtml = true;
+                            var message = new MailMessage("resultados@graduare.com", item.StudentEmail, "[Graduare] Resultado de Avaliação", body);
+                            message.IsBodyHtml = true;
 
-                        await smtpClient.SendMailAsync(message);
+                            await smtpClient.SendMailAsync(message);
+                        }
                     }
                 }
             }

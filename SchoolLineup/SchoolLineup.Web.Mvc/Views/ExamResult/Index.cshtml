@@ -49,7 +49,7 @@
     </legend>
 
     <div class="action-bar" data-bind="style: { display: isResultsFieldsetOpen() ? 'block' : 'none' }">
-        <input type="button" name="sendMail" class="send-mail secondary" value="Enviar resultados aos alunos" data-bind="click: sendResultsByEmail" />
+        <input type="button" name="sendMail" class="send-mail secondary" value="Enviar resultados aos alunos" data-bind="click: sendResultsByEmail, enable: anySelected" />
         <input type="button" name="save" class="confirm no-fixed-width" value="Salvar" data-bind="click: save" />
     </div>
 
@@ -57,13 +57,23 @@
         <table class="single-element">
             <thead>
                 <tr>
+                    <th class="w05 center">
+                        <label class="column-check">
+                            <input type="checkbox" name="checkAll" data-bind="checked: isAllSelected" />
+                        </label>
+                    </th>
                     <th class="w30">Aluno</th>
                     <th class="w10">Nota</th>
-                    <th class="w60">Observações</th>
+                    <th class="w55">Observações</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: models">
-                <tr @*class="non-hover"*@>
+                <tr data-bind="css: { selected: isSelected }">
+                    <td class="center">
+                        <label class="column-check">
+                            <input type="checkbox" name="isSelected" data-bind="checked: isSelected" />
+                        </label>
+                    </td>
                     <td data-bind="text: studentName"></td>
                     <td><input type="text" name="value" maxlength="6" class="text-right" data-bind="value: value, attr: { title: valueError }, css: { invalid: !!valueError() }" /></td>
                     <td><textarea name="description" rows="1" data-bind="value: description"></textarea></td>
@@ -78,10 +88,22 @@
     </form>
 </fieldset>
 
-    <div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
-        <h3>A operação não foi concluída</h3>
-        <ul data-bind="foreach: serverErrors">
-            <li data-bind="text: $data"></li>
-        </ul>
-        <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+<div id="errors" data-bind="css: { active: serverErrors().length > 0 }" class="modal closable">
+    <h3>A operação não foi concluída</h3>
+    <ul data-bind="foreach: serverErrors">
+        <li data-bind="text: $data"></li>
+    </ul>
+    <a href="#" data-bind="click: clearServerErrors" class="close"></a>
+</div>
+
+<div id="send-emails" class="modal closable" data-bind="css: { active: isSending }">
+    <h3>Confirmar o envio de resultados</h3>
+    <div class="message">
+        <p data-bind="text: studentsSelectedMessage"></p>
     </div>
+    <div class="buttons">
+        <input type="button" name="confirm" value="Confirmar" class="confirm" data-bind="click: confirmSending" />
+        <input type="button" name="cancel" value="Cancelar" class="cancel" data-bind="click: cancelSending" />
+    </div>
+    <a href="#" data-bind="click: cancelSending" class="close"></a>
+</div>
