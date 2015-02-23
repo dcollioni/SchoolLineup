@@ -14,10 +14,6 @@
     self.valueError = ko.observable(null);
 
     self.isSelected = ko.observable(false);
-
-    //self.toggleSelection = function () {
-    //    self.isSelected(!self.isSelected());
-    //};
 }
 
 ExamResult.prototype.clone = function () {
@@ -192,6 +188,7 @@ function ExamResultViewModel() {
             data: data,
             complete: function () {
                 SL.unmask();
+                self.isAllSelected(true);
                 self.isAllSelected(false);
             }
         });
