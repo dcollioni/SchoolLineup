@@ -148,7 +148,7 @@
                     {
                         using (var smtpClient = new SmtpClient())
                         {
-                            smtpClient.Credentials = new NetworkCredential("postmaster@app84d348fed5d64fa398e822be2f8dc99c.mailgun.org", "8e01c7f5d530e023b12309ed3aeac0f0");
+                            smtpClient.Credentials = new NetworkCredential("postmaster@app3020798ef4bc428788a260068da865a5.mailgun.org", "5fac2dea13e1ad283dc01469780540f3");
 
                             var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
 
