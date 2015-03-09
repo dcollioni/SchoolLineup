@@ -17,6 +17,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Net.Mail;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -147,6 +148,8 @@
                     {
                         using (var smtpClient = new SmtpClient())
                         {
+                            smtpClient.Credentials = new NetworkCredential("postmaster@app84d348fed5d64fa398e822be2f8dc99c.mailgun.org", "8e01c7f5d530e023b12309ed3aeac0f0");
+
                             var examResultsTemplate = GetAppSetting("ExamResultsTemplate");
 
                             var param = new Dictionary<string, string>();
