@@ -158,19 +158,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\default.css" />
+    <Content Include="Content\images\businessman-26.png" />
     <Content Include="Content\images\cancel.png" />
     <Content Include="Content\images\close.png" />
     <Content Include="Content\images\delete.png" />
     <Content Include="Content\images\edit.png" />
     <Content Include="Content\images\error.png" />
     <Content Include="Content\images\escheresque.png" />
+    <Content Include="Content\images\escheresque_ste.png" />
     <Content Include="Content\images\file.png" />
     <Content Include="Content\images\graduare-header.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\mail.png" />
     <Content Include="Content\images\noise.png" />
     <Content Include="Content\images\ok.png" />
+    <Content Include="Content\images\organization-26.png" />
     <Content Include="Content\images\plus.png" />
+    <Content Include="Content\images\private-26.png" />
     <Content Include="Content\images\upload.png" />
     <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />

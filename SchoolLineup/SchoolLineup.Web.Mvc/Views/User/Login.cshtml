@@ -1,37 +1,43 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    Layout = null;
 }
 
-@section css {
-    @System.Web.Optimization.Styles.Render("~/Content/css/login")
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Douglas Collioni" />
 
-<div id="login">
-    <h2>Login</h2>
-    <fieldset>
-        <legend>Dados de acesso</legend>
-        <form action="/User/Login" method="post">
-            <div class="row">
-                <div class="cell">
-                    <label>
-                        E-mail
-                        <input type="text" name="email" maxlength="50" />
-                    </label>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <title>Graduare</title>
+
+    @using System.Web.Optimization
+
+    @Styles.Render("~/Content/css/login")
+</head>
+<body>
+    <header>
+        <img src="@Url.Content("~")Content/images/graduare-header.png" alt="Graduare logo">
+    </header>
+    <div id="login-box">
+        <h1>Login</h1>
+        <hr>
+        <div id="form">
+            <form action="@Url.Content("~")User/Login" method="post">
+                <div>
+                    <input type="text" name="email" placeholder="E-mail" class="user" autofocus="autofocus">
                 </div>
-            </div>
-            <div class="row">
-                <div class="cell">
-                    <label>
-                        Senha
-                        <input type="password" name="password" maxlength="50" />
-                    </label>
+                <div>
+                    <input type="password" name="password" placeholder="Senha" class="password">
                 </div>
-            </div>
-            <div class="row">
-                <div class="cell buttons">
-                    <input type="submit" name="login" value="Entrar" />
+                <div>
+                    <input type="submit" value="Entrar">
                 </div>
-            </div>
-        </form>
-    </fieldset>
-</div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

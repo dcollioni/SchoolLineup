@@ -15,6 +15,11 @@
 
         public ActionResult Login()
         {
+            if (UserLogged != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -28,7 +33,7 @@
             if (user == null)
             {
                 ViewBag.Error = "Dados de acesso inválidos";
-                return View();
+                return Redirect("/Login");
             }
 
             UserLogged = user;

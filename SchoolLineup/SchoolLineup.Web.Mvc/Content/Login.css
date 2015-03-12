@@ -1,16 +1,93 @@
-﻿#login h2 {
-    text-align: center;
+﻿body {
+	background: url(../images/escheresque_ste.png);
+	font-family: 'Open Sans', Signika, sans-serif;
 }
-
-#login fieldset {
-    margin: 0 auto;
-    width: 400px;
+			
+header {
+	margin-top: 100px;
+	text-align: center;
 }
-
-#login input {
-    padding: 10px;
+			
+#login-box {
+	box-sizing: border-box;
+	background-color: #EEEEEE;
+	border: 1px solid #444444;
+	border-radius: 3px;
+	width: 400px;
+	position: absolute;
+	left: 50%;
+	margin-top: 80px;
+	margin-left: -200px;
+	box-shadow: 0 0 20px #000000;
 }
-
-#login .buttons input {
-    text-align: center;
+			
+h1 {
+	color: #444444;
+	font-size: 18pt;
+	text-align: center;
 }
+			
+hr {
+	border: 1px solid #DDDDDD;
+	box-shadow: 0 1px 1px #AAAAAA;
+}
+			
+#form {
+	box-sizing: border-box;
+	margin: 20px;
+}
+			
+#form input {
+	border: 1px solid #AAAAAA;
+	border-radius: 2px;
+	box-sizing: border-box;
+	font-family: 'Open Sans', Signika, sans-serif;
+	font-size: 14pt;
+	margin-bottom: 10px;
+	padding: 10px;
+	width: 100%;
+	outline: none;
+	box-shadow: 0 1px 1px #DDDDDD inset;
+	transition: all .4s;
+}
+			
+#form input[type=submit] {
+	background-color: #9FBFDF;
+	border: 1px solid #888888;
+	box-shadow: 0 2px 2px #CCCCCC;
+	cursor: pointer;
+	margin-bottom: 0;
+	text-transform: uppercase;
+}
+			
+#form input[type=submit]:hover {
+	border-color: #666666;
+}
+			
+#form input[type=submit]:active {
+	background-color: #8FAFCF;
+	border-color: #6688CC;
+	box-shadow: 0 1px 1px #888888 inset;
+}
+			
+#form input:hover {
+	border-color: #888888;
+}
+			
+#form input:focus {
+	border-color: #6688CC;
+}
+			
+/*input.organization {
+	background-image: url(../images/organization-26.png);
+	background-position: 10px;
+	background-repeat: no-repeat;
+	padding-left: 50px !important;
+}
+			
+input.password {
+	background-image: url(../images/private-26.png);
+	background-position: 10px;
+	background-repeat: no-repeat;
+	padding-left: 50px !important;
+}*/
