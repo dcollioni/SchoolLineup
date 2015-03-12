@@ -194,6 +194,7 @@
     <Content Include="Scripts\ViewModels\CourseViewModel.js" />
     <Content Include="Scripts\ViewModels\CollegeViewModel.js" />
     <Content Include="Scripts\ViewModels\SchoolViewModel.js" />
+    <Content Include="Scripts\ViewModels\UserViewModel.js" />
     <Content Include="Scripts\ViewModels\TeacherViewModel.js" />
     <Content Include="Templates\ExamResults.html" />
     <Content Include="Web.config">
@@ -213,6 +214,8 @@
     <Compile Include="Controllers\PartialGradeController.cs" />
     <Compile Include="Controllers\Queries\Exam\IExamListQuery.cs" />
     <Compile Include="Controllers\Queries\Exam\ExamListQuery.cs" />
+    <Compile Include="Controllers\Queries\User\IUserListQuery.cs" />
+    <Compile Include="Controllers\Queries\User\UserListQuery.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="Controllers\ViewModels\ExamViewModel.cs" />
     <Compile Include="Controllers\ViewModels\PartialGradeViewModel.cs" />
     <Compile Include="Controllers\ViewModels\StudentViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\ViewModels\TeacherViewModel.cs" />
     <Compile Include="Controllers\ViewModels\ExamResultViewModel.cs" />
     <Compile Include="Controllers\ViewModels\CourseViewModel.cs" />
@@ -281,6 +285,7 @@
     <Content Include="Views\ExamResult\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

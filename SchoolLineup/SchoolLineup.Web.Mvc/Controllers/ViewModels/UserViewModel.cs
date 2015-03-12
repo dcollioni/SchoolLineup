@@ -1,12 +1,12 @@
-﻿namespace SchoolLineup.Domain.Entities
+﻿namespace SchoolLineup.Web.Mvc.Controllers.ViewModels
 {
     using SchoolLineup.Domain.Enums;
 
-    public class User : EntityWithId
+    public class UserViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public UserProfile Profile { get; set; }
     }
 }

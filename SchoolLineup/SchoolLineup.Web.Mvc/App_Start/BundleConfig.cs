@@ -80,6 +80,9 @@
             bundles.Add(new ScriptBundle("~/bundles/ko/teacher")
                 .Include("~/Scripts/ViewModels/TeacherViewModel.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko/user")
+                .Include("~/Scripts/ViewModels/UserViewModel.js"));
+
             #endregion Knockout And App Scripts
 
             #region Underscore

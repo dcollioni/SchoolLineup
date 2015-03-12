@@ -8,5 +8,6 @@
         void Evict(User entity);
         void Delete(int entityId);
         User Get(string email, string password);
+        int CountByEmail(User entity);
     }
 }

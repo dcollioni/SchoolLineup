@@ -17,5 +17,10 @@
         {
             return userRepository.Get(email, password);
         }
+
+        public bool IsEmailUnique(User entity)
+        {
+            return userRepository.CountByEmail(entity) == 0;
+        }
     }
 }
