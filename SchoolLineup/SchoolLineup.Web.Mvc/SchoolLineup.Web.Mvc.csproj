@@ -239,6 +239,7 @@
     <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ViewModels\ExamViewModel.cs" />
     <Compile Include="Controllers\ViewModels\PartialGradeViewModel.cs" />
@@ -284,7 +285,7 @@
     <Content Include="Views\Course\Dashboard.cshtml" />
     <Content Include="Views\ExamResult\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

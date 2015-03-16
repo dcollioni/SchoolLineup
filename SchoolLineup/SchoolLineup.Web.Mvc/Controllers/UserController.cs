@@ -3,16 +3,14 @@
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
     using SchoolLineup.Tasks.Commands.User;
-    using SchoolLineup.Util;
     using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.User;
     using SchoolLineup.Web.Mvc.Controllers.ViewModels;
     using SharpArch.Domain.Commands;
     using SharpArch.RavenDb.Web.Mvc;
-    using System.Security.Cryptography;
-    using System.Text;
     using System.Web.Mvc;
 
+    [RequiresAuthentication]
     public class UserController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;
@@ -28,62 +26,17 @@
             this.userListQuery = userListQuery;
         }
 
-        public ActionResult Login()
-        {
-            if (UserLogged != null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(string email, string password)
-        {
-            password = MD5Helper.GetHash(password);
-
-            var user = userTasks.Get(email, password);
-
-            if (user == null)
-            {
-                ViewBag.Error = "Dados de acesso inválidos";
-                return Redirect("/Login");
-            }
-
-            UserLogged = user;
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        [RequiresAuthentication]
         public ActionResult Index()
         {
             return View();
         }
 
-        [RequiresAuthentication]
         public JsonResult GetAll()
         {
             var data = userListQuery.GetAll();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        //[Transaction]
-        //public void Create()
-        //{
-        //    MD5Cng md5 = new MD5Cng();
-
-        //    var user = new User()
-        //    {
-        //        Email = "email@gmail.com",
-        //        Password = Encoding.Unicode.GetString(md5.ComputeHash(Encoding.Unicode.GetBytes("123456")))
-        //    };
-
-        //    userRepository.SaveOrUpdate(user);
-        //}
-
-        [RequiresAuthentication]
         [Transaction]
         public JsonResult Save(UserViewModel viewModel)
         {
@@ -103,7 +56,6 @@
             return Json(new { Success = true, Data = viewModel });
         }
 
-        [RequiresAuthentication]
         [Transaction]
         public JsonResult Delete(int id)
         {
@@ -119,7 +71,6 @@
             return Json(new { Success = true });
         }
 
-        [RequiresAuthentication]
         public JsonResult IsEmailUnique(UserViewModel viewModel)
         {
             var entity = GetEntity(viewModel);
@@ -128,7 +79,6 @@
             return Json(isUnique, JsonRequestBehavior.AllowGet);
         }
 
-        [RequiresAuthentication]
         private User GetEntity(UserViewModel viewModel)
         {
             var entity = new User();
@@ -136,11 +86,6 @@
             if (viewModel.Id > 0)
             {
                 entity = userListQuery.Get(viewModel.Id);
-            }
-            else
-            {
-                MD5Cng md5 = new MD5Cng();
-                entity.Password = Encoding.Unicode.GetString(md5.ComputeHash(Encoding.Unicode.GetBytes("123456")));
             }
 
             entity.Name = GetTrimOrNull(viewModel.Name);
@@ -150,7 +95,6 @@
             return entity;
         }
 
-        [RequiresAuthentication]
         private UserViewModel GetViewModel(User entity)
         {
             var viewModel = new UserViewModel();

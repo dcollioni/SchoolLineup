@@ -21,7 +21,7 @@
             }
             else
             {
-                var route = new RouteValueDictionary(new { controller = "User", action = "Login" });
+                var route = new RouteValueDictionary(new { controller = "Account", action = "Login" });
                 filterContext.Result = new RedirectToRouteResult(route);
             }
         }

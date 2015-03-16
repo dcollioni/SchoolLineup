@@ -26,7 +26,7 @@
             routes.MapRoute(
                 name: "Login",
                 url: "Login",
-                defaults: new { controller = "User", action = "Login" },
+                defaults: new { controller = "Account", action = "Login" },
                 namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
             );
         }
