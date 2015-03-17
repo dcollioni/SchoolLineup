@@ -45,5 +45,10 @@
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
     }
 }
