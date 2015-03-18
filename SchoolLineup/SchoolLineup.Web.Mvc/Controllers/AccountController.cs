@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Util;
+    using SchoolLineup.Web.Mvc.ActionFilters;
     using System.Web.Mvc;
 
     public class AccountController : BaseController
@@ -46,6 +47,7 @@
             return RedirectToAction("Index", "Home");
         }
 
+        [RequiresAuthentication]
         public ActionResult ChangePassword()
         {
             return View();
