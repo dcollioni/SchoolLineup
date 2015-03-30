@@ -126,11 +126,17 @@
   <data name="MaxLengthField" xml:space="preserve">
     <value>Esse campo deve conter, no máximo, {0} caracteres.</value>
   </data>
+  <data name="MinLengthField" xml:space="preserve">
+    <value>Esse campo deve conter, no mínimo, {0} caracteres.</value>
+  </data>
   <data name="MustBeGreaterThan" xml:space="preserve">
     <value>Esse campo deve ser maior do que {0}.</value>
   </data>
   <data name="MustBeLessThan" xml:space="preserve">
     <value>Esse campo deve ser menor do que {0}.</value>
+  </data>
+  <data name="PasswordsMustBeEqual" xml:space="preserve">
+    <value>As senhas devem ser idênticas.</value>
   </data>
   <data name="RequiredField" xml:space="preserve">
     <value>Esse campo deve ser preenchido.</value>

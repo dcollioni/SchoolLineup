@@ -19,6 +19,14 @@
         }
 
         /// <summary>
+        /// Esse campo deve conter, no mínimo, {<paramref name="minLength"/>} caracteres.
+        /// </summary>
+        public static string MinLengthField(int minLength)
+        {
+            return string.Format(Messages.MinLengthField, minLength);
+        }
+
+        /// <summary>
         /// Esse campo deve ter um valor único entre os demais registros.
         /// </summary>
         public static string UniqueField()
@@ -56,6 +64,14 @@
         public static string HasChildren()
         {
             return string.Format(Messages.HasChildren);
+        }
+
+        /// <summary>
+        /// As senhas devem ser idênticas.
+        /// </summary>
+        public static string PasswordsMustBeEqual()
+        {
+            return string.Format(Messages.PasswordsMustBeEqual);
         }
     }
 }

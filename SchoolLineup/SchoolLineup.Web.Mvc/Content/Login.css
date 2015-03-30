@@ -93,6 +93,10 @@ hr {
 	border-color: #6688CC;
 }
 
+#form input.invalid {
+    border-color: #DD4444;
+}
+
 #change-password-box {
 	box-sizing: border-box;
     background-color: #eee;

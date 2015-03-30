@@ -83,6 +83,9 @@
             bundles.Add(new ScriptBundle("~/bundles/ko/user")
                 .Include("~/Scripts/ViewModels/UserViewModel.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko/changepassword")
+                .Include("~/Scripts/ViewModels/ChangePasswordViewModel.js"));
+
             #endregion Knockout And App Scripts
 
             #region Underscore

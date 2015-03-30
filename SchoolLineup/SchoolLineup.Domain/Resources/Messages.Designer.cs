@@ -88,6 +88,15 @@ namespace SchoolLineup.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse campo deve conter, no mínimo, {0} caracteres..
+        /// </summary>
+        public static string MinLengthField {
+            get {
+                return ResourceManager.GetString("MinLengthField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esse campo deve ser maior do que {0}..
         /// </summary>
         public static string MustBeGreaterThan {
@@ -102,6 +111,15 @@ namespace SchoolLineup.Domain.Resources {
         public static string MustBeLessThan {
             get {
                 return ResourceManager.GetString("MustBeLessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As senhas devem ser idênticas..
+        /// </summary>
+        public static string PasswordsMustBeEqual {
+            get {
+                return ResourceManager.GetString("PasswordsMustBeEqual", resourceCulture);
             }
         }
         

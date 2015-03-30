@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\Account\ChangePasswordHandler.cs" />
     <Compile Include="CommandHandlers\Exam\DeleteExamHandler.cs" />
     <Compile Include="CommandHandlers\Exam\SaveExamHandler.cs" />
     <Compile Include="CommandHandlers\PartialGrade\DeletePartialGradeHandler.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="CommandHandlers\Student\DeleteStudentHandler.cs" />
     <Compile Include="CommandHandlers\Student\ImportStudentsHandler.cs" />
     <Compile Include="CommandHandlers\Student\SaveStudentHandler.cs" />
+    <Compile Include="Commands\Account\ChangePasswordCommand.cs" />
     <Compile Include="Commands\ExamResult\SaveExamResultsCommand.cs" />
     <Compile Include="Commands\Exam\DeleteExamCommand.cs" />
     <Compile Include="Commands\Exam\SaveExamCommand.cs" />
