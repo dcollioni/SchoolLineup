@@ -19,24 +19,26 @@
     @Styles.Render("~/Content/css/login")
 </head>
 <body>
-    <header>
-        <img src="@Url.Content("~")Content/images/graduare-header.png" alt="Graduare logo">
-    </header>
-    <div id="login-box">
-        <h1>Login</h1>
-        <hr>
-        <div id="form">
-            <form action="@Url.Content("~")Account/Login" method="post">
-                <div>
-                    <input type="text" name="email" placeholder="E-mail" class="user" autofocus="autofocus">
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Senha" class="password">
-                </div>
-                <div>
-                    <input type="submit" value="Entrar">
-                </div>
-            </form>
+    <div id="login-page">
+        <header>
+            <img src="@Url.Content("~")Content/images/graduare-header.png" alt="Graduare logo">
+        </header>
+        <div id="login-box">
+            <h1>Login</h1>
+            <hr>
+            <div id="form">
+                <form action="@Url.Content("~")Account/Login" method="post">
+                    <div>
+                        <input type="text" name="email" placeholder="E-mail" class="user" autofocus="autofocus">
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Senha" class="password">
+                    </div>
+                    <div>
+                        <input type="submit" value="Entrar">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

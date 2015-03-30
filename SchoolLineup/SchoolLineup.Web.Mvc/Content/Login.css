@@ -2,23 +2,38 @@
 	background: url(../images/escheresque_ste.png);
 	font-family: 'Open Sans', Signika, sans-serif;
 }
+
+#login-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -232px;
+    text-align: center;
+    width: 400px;
+}
+
+#change-password-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -270px;
+    margin-top: -310px;
+    text-align: center;
+    width: 540px;
+}
 			
 header {
-	margin-top: 100px;
-	text-align: center;
+    margin-bottom: 30px;
 }
 			
 #login-box {
-	box-sizing: border-box;
-	background-color: #EEEEEE;
-	border: 1px solid #444444;
-	border-radius: 3px;
-	width: 400px;
-	position: absolute;
-	left: 50%;
-	margin-top: 80px;
-	margin-left: -200px;
-	box-shadow: 0 0 20px #000000;
+    box-sizing: border-box;
+    background-color: #eee;
+    border: 1px solid #444;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 0 0 20px #000;
 }
 			
 h1 {
@@ -80,15 +95,12 @@ hr {
 
 #change-password-box {
 	box-sizing: border-box;
-	background-color: #EEEEEE;
-	border: 1px solid #444444;
-	border-radius: 3px;
-	width: 540px;
-	position: absolute;
-	left: 50%;
-	margin-top: 80px;
-	margin-left: -270px;
-	box-shadow: 0 0 20px #000000;
+    background-color: #eee;
+    border: 1px solid #444;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 0 0 20px #000;
+    text-align: left;
 }
 
     #change-password-box p {
