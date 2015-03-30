@@ -807,3 +807,18 @@ label.column-check {
     padding: 5px;
     margin: -5px;
 }
+
+#logged-user-info {
+    color: #FFFFFF;
+    font-size: 12pt;
+    margin-right: 5%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    text-shadow: none;
+}
+
+#logged-user-info a {
+    color: #FFFFFF;
+}

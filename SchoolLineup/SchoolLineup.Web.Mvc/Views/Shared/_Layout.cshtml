@@ -27,6 +27,10 @@
     </script>
 
     @Scripts.Render("~/bundles/app/default")
+
+    @{
+        var userLogged = Session["UserLogged"] as SchoolLineup.Domain.Entities.User;
+    }
 </head>
 <body>
     <main>
@@ -37,12 +41,19 @@
                         <img src="@Url.Content("~")Content/images/graduare-header.png" alt="Graduare" />
                     </a>
                 </h1>
+                <div id="logged-user-info">
+                    @{
+                        if (userLogged != null)
+                        {
+                            @userLogged.Name
+                            <span>(<a href="/Logout">sair</a>)</span>
+                        }
+                    }
+                </div>
             </div>
         </header>
         
         @{
-            var userLogged = Session["UserLogged"] as SchoolLineup.Domain.Entities.User;
-
             if (userLogged != null)
             {
                 <nav>
