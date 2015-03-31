@@ -1,0 +1,13 @@
+﻿@{
+    var user = Page.user as SchoolLineup.Domain.Entities.User;
+
+    if (user.Profile == SchoolLineup.Domain.Enums.UserProfile.Admin)
+    {
+        <a href="@Url.Content("~")College">Escolas</a>
+        <a href="@Url.Content("~")Student">Alunos</a>
+        <a href="@Url.Content("~")Teacher">Professores</a>
+    }
+    else
+    {
+    }
+}

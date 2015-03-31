@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
+    using SchoolLineup.Domain.Enums;
     using SchoolLineup.Tasks.Commands.Course;
     using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.College;
@@ -39,6 +40,7 @@
             this.studentListQuery = studentListQuery;
         }
 
+        [RequiresAuthentication(DeniedUserProfiles = new [] { UserProfile.Teacher })]
         public ActionResult Index(int? collegeId)
         {
             if (collegeId.HasValue)
@@ -98,6 +100,7 @@
         }
 
         [Transaction]
+        [RequiresAuthentication(DeniedUserProfiles = new[] { UserProfile.Teacher })]
         public JsonResult Save(CourseViewModel viewModel)
         {
             var entity = GetEntity(viewModel);
@@ -117,6 +120,7 @@
         }
 
         [Transaction]
+        [RequiresAuthentication(DeniedUserProfiles = new[] { UserProfile.Teacher })]
         public JsonResult Delete(int id)
         {
             var command = new DeleteCourseCommand(id, courseTasks);

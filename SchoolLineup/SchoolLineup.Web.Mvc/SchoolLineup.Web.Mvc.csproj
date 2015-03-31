@@ -289,6 +289,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,6 +3,7 @@
     using SchoolLineup.Domain.Contracts.Repositories;
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
+    using SchoolLineup.Domain.Enums;
     using SchoolLineup.Tasks.Commands.Student;
     using SchoolLineup.Util;
     using SchoolLineup.Web.Mvc.ActionFilters;
@@ -15,7 +16,7 @@
     using System.Web;
     using System.Web.Mvc;
 
-    [RequiresAuthentication]
+    [RequiresAuthentication(DeniedUserProfiles = new[] { UserProfile.Teacher })]
     public class StudentController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;

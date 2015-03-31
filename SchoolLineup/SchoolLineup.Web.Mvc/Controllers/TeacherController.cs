@@ -2,6 +2,7 @@
 {
     using SchoolLineup.Domain.Contracts.Tasks;
     using SchoolLineup.Domain.Entities;
+    using SchoolLineup.Domain.Enums;
     using SchoolLineup.Tasks.Commands.Teacher;
     using SchoolLineup.Web.Mvc.ActionFilters;
     using SchoolLineup.Web.Mvc.Controllers.Queries.Teacher;
@@ -10,7 +11,7 @@
     using SharpArch.RavenDb.Web.Mvc;
     using System.Web.Mvc;
 
-    [RequiresAuthentication]
+    [RequiresAuthentication(DeniedUserProfiles = new[] { UserProfile.Teacher })]
     public class TeacherController : BaseController
     {
         private readonly ICommandProcessor commandProcessor;
