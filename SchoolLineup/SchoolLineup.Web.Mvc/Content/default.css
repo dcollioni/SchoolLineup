@@ -820,5 +820,14 @@ label.column-check {
 }
 
 #logged-user-info a {
+    background-color: #247;
+    box-shadow: 0 -1px 1px #68B inset;
     color: #FFFFFF;
+    margin-left: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+#logged-user-info a:active {
+    background-color: #136;
 }
