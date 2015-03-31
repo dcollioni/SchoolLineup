@@ -29,6 +29,13 @@
                 defaults: new { controller = "Account", action = "Login" },
                 namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "Logout",
+                url: "Logout",
+                defaults: new { controller = "Account", action = "Logout" },
+                namespaces: new[] { "SchoolLineup.Web.Mvc.Controllers" }
+            );
         }
 
         private static void RegisterCourseRoutes(RouteCollection routes)

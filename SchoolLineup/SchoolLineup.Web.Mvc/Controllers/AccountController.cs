@@ -81,5 +81,12 @@
 
             return RedirectToAction("Index", "Home");
         }
+
+        [RequiresAuthentication]
+        public ActionResult Logout()
+        {
+            UserLogged = null;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
